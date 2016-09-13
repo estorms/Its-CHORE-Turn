@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>It's Chore Turn</title>
-    <link rel="stylesheet" type="text/css" href="/lib/bower_components/materialize/dist/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/main.css">
+    <head>
+        <title>It's CHORE Turn!</title>
+        <link rel="stylesheet" type="text/css" href="/lib/bower_components/materialize/dist/css/materialize.min.css">
+       <!--  <link rel="stylesheet" type="text/css" href="/lib/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="/main.css">
+    </head>
+    <body ng-app="ChoreApp">
+        <div ng-controller="TopCtrl">
+            <div ng-include=" 'partials/navbar.html' ">
+            </div>
+            <div ng-view></div>
+            </div>
 
-</head>
-   <body ng-app="ChoreApp">
-   <div ng-view>
-   <!-- Routed partials go here -->
-   </div>
-</body>
-<!-- 3rd party libs -->
-        <script type="text/javascript" src="lib/bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="/lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/lib/bower_components/angular/angular.min.js"></script>
-        <script type="text/javascript" src="/lib/bower_components/angular-route/angular-route.min.js"></script>
-        <script type="text/javascript" src="lib/bower_components/firebase/firebase.js"></script>
-        <script type="text/javascript" src="/lib/bower_components/materialize/dist/js/materialize.min.js"></script>
-        <!-- App specific files -->
-        <script type="text/javascript" src="/app/app.js"></script>
-        <script type="text/javascript" src="/fb-getter.js"></script>
+    <!-- 3rd party libs -->
+    <script type="text/javascript" src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+ <!--    <script type="text/javascript" src="/lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="/lib/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/lib/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/bower_components/firebase/firebase.js"></script>
+    <script type="text/javascript" src="/lib/bower_components/materialize/dist/js/materialize.min.js"></script>
+    <!-- App specific files -->
+    <script type="text/javascript" src="/app/app.js"></script>
+    <script type="text/javascript" src="/fb-getter.js"></script>
+    <!-- Controllers -->
+    <script type="text/javascript" src="/app/controllers/NavCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/TopCtrl.js"></script>
+    <script type="text/javascript" src="/app/controllers/LoginCtrl.js"></script>
+    <!-- Factories -->
+    <script type="text/javascript" src="/app/factories/AuthFactory.js"></script>
 </html>
