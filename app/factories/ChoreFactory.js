@@ -13,9 +13,33 @@ let addNewChore = (newChore) => {
     });
 };
 
+let addNewHouse = (newHouse) => {
 
+    return $q((resolve, reject) =>{
+        $http.post(`${FirebaseURL}/households.json`, JSON.stringify(newHouse))
+        .success((householdFromFB) =>{
+            resolve(householdFromFB);
+        })
+        .error((error) =>{
+            reject(error);
+        });
+    });
+};
 
+let addMember = (member) => {
 
-return {addNewChore}
+    return $q((resolve, reject) =>{
+        $http.post(`${FirebaseURL}/members.json`,
+            JSON.stringify(member))
+        .success((data)=>{
+            resolve(data);
+        })
+        .error((error) =>{
+            reject(error);
+        });
+    });
+};
+
+return {addNewChore, addNewHouse, addMember}
 
 });

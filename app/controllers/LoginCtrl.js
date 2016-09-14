@@ -28,7 +28,7 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
         if (data) {
           $window.location.href = "#/newchore";
         } else {
-          $window.location.href = "#/login";
+          $window.location.href = "#/newhousehold";
         }
         console.log("data from login ", data);
       }, (error) => {
@@ -40,7 +40,7 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
         .then((data)=> {
           console.log("a user has logged in with Google", data.uid);
          if (data) {
-          $window.location.href = "#/newchore";
+          $window.location.href = "#/newhousehold";
         } else {
           $window.location.href = "#/login";
         }

@@ -29,6 +29,10 @@ app.config(function($routeProvider){
         when("/newchore", {
             templateUrl: "partials/newchore.html",
             controller: "NewChoreCtrl"
+        }).
+        when("/newhousehold", {
+            templateUrl: "partials/newhousehold.html",
+            controller: "NewHouseholdCtrl"
         }). //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
         otherwise("/");
 });

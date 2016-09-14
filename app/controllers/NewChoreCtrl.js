@@ -2,7 +2,7 @@
 console.log('NewChoreCtrl connected')
 app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location){
 // console.log($scope.$parent.getUser())
-$scope.title = "Add a New Chore";
+$scope.title = "Add This Week's Chores"; //need to have a way to retrieve saved chores from week to week
 $scope.btnText = "Save That Nasty Chore!";
 $scope.newChore = {
     name: '',
@@ -24,22 +24,3 @@ $scope.addNewChore =  () => {
 });
 
 
-// "use strict";
-
-// app.controller("NewBoardCtrl", function ($scope, PinFactory, $location){
-//     $scope.title = "Add New Board";
-//     $scope.btnText = "Save Board";
-//     $scope.newBoard = {
-//         name: "",
-//         description: "",
-//         uid: $scope.$parent.getUser()
-//     };
-
-
-// $scope.addNewBoard = function () {
-//     PinFactory.postNewBoard($scope.newBoard)
-//     .then(function(){
-//         $location.url('#/allboards');
-//     });
-//  };
-// });
