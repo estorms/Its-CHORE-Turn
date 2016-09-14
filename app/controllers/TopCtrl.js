@@ -18,6 +18,7 @@ app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
   });
 
   $scope.getUser = function() {
+    console.log(currentUser)
     return currentUser;
   };
 
