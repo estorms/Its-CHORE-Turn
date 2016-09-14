@@ -9,11 +9,11 @@ $scope.newChore = {
     description: '',
     frequency: '',
     irritationPoints: '',
-    uid: ''
+    householdId: ''
 };
 
 $scope.addNewChore =  () => {
-    $scope.newChore.uid = $scope.$parent.getUser();
+    $scope.newChore.householdId = $scope.$parent.getUser();
     console.log('you clicked addnewchore', $scope.newChore)
     ChoreFactory.addNewChore($scope.newChore)
     .then((result)=>{
