@@ -30,7 +30,6 @@ $scope.addNewChore =  () => {
     let householdkey = [];
     let anotherKey;
     let memberResults;
-
     $scope.newChore.householdId = $scope.$parent.getUser();
     console.log('you clicked addnewchore', $scope.newChore);
     ChoreFactory.getHouseholdId($scope.newChore.householdId)
@@ -44,16 +43,13 @@ $scope.addNewChore =  () => {
         .then((data) => {
             memberResults = data;
             console.log('this is the result of getHouseholdMembers', memberResults);
-            $window.alert(memberResults)
-            memberResults.forEach(function(member) {
-                console.log(member)
-            })
 
         })
         // $location.url('#/newchore');
     });
-};
-
+}
 });
+
+
 
 

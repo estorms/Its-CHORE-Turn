@@ -42,7 +42,7 @@ let addMember = (member) => {
 
 let getHouseholdMembers = (housekey) => {
   return $q ( (resolve, reject) => {
-    $http.get(`${FirebaseURL}/members.json?orderBy="houseID"&equalTo="${housekey}"`)
+    $http.get(`${FirebaseURL}/members.json?orderBy="houseId"&equalTo="${housekey}"`)
     .success( (members) => {
       resolve(members);
       console.log(members)
