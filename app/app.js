@@ -30,10 +30,21 @@ app.config(function($routeProvider){
             templateUrl: "partials/newchore.html",
             controller: "NewChoreCtrl"
         }).
+
         when("/newhousehold", {
             templateUrl: "partials/newhousehold.html",
             controller: "NewHouseholdCtrl"
-        }). //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
+        }).
+
+        when("/allchores", {
+            templateUrl: "partials/allchores.html",
+            controller: "AllChoresCtrl"
+        }).
+
+
+
+
+        //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
         otherwise("/");
 });
 

@@ -6,8 +6,8 @@ let hId;
 let houseID;
 let householdMembersObj;
 let householdMembersArr = [];
-let houseMem1;
-let houseMem2;
+$scope.houseMem1;
+$scope.houseMem2;
 
 angular.element(document).ready(function () {
     console.log('page loading completed');
@@ -46,10 +46,10 @@ $scope.accesshousehold = () =>{
                 console.log(householdMembers[prop].name)
                 householdMembersArr.push(householdMembers[prop].name)
                 console.log(householdMembersArr)
-                houseMem1=householdMembersArr[0];
-                houseMem2=householdMembersArr[1];
+                $scope.houseMem1=householdMembersArr[0];
+                $scope.houseMem2=householdMembersArr[1];
             }
-            console.log('this is houseMem1', houseMem1, 'this is houseMem2', houseMem2)
+            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
             console.log('woot!')
         })
     })
