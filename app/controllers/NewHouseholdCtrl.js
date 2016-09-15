@@ -2,6 +2,7 @@
 console.log("NewHouseholdCtrl connected")
 app.controller("NewHouseholdCtrl", function ($scope, ChoreFactory, $location) {
 
+
 $scope.title = "Register Your HouseHold";
 $scope.btnText = "Save";
 
