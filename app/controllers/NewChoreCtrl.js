@@ -5,7 +5,7 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 let hId;
 let houseID;
 let householdMembersObj;
-let householdMembersArr;
+let householdMembersArr = [];
 let houseMem1;
 let houseMem2;
 
@@ -19,7 +19,7 @@ $scope.btnText = "Save That Nasty Chore!";
 $scope.newChore = {
     name: '',
     description: '',
-    dueDate: '',
+    dueDate: '', //when pushing to FB, was registering a blank string until you put in ng-model to the partial, now it's not registering at all as a key on newChore
     irritationPoints: '',
     assignedMember: '',
     completed: false
@@ -44,15 +44,14 @@ $scope.accesshousehold = () =>{
             for (var prop in householdMembers) {
                 console.log('hello');
                 console.log(householdMembers[prop].name)
+                householdMembersArr.push(householdMembers[prop].name)
+                console.log(householdMembersArr)
+                houseMem1=householdMembersArr[0];
+                houseMem2=householdMembersArr[1];
             }
-
+            console.log('this is houseMem1', houseMem1, 'this is houseMem2', houseMem2)
         })
     })
-    // ChoreFactory.getHouseholdMembers(householdId)
-    // .then( (members) => {
-    //    householdMembers = members;
-    //    console.log('you are inside accesshousehold, these are your members', members)
-    // })
 }
 $scope.addNewChore =  () => {
 
