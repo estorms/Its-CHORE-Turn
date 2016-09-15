@@ -44,7 +44,7 @@ let getHouseholdMembers = (housekey) => {
   return $q ( (resolve, reject) => {
     $http.get(`${FirebaseURL}/members.json?orderBy="houseId"&equalTo="${housekey}"`)
     .success( (members) => {
-      console.log('you are inside getHouseholdmembers, this is the result', members)
+
       resolve(members);
     })
     .error( (error) => {
@@ -66,7 +66,7 @@ let getHouseholdId = (householdId) =>{
              houseId = key
         });
       resolve(houseId);
-      // console.log('you are inside getHouseholdId and this is the data you want to pass in to getmembers', houseId)
+
     })
     .error( (error) => {
       reject(error);

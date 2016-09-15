@@ -26,9 +26,9 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
       .then( (data) => {
         console.log("a user has logged in ", data.uid);
         if (data) {
-          $window.location.href = "#/newchore";
-        } else {
           $window.location.href = "#/newhousehold";
+        } else {
+          $window.location.href = "#/login";
         }
         console.log("data from login ", data);
       }, (error) => {

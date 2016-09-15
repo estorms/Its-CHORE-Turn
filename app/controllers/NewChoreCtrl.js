@@ -4,7 +4,7 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 
 let hId;
 let houseID;
-let householdMembers;
+let householdMembers = [];
 
 angular.element(document).ready(function () {
     console.log('page loading completed');
@@ -37,8 +37,8 @@ $scope.accesshousehold = () =>{
         console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
         ChoreFactory.getHouseholdMembers(houseID)
         .then((results) => {
-            householdMembers = results;
-            console.log('you are inside accesshousehold, good lord let this be your householdmembers', householdMembers)
+            householdMembers.push(results);
+            console.log('you are inside accesshousehold, good lord let this be your householdmembers in an array', householdMembers)
         })
     })
     // ChoreFactory.getHouseholdMembers(householdId)
