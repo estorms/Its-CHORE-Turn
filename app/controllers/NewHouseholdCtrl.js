@@ -11,17 +11,16 @@ $scope.newHouse = {
     householdId: ''
 };
 
-
-//register the household, returns the ID of the household, take ID and add to member
-
 $scope.newMember1 = {
     name: '',
-    houseId: ''
+    houseId: '',
+    pointsEarned: ''
 }
 
 $scope.newMember2 = {
     name: '',
-    houseId: ''
+    houseId: '',
+    pointsEarned: ''
 }
 
 
@@ -47,10 +46,6 @@ $scope.addNewHouse = () => {
                 console.log('this is the result of second add new member', result);
                 $location.url('/newchore');
             })
-
-
-                 //.then means we are waiting for the promise resolution, anything that happens a level out will fire before what's inside the then --addMembers was firing before promise in addNewHouse was resolved, that's why we have to put the second then within the first
-            })
+        })
     };
-
 });

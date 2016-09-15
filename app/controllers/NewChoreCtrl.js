@@ -4,21 +4,23 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 
 let hId;
 let houseID;
-let householdMembers = [];
+let householdMembersObj;
+let householdMembersArr;
+let houseMem1;
+let houseMem2;
 
 angular.element(document).ready(function () {
     console.log('page loading completed');
 });
 
-// console.log($scope.$parent.getUser())
-$scope.title = "Add This Week's Chores"; //need to have a way to retrieve saved chores from week to week
+
+$scope.title = "Add This Week's Chores";
 $scope.btnText = "Save That Nasty Chore!";
 $scope.newChore = {
     name: '',
     description: '',
     dueDate: '',
     irritationPoints: '',
-    householdId: '',
     assignedMember: '',
     completed: false
 };
@@ -36,9 +38,14 @@ $scope.accesshousehold = () =>{
         houseID = results;
         console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
         ChoreFactory.getHouseholdMembers(houseID)
-        .then((results) => {
-            householdMembers.push(results);
-            console.log('you are inside accesshousehold, good lord let this be your householdmembers in an array', householdMembers)
+        .then((householdMembers) => {
+
+            console.log('you are inside accesshousehold', householdMembers)
+            for (var prop in householdMembers) {
+                console.log('hello');
+                console.log(householdMembers[prop].name)
+            }
+
         })
     })
     // ChoreFactory.getHouseholdMembers(householdId)
@@ -48,25 +55,16 @@ $scope.accesshousehold = () =>{
     // })
 }
 $scope.addNewChore =  () => {
-    let householdkey = [];
-    let anotherKey;
-    let memberResults;
-    $scope.newChore.householdId = $scope.$parent.getUser();
-    console.log('you clicked addnewchore', $scope.newChore);
-    ChoreFactory.getHouseholdId($scope.newChore.householdId)
-    .then((result) => {
-        console.log('this is the data from getHouseholdId it should be the houseid', result)
-        anotherKey = result;
-        console.log('this should also be the houseid', anotherKey);
-        //this is
-        ChoreFactory.getHouseholdMembers(anotherKey)
-         //here you need to pass in the result of getHouseholdId, where you are going to index on houseID property of members.
-        .then((data) => {
-            memberResults = data;
-            console.log('this is the result of getHouseholdMembers', memberResults);
 
-        })
-        // $location.url('#/newchore');
+    $scope.newChore.householdId = houseID;
+    // let anotherKey;
+    // let memberResults;
+    // $scope.newChore.householdId = $scope.$parent.getUser();
+    // console.log('you clicked addnewchore', $scope.newChore);
+    ChoreFactory.postNewChore($scope.newChore)
+    .then((result) => {
+        console.log('wow! you posted a chore!', result);
+
     });
 }
     // accesshousehold();
