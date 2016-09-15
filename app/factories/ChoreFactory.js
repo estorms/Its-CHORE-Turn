@@ -45,6 +45,7 @@ let getHouseholdMembers = (housekey) => {
     $http.get(`${FirebaseURL}/members.json?orderBy="houseID"&equalTo="${housekey}"`)
     .success( (members) => {
       resolve(members);
+      console.log(members)
     })
     .error( (error) => {
       reject(error);
