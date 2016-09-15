@@ -40,6 +40,38 @@ let addMember = (member) => {
     });
 };
 
-return {addNewChore, addNewHouse, addMember}
+let getHouseholdMembers = (housekey) => {
+  return $q ( (resolve, reject) => {
+    $http.get(`${FirebaseURL}/members.json?orderBy="houseID"&equalTo="${housekey}"`)
+    .success( (members) => {
+      resolve(members);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
+
+let getHouseholdId = (householdId) =>{
+    // let houseId = [];
+    let houseId;
+    return $q ( (resolve, reject) => {
+    $http.get(`${FirebaseURL}/households.json?orderBy="householdId"&equalTo="${householdId}"`)
+    .success( (household) => {
+        console.log('in getHouseholdId', household)
+        Object.keys(household).forEach((key) => {
+             household[key].id = key;
+             // houseId.push(household[key])
+             houseId = key
+        });
+      resolve(houseId);
+      console.log('you are inside getHouseholdId and this is the data you want to pass in to getmembers', houseId)
+    })
+    .error( (error) => {
+      reject(error);
+    });
+})
+}
+return {addNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId}
 
 });
