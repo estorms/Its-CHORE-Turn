@@ -50,6 +50,7 @@ $scope.accesshousehold = () =>{
                 houseMem2=householdMembersArr[1];
             }
             console.log('this is houseMem1', houseMem1, 'this is houseMem2', houseMem2)
+            console.log('woot!')
         })
     })
 }
