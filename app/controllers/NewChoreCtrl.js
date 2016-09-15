@@ -35,7 +35,11 @@ $scope.accesshousehold = () =>{
     .then((results) => {
         houseID = results;
         console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
-        // ChoreFactory.getHouseholdMembers()
+        ChoreFactory.getHouseholdMembers(houseID)
+        .then((results) => {
+            householdMembers = results;
+            console.log('you are inside accesshousehold, good lord let this be your householdmembers', householdMembers)
+        })
     })
     // ChoreFactory.getHouseholdMembers(householdId)
     // .then( (members) => {
