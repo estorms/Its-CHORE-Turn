@@ -9,6 +9,7 @@ let householdMembersObj;
 let householdMembersArr = [];
 $scope.houseMem1;
 $scope.houseMem2;
+$scope.chores = [];
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -29,16 +30,18 @@ $scope.accesshousehold = () =>{
                 $scope.houseMem1=householdMembersArr[0];
                 $scope.houseMem2=householdMembersArr[1];
             }
+            chorePop();
             console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
             console.log('woot!')
         })
     })
 }
-$scope.chores = [];
 
 
-    ChoreFactory.getAllChores(houseID)
-console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
+
+let chorePop = () => {
+  console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
+  ChoreFactory.getAllChores(houseID)
     .then( (choresObj) => {
       $scope.chores = choresObj;
         console.log("the result of call to getAllChores", choresObj);
@@ -53,6 +56,7 @@ console.log('this is what you are calling  to all chores with', houseID, 'it sho
         console.log("choreId", $scope.choreId);
       });
     });
+  };
 
 
 $scope.deleteChore = () => {
