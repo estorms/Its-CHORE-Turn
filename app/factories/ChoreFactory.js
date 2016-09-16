@@ -93,6 +93,31 @@ let getAllChores = (householdId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores}
+
+let updateChore = (choreId, editedChore) => {
+  return $q ( (resolve, reject) => {
+    $http.patch(`${FirebaseURL}/chores/${choreId}.json`, JSON.stringify(editedChore))
+    .success( (choreObj) => {
+      resolve(choreObj);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
+
+let deleteAChore = (choreId) => {
+  return $q ( (resolve, reject) => {
+    $http.delete(`${FirebaseURL}/chores.json?orderBy="id"&equalTo="${choreId}"`)
+    .success( (response) => {
+        console.log('this is the response from delete a chore', response)
+      resolve(response);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore}
 
 });

@@ -2,19 +2,31 @@
 
 app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location){
 
-// $scope.searchText = SearchTermData;
+$scope.chores = [];
 
 let householdId = $scope.$parent.getUser();
-    $scope.chores = [];
+
     ChoreFactory.getAllChores(householdId)
-    .then( (allChores) => {
-        $scope.chores = allChores;
-        console.log('you are inside getAllChores, this should be an array of the chores', $scope.chores)
-        $scope.selectedChore = $scope.chores.filter(function(chore){
-            return chore.id === $routeParams.choreId;
-        })[0];
+    .then( (choresObj) => {
+      $scope.chores = choresObj;
+        console.log("the result of call to getAllChores", choresObj);
+
+      choresObj.forEach(function (chore) {
+        let choreId = chore.id;
+        // console.log(board);
+        ChoreFactory.updateChore(choreId, chore)
+        console.log("choreId", choreId);
+      });
     });
 
+
+let deleteChore = (choreId) => {
+  ChoreFactory.deleteAChore(choreId)
+  .then( (result) => {
+    console.log('you deleted that chore, badass', result)
+  })
+}
+});
 //     $scope.boards = [];
 //     PinFactory.getUserBoards(userId)
 //     .then( (boardsArray) => {
@@ -57,4 +69,3 @@ let householdId = $scope.$parent.getUser();
 // });
 // });
 // };
-});
