@@ -67,7 +67,21 @@ $scope.addNewChore =  () => {
 
     });
 }
-    // accesshousehold();
+
+$scope.houseMem1Selected = () => {
+    $scope.newChore.assignedMember = $scope.houseMem1;
+    console.log($scope.newChore)
+
+}
+
+$scope.houseMem2Selected = () => {
+    $scope.newChore.assignedMember = $scope.houseMem2;
+    console.log($scope.newChore)
+
+}
+
+
+
 });
 
 

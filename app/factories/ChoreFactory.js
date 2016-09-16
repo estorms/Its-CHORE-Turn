@@ -41,13 +41,40 @@ let addMember = (member) => {
 };
 
 let getHouseholdMembers = (housekey) => {
+  let members = [];
   return $q ( (resolve, reject) => {
     $http.get(`${FirebaseURL}/members.json?orderBy="houseId"&equalTo="${housekey}"`)
-    .success( (members) => {
-
+    .success( (membersObj) => {
+      console.log(membersObj)
+      Object.keys(membersObj).forEach((key) =>{
+        membersObj[key].id = key;
+        members.push(membersObj[key]);
+      })
+      console.log('these are members from inside getHouseholdMembers', members)
       resolve(members);
     })
     .error( (error) => {
+      reject(error);
+    });
+  });
+};
+
+
+
+let getAllChores = (householdId) => {
+  let chores = [];
+  return $q( (resolve, reject) => {
+    $http.get(`${FirebaseURL}/chores.json?orderBy="householdId"&equalTo="${householdId}"`)
+    .success((choresObj) => {
+        console.log(choresObj)
+      Object.keys(choresObj).forEach((key) => {
+        choresObj[key].id = key;
+        chores.push(choresObj[key]);
+      });
+      console.log(chores)
+    resolve(chores);
+    })
+    .error((error) => {
       reject(error);
     });
   });
@@ -75,24 +102,24 @@ let getHouseholdId = (householdId) =>{
 }
 
 
-let getAllChores = (householdId) => {
-  let chores = [];
-  return $q( (resolve, reject) => {
-    $http.get(`${FirebaseURL}/chores.json?orderBy="householdId"&equalTo="${householdId}"`)
-    .success((choresObj) => {
-        console.log(choresObj)
-      Object.keys(choresObj).forEach((key) => {
-        choresObj[key].id = key;
-        chores.push(choresObj[key]);
-      });
-      console.log(chores)
-    resolve(chores);
-    })
-    .error((error) => {
-      reject(error);
-    });
-  });
-};
+// let getAllChores = (householdId) => {
+//   let chores = [];
+//   return $q( (resolve, reject) => {
+//     $http.get(`${FirebaseURL}/chores.json?orderBy="householdId"&equalTo="${householdId}"`)
+//     .success((choresObj) => {
+//         console.log(choresObj)
+//       Object.keys(choresObj).forEach((key) => {
+//         choresObj[key].id = key;
+//         chores.push(choresObj[key]);
+//       });
+//       console.log(chores)
+//     resolve(chores);
+//     })
+//     .error((error) => {
+//       reject(error);
+//     });
+//   });
+// };
 
 
 let updateChore = (choreId, editedChore) => {
@@ -100,6 +127,19 @@ let updateChore = (choreId, editedChore) => {
     $http.patch(`${FirebaseURL}/chores/${choreId}.json`, JSON.stringify(editedChore))
     .success( (choreObj) => {
       resolve(choreObj);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
+
+let updateMembers = (housekey, editedMembers) => {
+  return $q ( (resolve, reject) => {
+    $http.patch(`${FirebaseURL}/members/${housekey}.json`, JSON.stringify(editedMembers))
+    .success( (result) => {
+      console.log('result of updateMembers', result)
+      resolve(result);
     })
     .error( (error) => {
       reject(error);
@@ -137,6 +177,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers}
 
 });
