@@ -30,6 +30,11 @@ $scope.deleteChore = () => {
     console.log('you deleted that chore, badass', result)
   })
 }
+
+$scope.completeChore = () => {
+console.log('you are inside completeChore, you need to access this array, pluck out the one you are clicking on, and then update the completed property to true', $scope.chores)
+
+}
 });
 //     $scope.boards = [];
 //     PinFactory.getUserBoards(userId)
