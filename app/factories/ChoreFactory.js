@@ -57,7 +57,7 @@ let getHouseholdId = (householdId) =>{
     // let houseId = [];
     let houseId;
     return $q ( (resolve, reject) => {
-    $http.get(`${FirebaseURL}/households.json?orderBy="householdId"&equalTo="${householdId}"`)
+    $http.get(`${FirebaseURL}/households.json?orderBy="userId"&equalTo="${householdId}"`)
     .success( (household) => {
         console.log('in getHouseholdId', household)
         Object.keys(household).forEach((key) => {

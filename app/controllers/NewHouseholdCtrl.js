@@ -8,7 +8,7 @@ $scope.btnText = "Save";
 
 $scope.newHouse = {
     name: '',
-    householdId: ''
+    userId: ''
 };
 
 $scope.newMember1 = {
@@ -27,7 +27,7 @@ $scope.newMember2 = {
 $scope.addNewHouse = () => {
     let housekey;
 
-    $scope.newHouse.householdId = $scope.$parent.getUser();
+    $scope.newHouse.userId = $scope.$parent.getUser();
     console.log('you clicked addnewhouse', $scope.newHouse);
     ChoreFactory.addNewHouse($scope.newHouse)
         .then((result) => {

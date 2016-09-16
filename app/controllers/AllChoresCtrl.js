@@ -2,11 +2,43 @@
 
 app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location){
 
+
+let hId;
+let houseID;
+let householdMembersObj;
+let householdMembersArr = [];
+$scope.houseMem1;
+$scope.houseMem2;
+
+$scope.accesshousehold = () =>{
+    hId = $scope.$parent.getUser();
+    console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
+    ChoreFactory.getHouseholdId(hId)
+    .then((results) => {
+        houseID = results;
+        console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
+        ChoreFactory.getHouseholdMembers(houseID)
+        .then((householdMembers) => {
+
+            console.log('you are inside accesshousehold, these are your household members', householdMembers)
+            for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
+                console.log('hello');
+                console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                householdMembersArr.push(householdMembers[prop].name)
+                console.log(householdMembersArr)
+                $scope.houseMem1=householdMembersArr[0];
+                $scope.houseMem2=householdMembersArr[1];
+            }
+            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
+            console.log('woot!')
+        })
+    })
+}
 $scope.chores = [];
 
-let householdId = $scope.$parent.getUser();
 
-    ChoreFactory.getAllChores(householdId)
+    ChoreFactory.getAllChores(houseID)
+console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
     .then( (choresObj) => {
       $scope.chores = choresObj;
         console.log("the result of call to getAllChores", choresObj);
@@ -36,45 +68,3 @@ console.log('you are inside completeChore, you need to access this array, pluck 
 
 }
 });
-//     $scope.boards = [];
-//     PinFactory.getUserBoards(userId)
-//     .then( (boardsArray) => {
-//       $scope.boards = boardsArray;
-//         console.log("auto running get user boards",boardsArray);
-
-//       boardsArray.forEach(function (board) {
-//         let boardId = board.id;
-//         // console.log(board);
-//         PinFactory.updateBoard(boardId, board);
-//         console.log("boardId", boardId);
-//       });
-//     });
-
-// $scope.addNewPin = (clickedPin ) => {
-//     console.log(clickedPin);
-//   PinFactory.postNewPin(clickedPin)
-//     .then( (response) => {
-//       $location.url("/allpins");
-//   });
-// };
-
-// $scope.addBoardIdtoPin = (pin, boardId, pinId) =>{
-//     let pinToEdit;
-// PinFactory.getSinglePin(pinId)
-// .then(function(result) {
-//     pinToEdit = result;
-//     console.log('this is the pin to which we are taking the board ID', pinToEdit);
-//   let pinSaveToast = `<span><h4 style="color:orchid">You've saved this pin to a board! Good job!</h4></span>`;
-//   Materialize.toast(pinSaveToast, 2000);
-
-
-// pinToEdit.boardId = boardId;
-// console.log('this pin should have the board ID attached', pinToEdit);
-// // let pinWithBoardId = pin;
-// // console.log(pinWithBoardId)
-// PinFactory.updatePin(pinId, pinToEdit)
-// .then(()=> {console.log('pin updated');
-//     $location.url("/allpins");
-// });
-// });
-// };
