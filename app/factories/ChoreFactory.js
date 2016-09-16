@@ -94,6 +94,7 @@ let getAllChores = (householdId) => {
   });
 };
 
+
 let updateChore = (choreId, editedChore) => {
   return $q ( (resolve, reject) => {
     $http.patch(`${FirebaseURL}/chores/${choreId}.json`, JSON.stringify(editedChore))
@@ -106,9 +107,27 @@ let updateChore = (choreId, editedChore) => {
   });
 };
 
+
+// https://its-chore-turn.firebaseio.com/chores.json?orderBy="id"&equalTo="-KRo5GfJFXBXREM7hyMX"
+
+
+
+let getSingleChore = (choreId) => {
+  return $q ((resolve, reject) =>{
+    $http.get(`${FirebaseURL}/chores.json?orderBy="id"&equalTo="${choreId}"`)
+    .success((choreObj) =>{
+      console.log('this is the result of getSingleChore', choreObj)
+      resolve(choreObj)
+    })
+    .error((error) =>{
+      reject(error);
+    })
+  })
+};
+
 let deleteAChore = (choreId) => {
   return $q ( (resolve, reject) => {
-    $http.delete(`${FirebaseURL}/chores.json?orderBy="id"&equalTo="${choreId}"`)
+    $http.delete(`${FirebaseURL}/chores/${choreId}.json`)
     .success( (response) => {
         console.log('this is the response from delete a chore', response)
       resolve(response);
@@ -118,6 +137,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore}
 
 });

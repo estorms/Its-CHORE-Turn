@@ -10,6 +10,7 @@ let householdMembersArr = [];
 $scope.houseMem1;
 $scope.houseMem2;
 $scope.chores = [];
+let singleChore;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -40,7 +41,7 @@ $scope.accesshousehold = () =>{
 
 
 let chorePop = () => {
-  console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
+  // console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
   ChoreFactory.getAllChores(houseID)
     .then( (choresObj) => {
       $scope.chores = choresObj;
@@ -62,13 +63,30 @@ let chorePop = () => {
 $scope.deleteChore = () => {
   console.log('you are inside delete chore; this is the choreId', $scope.choreId)
   ChoreFactory.deleteAChore($scope.choreId)
-  .then( (result) => {
-    console.log('you deleted that chore, badass', result)
+  .then( () => {
+    console.log('you deleted that chore, badass')
   })
 }
 
-$scope.completeChore = () => {
-console.log('you are inside completeChore, you need to access this array, pluck out the one you are clicking on, and then update the completed property to true', $scope.chores)
 
-}
+$scope.completeChore = () => {
+console.log('you are inside completeChore, this is the choreID', $scope.choreId)
+  ChoreFactory.getSingleChore($scope.choreId)
+  .then( (result) =>{
+    console.log('this is the result of getSingleChores', result)
+    singleChore = result;
+    for (var key in singleChore) {
+    console.log(singleChore[key].completed);
+    singleChore = singleChore[key];
+    };
+    console.log('this is single chore outside the loop', singleChore)
+    singleChore.completed = true;
+    console.log('this should show a single chore with a true completed value', singleChore)
+    ChoreFactory.updateChore($scope.choreId, singleChore)
+    .then((result) => {
+      console.log('this is the result of updateChore', result)
+    });
+  });
+};
+
 });
