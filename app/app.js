@@ -13,7 +13,7 @@ app.config(function($routeProvider){
         } else {
             reject();
         }
-    });
+    })
 
     $routeProvider.
         when("/", {
@@ -40,9 +40,6 @@ app.config(function($routeProvider){
             templateUrl: "partials/allchores.html",
             controller: "AllChoresCtrl"
         }).
-
-
-
 
         //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
         otherwise("/");

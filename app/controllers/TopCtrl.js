@@ -29,4 +29,14 @@ app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
     });
   };
 
+  $scope.goToAddNew = function () {
+    console.log('you clicked goToAddNew')
+      $window.location.href = "#/newchore";
+    };
+
+    $scope.goToAllChores = function () {
+    console.log('you clicked goToAllChores')
+      $window.location.href = "#/allchores";
+    };
+
 });
