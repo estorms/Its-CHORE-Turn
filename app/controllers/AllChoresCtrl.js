@@ -12,16 +12,20 @@ let householdId = $scope.$parent.getUser();
         console.log("the result of call to getAllChores", choresObj);
 
       choresObj.forEach(function (chore) {
-        let choreId = chore.id;
+        $scope.choreId = chore.id;
         // console.log(board);
-        ChoreFactory.updateChore(choreId, chore)
-        console.log("choreId", choreId);
+        ChoreFactory.updateChore($scope.choreId, chore)
+        .then((result) =>{
+          console.log(result)
+        })
+        console.log("choreId", $scope.choreId);
       });
     });
 
 
-let deleteChore = (choreId) => {
-  ChoreFactory.deleteAChore(choreId)
+$scope.deleteChore = () => {
+  console.log('you are inside delete chore; this is the choreId', $scope.choreId)
+  ChoreFactory.deleteAChore($scope.choreId)
   .then( (result) => {
     console.log('you deleted that chore, badass', result)
   })
