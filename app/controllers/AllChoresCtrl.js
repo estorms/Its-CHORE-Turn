@@ -8,10 +8,9 @@ let houseID;
 let householdMembersObj;
 let householdMembersNamesArr = [];
 let householdMembersArr=[];
-$scope.houseMem1;
-$scope.houseMem2;
 $scope.chores = [];
 let singleChore;
+let choreId;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -37,7 +36,7 @@ $scope.accesshousehold = () =>{
                 }
                 householdMembersArr.forEach(function (member) {
                 console.log(member, member.id)
-                ChoreFactory.updateMembers(member.id, member) //something is wrong right here
+                ChoreFactory.updateMembers(member.id, member)
                  .then((results) =>{
                    console.log('These are the results of updateMembers', results)
                  })
@@ -60,21 +59,24 @@ let chorePop = () => {
         console.log("the result of call to getAllChores", choresObj);
 
       choresObj.forEach(function (chore) {
-        $scope.choreId = chore.id;
+        choreId = chore.id;
         // console.log(board);
-        ChoreFactory.updateChore($scope.choreId, chore)
+        ChoreFactory.updateChore(choreId, chore)
         .then((result) =>{
-          console.log(result)
+          console.log('this is the result of updateChore', result)
         })
-        console.log("choreId", $scope.choreId);
+    //CHANGED THE ABOVE TO 'CHORE ID', it was working , but now I don't see where I'm attaching choreID to chore
       });
     });
   };
 
 
-$scope.deleteChore = () => {
-  console.log('you are inside delete chore; this is the choreId', $scope.choreId)
-  ChoreFactory.deleteAChore($scope.choreId)
+
+
+$scope.deleteChore = (choreId) => {
+  console.log('you are inside delete chore; this is the choreId', choreId, 'you are inside delete chore; this is the $scope.chore.choreId')
+  //I think the last choreID created in getchores above is what's preserved here and therefore the last chore is the one being completed, no matter what
+  ChoreFactory.deleteAChore(choreId)
   .then( () => {
     console.log('you deleted that chore, badass');
   })
