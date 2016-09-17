@@ -73,14 +73,14 @@ $scope.addNewChore =  () => {
 $scope.houseMem1Selected = () => {
     console.log('this is houseMem1', $scope.houseMem1)
     $scope.newChore.assignedMember = $scope.houseMem1;
-    console.log($scope.newChore)
+    // console.log($scope.newChore)
 
 }
 
 $scope.houseMem2Selected = () => {
     console.log('this is houseMem2', $scope.houseMem2)
     $scope.newChore.assignedMember = $scope.houseMem2;
-    console.log($scope.newChore)
+    // console.log($scope.newChore)
 
 }
 

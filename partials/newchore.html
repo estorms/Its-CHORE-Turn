@@ -20,15 +20,15 @@
         </div>
       </div>
       <div class="range-field col sm12">
-      <input type="date" class="datepicker" id="datepicker" ng-model="newChore.dueDate">
+      <input type="date" ng-model="newChore.dueDate">
       <label for="datepicker">Due Date</label>
     </div>
         <p>
-      <input type="checkbox" id="houseMem1" ng-click="houseMem1Selected()"/>
+      <input type="radio" id="houseMem1" ng-click="houseMem1Selected()"/>
       <label for="houseMem1">{{houseMem1}}</label>
     </p>
     <p>
-      <input type="checkbox" id="houseMem2" ng-click="houseMem2Selected()"/>
+      <input type="radio" id="houseMem2" ng-click="houseMem2Selected()"/>
       <label for="houseMem2">{{houseMem2}}</label>
     </p>
     <p>
