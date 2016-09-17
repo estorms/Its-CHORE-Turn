@@ -79,6 +79,7 @@ $scope.deleteChore = (choreId) => {
   ChoreFactory.deleteAChore(choreId)
   .then( () => {
     console.log('you deleted that chore, badass');
+    $location.url("#/allchores");
   })
 }
 
