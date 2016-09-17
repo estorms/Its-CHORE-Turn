@@ -76,7 +76,7 @@ $scope.deleteChore = () => {
   console.log('you are inside delete chore; this is the choreId', $scope.choreId)
   ChoreFactory.deleteAChore($scope.choreId)
   .then( () => {
-    console.log('you deleted that chore, badass')
+    console.log('you deleted that chore, badass');
   })
 }
 
