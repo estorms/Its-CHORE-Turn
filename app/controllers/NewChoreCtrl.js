@@ -24,6 +24,7 @@ $scope.newChore = {
     assignedMember: '',
     completed: false
 };
+
 $('select').material_select();
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -62,10 +63,11 @@ $scope.addNewChore =  () => {
     // $scope.newChore.householdId = $scope.$parent.getUser();
     // console.log('you clicked addnewchore', $scope.newChore);
     ChoreFactory.postNewChore($scope.newChore)
-    .then((result) => {
-        console.log('wow! you posted a chore!', result);
+        .then((result) => {
+            console.log('wow! you posted a chore!', result);
+            $scope.newChore = { completed: false };
+     });
 
-    });
 }
 
 $scope.houseMem1Selected = () => {
