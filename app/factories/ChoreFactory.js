@@ -98,28 +98,8 @@ let getHouseholdId = (householdId) =>{
     .error( (error) => {
       reject(error);
     });
-})
+  })
 }
-
-
-// let getAllChores = (householdId) => {
-//   let chores = [];
-//   return $q( (resolve, reject) => {
-//     $http.get(`${FirebaseURL}/chores.json?orderBy="householdId"&equalTo="${householdId}"`)
-//     .success((choresObj) => {
-//         console.log(choresObj)
-//       Object.keys(choresObj).forEach((key) => {
-//         choresObj[key].id = key;
-//         chores.push(choresObj[key]);
-//       });
-//       console.log(chores)
-//     resolve(chores);
-//     })
-//     .error((error) => {
-//       reject(error);
-//     });
-//   });
-// };
 
 
 let updateChore = (choreId, editedChore) => {

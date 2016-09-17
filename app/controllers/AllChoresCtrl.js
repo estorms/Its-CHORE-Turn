@@ -83,23 +83,20 @@ $scope.deleteChore = (choreId) => {
     .then( (choresObj) => {
       $scope.chores = choresObj;
      })
-  })    // $location.url("#/allchores");
+  })    // $location.url("#/chore..s");
 }
 
 
 $scope.completeChore = (choreId) => {
-console.log('you are inside completeChore, this is the choreId', choreId)
   ChoreFactory.getSingleChore(choreId)
   .then( (result) =>{
-    console.log('this is the result of getSingleChores', result)
+    console.log('this is the result of getSingleChore outside the loop', result)
     singleChore = result;
-    for (var key in singleChore) {
-    console.log(singleChore[key].completed);
-    singleChore = singleChore[key];
-    };
-    console.log('this is single chore outside the loop', singleChore)
+      for (var key in singleChore) {
+      singleChore = singleChore[key];
+      console.log('singleChore now that it has been through for-in', singleChore)
+      };
     singleChore.completed = true;
-    console.log('this should show a single chore with a true completed value', singleChore)
     ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
