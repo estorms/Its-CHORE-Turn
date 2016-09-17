@@ -90,20 +90,32 @@ $scope.deleteChore = (choreId) => {
 $scope.completeChore = (choreId) => {
   ChoreFactory.getSingleChore(choreId)
   .then( (result) =>{
-    console.log('this is the result of getSingleChore outside the loop', result)
+    // console.log('this is the result of getSingleChore outside the loop', result)
     singleChore = result;
       for (var key in singleChore) {
       singleChore = singleChore[key];
-      console.log('singleChore now that it has been through for-in', singleChore)
+      // console.log('singleChore now that it has been through for-in', singleChore)
       };
     singleChore.completed = true;
     ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
+      // let chorePoints = result.irritationPoints
+      let chorePoints = result.irritationPoints
+      let assignedMember = result.assignedMember
+      console.log(chorePoints, assignedMember)
+      // console.log(chorePoints)
+      ChoreFactory.getSingleMember(assignedMember)
+        .then((result) => {
+          console.log('this is the result of getSingleMember', result)
+
+
+      })
     });
   });
 };
 
 });
+
 
 

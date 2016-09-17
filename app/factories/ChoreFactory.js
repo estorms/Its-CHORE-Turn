@@ -145,6 +145,22 @@ let getSingleChore = (choreId) => {
   })
 };
 
+let getSingleMember = (name) => {
+  return $q ((resolve, reject) =>{
+    $http.get(`${FirebaseURL}/members.json?orderBy="name"&equalTo="${name}"`)
+    .success((memberObj) =>{
+      // console.log('this is the result of getSingleMember', memberObj)
+      resolve(memberObj)
+    })
+    .error((error) =>{
+      reject(error);
+    })
+  })
+};
+
+// let updateSingleMember = (memberId, updatedMember) => {
+
+// }
 let deleteAChore = (choreId) => {
   return $q ( (resolve, reject) => {
     $http.delete(`${FirebaseURL}/chores/${choreId}.json`)
@@ -157,6 +173,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember}
 
 });
