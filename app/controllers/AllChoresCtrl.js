@@ -83,9 +83,9 @@ $scope.deleteChore = (choreId) => {
 }
 
 
-$scope.completeChore = () => {
-console.log('you are inside completeChore, this is the choreID', $scope.choreId)
-  ChoreFactory.getSingleChore($scope.choreId)
+$scope.completeChore = (choreId) => {
+console.log('you are inside completeChore, this is the choreId', choreId)
+  ChoreFactory.getSingleChore(choreId)
   .then( (result) =>{
     console.log('this is the result of getSingleChores', result)
     singleChore = result;
@@ -96,7 +96,7 @@ console.log('you are inside completeChore, this is the choreID', $scope.choreId)
     console.log('this is single chore outside the loop', singleChore)
     singleChore.completed = true;
     console.log('this should show a single chore with a true completed value', singleChore)
-    ChoreFactory.updateChore($scope.choreId, singleChore)
+    ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
     });
