@@ -5,7 +5,7 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 let hId;
 let houseID;
 let householdMembersObj;
-let householdMembersArr = [];
+let householdMembersNamesArr = [];
 $scope.houseMem1;
 $scope.houseMem2;
 
@@ -42,12 +42,12 @@ $scope.accesshousehold = () =>{
 
             console.log('you are inside accesshousehold', householdMembers)
             for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
-                console.log('hello');
+                // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
-                householdMembersArr.push(householdMembers[prop].name)
-                console.log(householdMembersArr)
-                $scope.houseMem1=householdMembersArr[0];
-                $scope.houseMem2=householdMembersArr[1];
+                householdMembersNamesArr.push(householdMembers[prop].name)
+                console.log('this is the householdMembersNamesArr', householdMembersNamesArr)
+                $scope.houseMem1=householdMembersNamesArr[1];
+                $scope.houseMem2=householdMembersNamesArr[2];
             }
             console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
             console.log('woot!')
