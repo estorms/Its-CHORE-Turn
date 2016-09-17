@@ -23,18 +23,18 @@ $scope.accesshousehold = () =>{
         ChoreFactory.getHouseholdMembers(houseID)
         .then((householdMembers) => {
 
-            console.log('you are inside accesshousehold, these are your household members', householdMembers)
-              for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
-                console.log('hello');
+              console.log('you are inside accesshousehold, these are your household members', householdMembers)
+                for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
+                // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
-                householdMembersNamesArr.push(householdMembers[prop].name)
                 householdMembersArr.push(householdMembers[prop])
+                householdMembersNamesArr.push(householdMembersArr.name)
                 console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
                 $scope.houseMem1=householdMembersNamesArr[0];
                 $scope.houseMem2=householdMembersNamesArr[1];
                 }
                 householdMembersArr.forEach(function (member) {
-                  console.log(houseID, member)
+                console.log(houseID, member)
                 ChoreFactory.updateMembers(houseID, member)
                  .then((results) =>{
                    console.log('These are the results of updateMembers', results)
