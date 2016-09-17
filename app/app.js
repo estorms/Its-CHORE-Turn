@@ -13,7 +13,7 @@ app.config(function($routeProvider){
         } else {
             reject();
         }
-    });
+    })
 
     $routeProvider.
         when("/", {
@@ -26,52 +26,22 @@ app.config(function($routeProvider){
             controller: "LoginCtrl"
         }).
 
-        when("/allboards", {
-            templateUrl: 'partials/allBoards.html',
-            controller: "AllBoardsCtrl",
-            resolve: {isAuth}
+        when("/newchore", {
+            templateUrl: "partials/newchore.html",
+            controller: "NewChoreCtrl"
         }).
 
-        when("/allpins", {
-            templateUrl: 'partials/pinListView.html',
-            controller: "PinListViewCtrl",
-            resolve: {isAuth}
+        when("/newhousehold", {
+            templateUrl: "partials/newhousehold.html",
+            controller: "NewHouseholdCtrl"
         }).
 
-        // when("/:pinId", {
-        //     templateUrl: "partials/savePin.html",
-        //     controller: "SavePinCtrl",
-        // }).
-
-        when("/board/:boardId", {
-            templateUrl: "partials/oneBoard.html",
-            controller: "OneBoardCtrl",
-            resolve: {isAuth}
+        when("/allchores", {
+            templateUrl: "partials/allchores.html",
+            controller: "AllChoresCtrl"
         }).
 
-        when("/newboard", {
-            templateUrl: "partials/newBoard.html",
-            controller: "NewBoardCtrl",
-            resolve: {isAuth}
-        }).
-
-         when("/newpin", {
-            templateUrl: "partials/newPin.html",
-            controller: "NewPinCtrl",
-            resolve: {isAuth}
-        }).
-
-         when('/:boardId/edit', {
-            templateUrl: "partials/newBoard.html",
-            controller: "EditBoardCtrl",
-            resolve: {isAuth}
-        }).
-
-        when('/:pinId/pinedit', {
-            templateUrl: "partials/newPin.html",
-            controller: "EditPinCtrl",
-            resolve: {isAuth}
-        }).
+        //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
         otherwise("/");
 });
 

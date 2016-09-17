@@ -1,0 +1,32 @@
+<h2>{{title}}</h2>
+<div class="row">
+    <form class="col sm12">
+
+      <div class="row">
+        <div class="input-field col sm12">
+          <input type="text" ng-model="newHouse.name" id="newHouseName">
+          <label for="newHouseName">Household Name</label>
+        </div>
+
+
+        <div class="input-field col sm12">
+          <input type="text" ng-model="newMember1.name" id="newHouseMember1">
+          <label for="newHouseMember1">Household Member 1</label>
+        </div>
+        </div>
+
+      <div class="row">
+        <div class="input-field col sm12">
+          <input type="text" ng-model="newMember2.name" id="newHouseMember2">
+          <label for="newHouseMember1">Household Member 2</label>
+        </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn btn-default" ng-click="addNewHouse()">{{btnText}}</button>
+          <button class="btn btn-default" ng-click="addNewMember()">Add Members</button>
+        </div>
+      </div>
+    </form>
+  </div>
+

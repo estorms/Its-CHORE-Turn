@@ -6,13 +6,17 @@ app.controller("NavCtrl", function($scope, $location) {
             {url: "#/logout", name: "Logout", showState: "$parent.isLoggedIn"},
             {url: '#/login', name: "Login", showState: "!$parent.isLoggedIn"},
 
-            // {url: '#/allpins', name: "All Pins", showState: "$parent.isLoggedIn"},
-            // {url: '#/allboards', name: "All Boards", showState: "$parent.isLoggedIn"},
-            // {url: '#/newboard', name: "New Board", showState: "$parent.isLoggedIn"},
+            {url: '#/newchore', name: "New Chore", showState: "$parent.isLoggedIn"},
+            {url: '#/newhousehold', name: "New Household", showState: "$parent.isLoggedIn"},
+            {url: '#/allchores', name: "All Chores", showState: "$parent.isLoggedIn"}
             // {url: '#/newpin', name: "New Pin", showState: "$parent.isLoggedIn"}
 
     ];
 
     $scope.isActive = (viewLocation) => viewLocation === $location.path();
 
+    // $scope.goToAddNew = function () {
+    // console.log('you clicked goToAddNew')
+    //   $location.url('/newchore');
+    // }
 });

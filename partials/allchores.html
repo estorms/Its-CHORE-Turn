@@ -1,0 +1,24 @@
+     <h3>Household Chores: Due by Sunday, </h3>
+
+      <div class="row" ng-init="accesshousehold()">
+        <div class="col s12 m4" ng-repeat="chore in chores">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{chore.name}}</span>
+              <p>{{chore.description}}</p>
+              <p>Assigned To: {{chore.assignedMember}}</p>
+              <p>Due By: {{chore.dueDate}}</p>
+              <p>Earn {{chore.irritationPoints}} Points by Completing this Chore</p>
+
+            </div>
+            <div class="card-action">
+              <a href="#" ng-click="completeChore(chore.id)">Mark This Chore Complete!</a>
+              <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
+              <button ng-click="deleteChore(chore.id)">Delete This Chore From Your List</button>
+                  <!-- <a href="#" ng-click="deleteChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
