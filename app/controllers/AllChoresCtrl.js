@@ -36,8 +36,8 @@ $scope.accesshousehold = () =>{
                 console.log(householdMembersNamesArr)
                 }
                 householdMembersArr.forEach(function (member) {
-                console.log(houseID, member)
-                ChoreFactory.updateMembers(houseID, member)
+                console.log(member, member.id)
+                ChoreFactory.updateMembers(member.id, member) //something is wrong right here
                  .then((results) =>{
                    console.log('These are the results of updateMembers', results)
                  })

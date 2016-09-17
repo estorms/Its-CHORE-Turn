@@ -134,9 +134,9 @@ let updateChore = (choreId, editedChore) => {
   });
 };
 
-let updateMembers = (housekey, editedMembers) => {
+let updateMembers = (memberId, editedMember) => {
   return $q ( (resolve, reject) => {
-    $http.patch(`${FirebaseURL}/members/${housekey}.json`, JSON.stringify(editedMembers))
+    $http.patch(`${FirebaseURL}/members/${memberId}.json`, JSON.stringify(editedMember))
     .success( (result) => {
       console.log('result of updateMembers', result)
       resolve(result);
