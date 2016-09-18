@@ -1,6 +1,9 @@
 "use strict";
 
-app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
+app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location){
+angular.element(document).ready(function () {
+    console.log('page loading completed');
+});
 
 
 let hId;
@@ -147,12 +150,12 @@ $scope.completeChore = (choreId) => {
                  .then( (choresObj) => {
                   $scope.chores = choresObj;
                  })
-
             });
         });
     });
-  });
-};
-
-
 });
+
+};
+});
+
+

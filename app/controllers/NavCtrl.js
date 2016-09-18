@@ -9,7 +9,7 @@ app.controller("NavCtrl", function($scope, $location) {
             {url: '#/newchore', name: "New Chore", showState: "$parent.isLoggedIn"},
             {url: '#/newhousehold', name: "New Household", showState: "$parent.isLoggedIn"},
             {url: '#/allchores', name: "All Chores", showState: "$parent.isLoggedIn"}
-            // {url: '#/newpin', name: "New Pin", showState: "$parent.isLoggedIn"}
+            // {url: '#/home', name: "Home Page", showState: "$parent.isLoggedIn"}
 
     ];
 
