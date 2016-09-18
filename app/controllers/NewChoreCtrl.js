@@ -58,14 +58,15 @@ $scope.accesshousehold = () =>{
 $scope.addNewChore =  () => {
 
     $scope.newChore.householdId = houseID;
-    // let anotherKey;
-    // let memberResults;
-    // $scope.newChore.householdId = $scope.$parent.getUser();
-    // console.log('you clicked addnewchore', $scope.newChore);
+    let memToToast = $scope.newChore.assignedMember;
+    let choreToToast = $scope.newChore.name;
+    let iPtoToast = $scope.newChore.irritationPoints;
     ChoreFactory.postNewChore($scope.newChore)
         .then((result) => {
-            console.log('wow! you posted a chore!', result);
+            // console.log('wow! you posted a chore!', result);
             $scope.newChore = { completed: false };
+                let newChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points! Wow!</span>`;
+                Materialize.toast(newChoreToast, 3000);
      });
 
 }
@@ -73,6 +74,7 @@ $scope.addNewChore =  () => {
 $scope.houseMem1Selected = () => {
     console.log('this is houseMem1', $scope.houseMem1)
     $scope.newChore.assignedMember = $scope.houseMem1;
+    $scope.newChore.assignedMember != $scope.houseMem2;
     // console.log($scope.newChore)
 
 }
@@ -80,6 +82,7 @@ $scope.houseMem1Selected = () => {
 $scope.houseMem2Selected = () => {
     console.log('this is houseMem2', $scope.houseMem2)
     $scope.newChore.assignedMember = $scope.houseMem2;
+    $scope.newChore.assignedMember != $scope.houseMem1;
     // console.log($scope.newChore)
 
 }

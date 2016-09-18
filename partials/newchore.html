@@ -24,23 +24,13 @@
       <label for="datepicker">Due Date</label>
     </div>
         <p>
-      <input type="radio" id="houseMem1" ng-click="houseMem1Selected()"/>
+      <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
       <label for="houseMem1">{{houseMem1}}</label>
     </p>
     <p>
-      <input type="radio" id="houseMem2" ng-click="houseMem2Selected()"/>
+      <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
       <label for="houseMem2">{{houseMem2}}</label>
     </p>
-    <p>
-
-<!--     <div class="row">
-     <div class="input-field col s12">
-  <div>Assigned To:</div>
-  <div>{{houseMem1}}</div><input type="checkbox">
-  <div>{{houseMem2}}</div>
-  </div>
-  </div> -->
-
       <div class="row">
         <div class="input-field col s12">
           <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
