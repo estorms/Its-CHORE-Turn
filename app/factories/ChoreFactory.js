@@ -118,7 +118,7 @@ let updateMembers = (memberId, editedMember) => {
   return $q ( (resolve, reject) => {
     $http.patch(`${FirebaseURL}/members/${memberId}.json`, JSON.stringify(editedMember))
     .success( (result) => {
-      console.log('result of updateMembers', result)
+      // console.log('result of updateMembers', result)
       resolve(result);
     })
     .error( (error) => {
@@ -158,9 +158,31 @@ let getSingleMember = (name) => {
   })
 };
 
-// let updateSingleMember = (memberId, updatedMember) => {
+// let getSingleMemberById = (id) =>{
+// return $q ((resolve, reject) =>{
+//     $http.get(`${FirebaseURL}/members.json?orderBy="name"&equalTo="${name}"`)
+//     .success((memberObj) =>{
+//       // console.log('this is the result of getSingleMember', memberObj)
+//       resolve(memberObj)
+//     })
+//     .error((error) =>{
+//       reject(error);
+//     })
+//   })
+// };
+let updateSingleMember = (memberId, editedMember) => {
+  return $q ( (resolve, reject) => {
+    $http.patch(`${FirebaseURL}/members/${memberId}.json`, JSON.stringify(editedMember))
+    .success( (memberObj) => {
+      console.log('this is the result of updateSingleMember', memberObj)
+      resolve(memberObj);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
 
-// }
 let deleteAChore = (choreId) => {
   return $q ( (resolve, reject) => {
     $http.delete(`${FirebaseURL}/chores/${choreId}.json`)
@@ -173,6 +195,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember, updateSingleMember}
 
 });

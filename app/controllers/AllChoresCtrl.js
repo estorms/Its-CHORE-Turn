@@ -11,6 +11,9 @@ let householdMembersArr=[];
 $scope.chores = [];
 let singleChore;
 let choreId;
+let singleMember;
+let houseMem1ID;
+let houseMem2ID;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -43,8 +46,7 @@ $scope.accesshousehold = () =>{
              })
           })
             chorePop()
-            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
-            console.log('woot!')
+
         })
     }
 
@@ -97,6 +99,7 @@ $scope.completeChore = (choreId) => {
       // console.log('singleChore now that it has been through for-in', singleChore)
       };
     singleChore.completed = true;
+
     ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
@@ -107,8 +110,15 @@ $scope.completeChore = (choreId) => {
       // console.log(chorePoints)
       ChoreFactory.getSingleMember(assignedMember)
         .then((result) => {
-          console.log('this is the result of getSingleMember', result)
-
+          singleMember = result;
+          for (var key in singleMember) {
+          singleMember = singleMember[key];
+          };
+          console.log('single member before changing points', singleMember)
+          singleMember.pointsEarned = chorePoints;
+          console.log('single member after changing points', singleMember)
+          let memberId = singleMember.id;
+          console.log(memberId)
 
       })
     });
@@ -116,6 +126,8 @@ $scope.completeChore = (choreId) => {
 };
 
 });
+
+
 
 
 
