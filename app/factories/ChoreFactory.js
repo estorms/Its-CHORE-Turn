@@ -71,7 +71,7 @@ let getAllChores = (householdId) => {
         choresObj[key].id = key;
         chores.push(choresObj[key]);
       });
-      console.log(chores)
+      // console.log(chores)
     resolve(chores);
     })
     .error((error) => {
