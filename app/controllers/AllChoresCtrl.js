@@ -11,6 +11,9 @@ let householdMembersArr=[];
 $scope.chores = [];
 let singleChore;
 let choreId;
+let singleMember;
+let houseMem1ID;
+let houseMem2ID;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -43,8 +46,7 @@ $scope.accesshousehold = () =>{
              })
           })
             chorePop()
-            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
-            console.log('woot!')
+
         })
     }
 
@@ -83,30 +85,52 @@ $scope.deleteChore = (choreId) => {
     .then( (choresObj) => {
       $scope.chores = choresObj;
      })
-  })    // $location.url("#/allchores");
+  })    // $location.url("#/chore..s");
 }
 
 
 $scope.completeChore = (choreId) => {
-console.log('you are inside completeChore, this is the choreId', choreId)
   ChoreFactory.getSingleChore(choreId)
   .then( (result) =>{
-    console.log('this is the result of getSingleChores', result)
+    // console.log('this is the result of getSingleChore outside the loop', result)
     singleChore = result;
-    for (var key in singleChore) {
-    console.log(singleChore[key].completed);
-    singleChore = singleChore[key];
-    };
-    console.log('this is single chore outside the loop', singleChore)
+      for (var key in singleChore) {
+      singleChore = singleChore[key];
+      // console.log('singleChore now that it has been through for-in', singleChore)
+      };
     singleChore.completed = true;
-    console.log('this should show a single chore with a true completed value', singleChore)
+
     ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
+      // let chorePoints = result.irritationPoints
+      let chorePoints = result.irritationPoints
+      let assignedMember = result.assignedMember
+      console.log(chorePoints, assignedMember)
+      // console.log(chorePoints)
+      ChoreFactory.getSingleMember(assignedMember)
+        .then((result) => {
+          singleMember = result;
+          for (var key in singleMember) {
+          singleMember = singleMember[key];
+          };
+          console.log('single member before changing points', singleMember)
+          singleMember.pointsEarned = chorePoints;
+          console.log('single member after changing points', singleMember)
+          let memberId = singleMember.id;
+          console.log(memberId)
+          ChoreFactory.updateSingleMember(memberId, singleMember)
+            .then((result) =>{
+              console.log('here is your updated member, check their pointsEarned, bitches', result)
+            })
+      })
     });
   });
 };
 
 });
+
+
+
 
 
