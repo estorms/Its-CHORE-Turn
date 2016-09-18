@@ -79,6 +79,8 @@ let chorePop = () => {
 
 $scope.deleteChore = (choreId) => {
   console.log('you are inside delete chore; this is the choreId', choreId, 'you are inside delete chore; this is the $scope.chore.choreId')
+    let choreDeleteToast = `<span><h6>Warning! You are deleting this chore without completing it! No one will earning points!</h6></span>`;
+    Materialize.toast(choreDeleteToast, 2500)
   //I think the last choreID created in getchores above is what's preserved here and therefore the last chore is the one being completed, no matter what
   ChoreFactory.deleteAChore(choreId)
   .then( () => {
@@ -137,6 +139,8 @@ $scope.completeChore = (choreId) => {
             ChoreFactory.updateSingleMember(memberId, singleMember)
               .then((result) =>{
               console.log('here is your updated member, check their pointsEarned, bitches', result)
+                let choreCompleteToast = `<span><h5>Good job, ${assignedMember}! You've earned ${chorePointsNum} points for completing this chore!</h5></span>`;
+                Materialize.toast(choreCompleteToast, 2500)
             });
         });
     });
