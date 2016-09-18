@@ -42,7 +42,7 @@ let loginNewUser = () => {
       .then( (data) => {
         console.log("a user has logged in ", data.uid);
         if (data) {
-          $window.location.href = "#/newhousehold";
+          $window.location.href = "#/home";
         } else {
           $window.location.href = "#/login";
         }
