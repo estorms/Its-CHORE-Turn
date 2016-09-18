@@ -128,7 +128,7 @@ $scope.completeChore = (choreId) => {
             singleMember = singleMember[key];
             };
             console.log('single member before changing points', singleMember)
-            singleMember.pointsEarned = chorePoints;
+            singleMember.pointsEarned += chorePoints; //somehow, this is interpreting these values as strings? need to parse int
             console.log('single member after changing points', singleMember)
             let memberId = singleMember.id;
             console.log(memberId)
