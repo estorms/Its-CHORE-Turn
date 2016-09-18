@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location){
+app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
 
 
 let hId;
@@ -16,6 +16,7 @@ let houseMem1ID;
 let houseMem2ID;
 let selectedMember;
 let houseMemID;
+
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -36,40 +37,37 @@ $scope.accesshousehold = () =>{
                 console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
                 $scope.houseMem1=householdMembersNamesArr[0];
                 $scope.houseMem2=householdMembersNamesArr[1];
-                console.log(householdMembersArr)
-                console.log(householdMembersNamesArr)
+                console.log(householdMembersArr);
+                console.log(householdMembersNamesArr);
                 }
                 householdMembersArr.forEach(function (member) {
-                console.log(member, member.id)
+                console.log(member, member.id);
                 ChoreFactory.updateMembers(member.id, member)
                  .then((results) =>{
                    console.log('These are the results of updateMembers', results)
-                 })
-             })
-          })
-            chorePop()
+                 });
+             });
+          });
+            chorePop();
 
-        })
-    }
+        });
+    };
 
 
 
 
 let chorePop = () => {
-  // console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
+
   ChoreFactory.getAllChores(houseID)
     .then( (choresObj) => {
       $scope.chores = choresObj;
         console.log("the result of call to getAllChores", choresObj);
-
       choresObj.forEach(function (chore) {
         choreId = chore.id;
-        // console.log(board);
         ChoreFactory.updateChore(choreId, chore)
         .then((result) =>{
           console.log('this is the result of updateChore', result)
         })
-    //CHANGED THE ABOVE TO 'CHORE ID', it was working , but now I don't see where I'm attaching choreID to chore
       });
     });
   };
@@ -79,6 +77,8 @@ let chorePop = () => {
 
 $scope.deleteChore = (choreId) => {
   console.log('you are inside delete chore; this is the choreId', choreId, 'you are inside delete chore; this is the $scope.chore.choreId')
+    let choreDeleteToast = `<span><h6>Warning! You are deleting this chore without completing it! No one will earning points!</h6></span>`;
+    Materialize.toast(choreDeleteToast, 2500)
   //I think the last choreID created in getchores above is what's preserved here and therefore the last chore is the one being completed, no matter what
   ChoreFactory.deleteAChore(choreId)
   .then( () => {
@@ -92,6 +92,7 @@ $scope.deleteChore = (choreId) => {
 
 
 $scope.completeChore = (choreId) => {
+
   ChoreFactory.getSingleChore(choreId)
   .then( (result) =>{
     // console.log('this is the result of getSingleChore outside the loop', result)
@@ -99,24 +100,25 @@ $scope.completeChore = (choreId) => {
       for (var key in singleChore) {
       singleChore = singleChore[key];
       // console.log('singleChore now that it has been through for-in', singleChore)
-      };
+      }
     singleChore.completed = true;
+
 
     ChoreFactory.updateChore(choreId, singleChore)
     .then((result) => {
       console.log('this is the result of updateChore', result)
       // let chorePoints = result.irritationPoints
-      let chorePoints = result.irritationPoints
-      let assignedMember = result.assignedMember
-      console.log(chorePoints, assignedMember)
+      let chorePoints = result.irritationPoints;
+      let assignedMember = result.assignedMember;
+      // console.log(chorePoints, assignedMember)
       // console.log(chorePoints)
-      console.log(householdMembersArr)
+      // console.log(householdMembersArr)
 
         for (var i = 0; i < householdMembersArr.length; i++){
           if( householdMembersArr[i].name === assignedMember) {
-            console.log('we have a match')
+            // console.log('we have a match')
             selectedMember = householdMembersArr[i]
-            console.log('this should be a member with an id on it', selectedMember)
+            // console.log('this should be a member with an id on it', selectedMember)
             houseMemID = selectedMember.id
 
           }
@@ -126,26 +128,31 @@ $scope.completeChore = (choreId) => {
           singleMember = result;
             for (var key in singleMember) {
             singleMember = singleMember[key];
-            };
-            console.log('single member before changing points', singleMember)
-            let alreadyPoints = parseInt(singleMember.pointsEarned)
-            let chorePointsNum = parseInt(chorePoints)
+            }
+            // console.log('single member before changing points', singleMember)
+            let alreadyPoints = parseInt(singleMember.pointsEarned);
+            let chorePointsNum = parseInt(chorePoints);
             singleMember.pointsEarned = alreadyPoints + chorePointsNum; //somehow, this is interpreting these values as strings? need to parse int
-            console.log('single member after changing points', singleMember)
+            // console.log('single member after changing points', singleMember)
             let memberId = singleMember.id;
-            console.log(memberId)
-            ChoreFactory.updateSingleMember(memberId, singleMember)
+            // console.log(memberId)
+                let choreCompleteToast = `<span><h5>Good job, ${assignedMember}! You've earned ${chorePointsNum} points for completing this chore!</h5></span>`;
+                Materialize.toast(choreCompleteToast, 2500);
+              ChoreFactory.updateSingleMember(memberId, singleMember)
               .then((result) =>{
-              console.log('here is your updated member, check their pointsEarned, bitches', result)
+                // console.log('here is your updated member, check their pointsEarned, bitches', result)
+
+//somehow changing the route here to default back to nothing? Wurt's that?
+                ChoreFactory.getAllChores(houseID)
+                 .then( (choresObj) => {
+                  $scope.chores = choresObj;
+                 })
+
             });
         });
     });
   });
 };
 
+
 });
-
-
-
-
-
