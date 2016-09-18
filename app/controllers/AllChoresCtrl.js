@@ -119,7 +119,10 @@ $scope.completeChore = (choreId) => {
           console.log('single member after changing points', singleMember)
           let memberId = singleMember.id;
           console.log(memberId)
-
+          ChoreFactory.updateSingleMember(memberId, singleMember)
+            .then((result) =>{
+              console.log('here is your updated member, check their pointsEarned, bitches', result)
+            })
       })
     });
   });
