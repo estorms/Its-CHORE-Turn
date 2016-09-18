@@ -17,6 +17,7 @@ let houseMem2ID;
 let selectedMember;
 let houseMemID;
 
+
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
@@ -56,20 +57,21 @@ $scope.accesshousehold = () =>{
 
 
 let chorePop = () => {
-  // console.log('this is what you are calling  to all chores with', houseID, 'it should be  -KRnQ7lPnMu7UOMbeH6L')
+
   ChoreFactory.getAllChores(houseID)
     .then( (choresObj) => {
-      $scope.chores = choresObj;
+      $scope.chores = choresObj
+
+
+
         console.log("the result of call to getAllChores", choresObj);
 
       choresObj.forEach(function (chore) {
         choreId = chore.id;
-        // console.log(board);
         ChoreFactory.updateChore(choreId, chore)
         .then((result) =>{
           console.log('this is the result of updateChore', result)
         })
-    //CHANGED THE ABOVE TO 'CHORE ID', it was working , but now I don't see where I'm attaching choreID to chore
       });
     });
   };

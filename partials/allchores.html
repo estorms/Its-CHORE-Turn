@@ -9,6 +9,8 @@
               <p>Assigned To: {{chore.assignedMember}}</p>
               <p>Due By: {{chore.dueDate}}</p>
               <p>Earn {{chore.irritationPoints}} Points by Completing this Chore</p>
+              <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p>
+              <p ng-if="chore.completed === false">{{chore.assignedMember}} has not completed this chore</p>
 
             </div>
             <div class="card-action">
