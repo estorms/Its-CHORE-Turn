@@ -14,6 +14,8 @@ let choreId;
 let singleMember;
 let houseMem1ID;
 let houseMem2ID;
+let selectedMember;
+let houseMemID;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -108,22 +110,33 @@ $scope.completeChore = (choreId) => {
       let assignedMember = result.assignedMember
       console.log(chorePoints, assignedMember)
       // console.log(chorePoints)
-      ChoreFactory.getSingleMember(assignedMember)
+      console.log(householdMembersArr)
+
+        for (var i = 0; i < householdMembersArr.length; i++){
+          if( householdMembersArr[i].name === assignedMember) {
+            console.log('we have a match')
+            selectedMember = householdMembersArr[i]
+            console.log('this should be a member with an id on it', selectedMember)
+            houseMemID = selectedMember.id
+
+          }
+        }
+        ChoreFactory.getSingleMember(houseMemID)
         .then((result) => {
           singleMember = result;
-          for (var key in singleMember) {
-          singleMember = singleMember[key];
-          };
-          console.log('single member before changing points', singleMember)
-          singleMember.pointsEarned = chorePoints;
-          console.log('single member after changing points', singleMember)
-          let memberId = singleMember.id;
-          console.log(memberId)
-          ChoreFactory.updateSingleMember(memberId, singleMember)
-            .then((result) =>{
+            for (var key in singleMember) {
+            singleMember = singleMember[key];
+            };
+            console.log('single member before changing points', singleMember)
+            singleMember.pointsEarned = chorePoints;
+            console.log('single member after changing points', singleMember)
+            let memberId = singleMember.id;
+            console.log(memberId)
+            ChoreFactory.updateSingleMember(memberId, singleMember)
+              .then((result) =>{
               console.log('here is your updated member, check their pointsEarned, bitches', result)
-            })
-      })
+            });
+        });
     });
   });
 };

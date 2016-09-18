@@ -145,11 +145,11 @@ let getSingleChore = (choreId) => {
   })
 };
 
-let getSingleMember = (name) => {
+let getSingleMember = (id) => {
   return $q ((resolve, reject) =>{
-    $http.get(`${FirebaseURL}/members.json?orderBy="name"&equalTo="${name}"`)
+    $http.get(`${FirebaseURL}/members.json?orderBy="id"&equalTo="${id}"`)
     .success((memberObj) =>{
-      // console.log('this is the result of getSingleMember', memberObj)
+      console.log('this is the result of getSingleMember', memberObj)
       resolve(memberObj)
     })
     .error((error) =>{
