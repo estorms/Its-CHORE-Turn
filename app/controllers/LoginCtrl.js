@@ -14,13 +14,13 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
     })
     .then( (userData) => {
       console.log("you're a new user", userData.uid );
-      $scope.loginNewUser();
+     loginNewUser();
     }, (error) => {
       console.log("there's an error creating the user");
     });
   };
 
-  $scope.loginNewUser = () => {
+let loginNewUser = () => {
     console.log("you clicked login");
     AuthFactory.loginUser($scope.account)
       .then( (data) => {
@@ -42,7 +42,7 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
       .then( (data) => {
         console.log("a user has logged in ", data.uid);
         if (data) {
-          $window.location.href = "#/allchores";
+          $window.location.href = "#/home";
         } else {
           $window.location.href = "#/login";
         }

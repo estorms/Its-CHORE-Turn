@@ -14,13 +14,13 @@ $scope.newHouse = {
 $scope.newMember1 = {
     name: '',
     houseId: '',
-    pointsEarned: ''
+    pointsEarned: 0
 }
 
 $scope.newMember2 = {
     name: '',
     houseId: '',
-    pointsEarned: ''
+    pointsEarned: 0
 }
 
 
