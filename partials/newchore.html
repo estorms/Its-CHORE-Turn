@@ -18,9 +18,13 @@
           <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
           <label for="newChoreIrritationPoints">Irritation Points</label>
         </div>
+        <div class="range-field col sm12">
+          <input type="range" max="10" min="1" id ="frequency" ng-model="newChore.frequency">
+          <label for="frequency">Frequency</label>
+        </div>
       </div>
       <div class="range-field col sm12">
-      <input type="date" ng-model="newChore.dueDate">
+      <input type="date" ng-model="newChore.dueDate" id="datepicker">
       <label for="datepicker">Due Date</label>
     </div>
         <p>

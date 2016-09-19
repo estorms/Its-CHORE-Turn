@@ -7,6 +7,7 @@
               <span class="card-title">{{chore.name}}</span>
               <p>{{chore.description}}</p>
               <p>Assigned To: {{chore.assignedMember}}</p>
+              <p>Weekly Frequency: {{chore.frequency}}</p>
               <p>Due By: {{chore.dueDate}}</p>
               <p>Earn {{chore.irritationPoints}} Points by Completing this Chore</p>
               <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p>
