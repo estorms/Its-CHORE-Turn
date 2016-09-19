@@ -162,13 +162,38 @@ $scope.completeChore = (choreId) => {
 
 };
 
+$scope.showPoints = () => {
+  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+  let houseMem1Name = householdMembersNamesArr[0];
+  let houseMem2Name = householdMembersNamesArr[1];
+  let showPointsToast = `<span><h5>${houseMem1Name} has ${houseMem1PointstoDate} points. ${houseMem2Name} has ${houseMem2PointstoDate} points.</h5></span>`
+  Materialize.toast(showPointsToast, 2500)
+}
+
 $scope.choreTurn = () => {
   let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
   let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
   let houseMem1Name = householdMembersNamesArr[0];
   let houseMem2Name = householdMembersNamesArr[1];
-  let choreTurnToast = `<span><h5>${houseMem1Name} has ${houseMem1PointstoDate} points. ${houseMem2Name} has ${houseMem2PointstoDate} points. Looks like you're both screwed.</h5></span>`
-  Materialize.toast(choreTurnToast, 2500)
-}
+  let pointsAhead;
+  let choreTurnToast;
+  if (houseMem1PointstoDate > houseMem2PointstoDate) {
+    console.log(houseMem1Name, 'wins!')
+    pointsAhead = houseMem1PointstoDate - houseMem2PointstoDate;
+    choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}</h5></span>`
 
+  }
+    else if (houseMem2PointstoDate > houseMem1PointstoDate) {
+      console.log(houseMem2Name, 'wins')
+      pointsAhead = houseMem2PointstoDate - houseMem2PointstoDate;
+      choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than $houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+
+    }
+    else{
+      console.log('your points are identical. Looks like you need a divorce lawyer')
+      choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
+    }
+    Materialize.toast(choreTurnToast, 4000)
+}
 });
