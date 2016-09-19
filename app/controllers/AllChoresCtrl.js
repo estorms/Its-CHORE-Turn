@@ -101,14 +101,15 @@ $scope.completeChore = (choreId) => {
       console.log('singleChore now that it has been through for-in', singleChore)
       }
       singleChore.completed = true;
-
+      singleChore.frequency = singleChore.frequency - 1;
 
       ChoreFactory.updateChore(choreId, singleChore)
       .then((result) => {
         console.log('this is the result of updateChore', result)
         let chorePoints = result.irritationPoints;
-        // console.log('these should be chore points', chorePoints)
+        // move these up so that as you update chore, you're decrementing frequency
         let assignedMember = result.assignedMember;
+        let frequencyLimit = result.frequency;
         console.log('these should be chorepoints', chorePoints, 'this should be an assigned member', assignedMember)
         // console.log(chorePoints)
         console.log(householdMembersArr)
@@ -129,7 +130,9 @@ $scope.completeChore = (choreId) => {
             }
             console.log('single member before changing points', singleMember)
             let alreadyPoints = parseInt(singleMember.pointsEarned);
-            let chorePointsNum = parseInt(chorePoints);
+              // if (frequencyLimit > 0) {
+              let chorePointsNum = parseInt(chorePoints);
+              // }
             singleMember.pointsEarned = alreadyPoints + chorePointsNum;
             let memberId = singleMember.id;
             console.log(memberId)
