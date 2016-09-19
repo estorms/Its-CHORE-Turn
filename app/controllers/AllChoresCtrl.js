@@ -1,10 +1,9 @@
 "use strict";
 
-app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location){
+app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
 
 let hId;
 let houseID;
-let householdMembersObj;
 let householdMembersNamesArr = [];
 let householdMembersArr=[];
 $scope.chores = [];
@@ -15,6 +14,10 @@ let houseMem1ID;
 let houseMem2ID;
 let selectedMember;
 let houseMemID;
+let alreadyPoints;
+let chorePointsNum;
+let frequencyLimit;
+let chorePoints;
 
 
 $scope.accesshousehold = () =>{
@@ -98,20 +101,21 @@ $scope.completeChore = (choreId) => {
     singleChore = result;
       for (var key in singleChore) {
       singleChore = singleChore[key];
-      console.log('singleChore now that it has been through for-in', singleChore)
+      // console.log('singleChore now that it has been through for-in', singleChore)
       }
       singleChore.completed = true;
-
+      singleChore.frequency = singleChore.frequency - 1;
 
       ChoreFactory.updateChore(choreId, singleChore)
       .then((result) => {
-        console.log('this is the result of updateChore', result)
-        let chorePoints = result.irritationPoints;
-        // console.log('these should be chore points', chorePoints)
+        // console.log('this is the result of updateChore', result)
+         chorePoints = result.irritationPoints;
+        // move these up so that as you update chore, you're decrementing frequency
         let assignedMember = result.assignedMember;
-        console.log('these should be chorepoints', chorePoints, 'this should be an assigned member', assignedMember)
+         frequencyLimit = result.frequency;
+        // console.log('these should be chorepoints', chorePoints, 'this should be an assigned member', assignedMember)
         // console.log(chorePoints)
-        console.log(householdMembersArr)
+        // console.log(householdMembersArr)
 
         for (var i = 0; i < householdMembersArr.length; i++){
           if( householdMembersArr[i].name === assignedMember) {
@@ -127,27 +131,69 @@ $scope.completeChore = (choreId) => {
             for (var key in singleMember) {
             singleMember = singleMember[key];
             }
-            console.log('single member before changing points', singleMember)
-            let alreadyPoints = parseInt(singleMember.pointsEarned);
-            let chorePointsNum = parseInt(chorePoints);
-            singleMember.pointsEarned = alreadyPoints + chorePointsNum;
-            let memberId = singleMember.id;
-            console.log(memberId)
-                let choreCompleteToast = `<span><h5>Good job, ${assignedMember}! You've earned ${chorePointsNum} points for completing this chore!</h5></span>`;
-                Materialize.toast(choreCompleteToast, 2500);
-              ChoreFactory.updateSingleMember(memberId, singleMember)
-              .then((result) =>{
-                console.log('here is your updated member, check their pointsEarned, bitches', result)
-                ChoreFactory.getAllChores(houseID)
+              console.log('frequencyLimit', frequencyLimit)
+             alreadyPoints = parseInt(singleMember.pointsEarned);
+              if (frequencyLimit >= 0) {
+                console.log('this is the frequencyLimit above zero', frequencyLimit)
+                chorePointsNum = parseInt(chorePoints);
+                singleMember.pointsEarned = alreadyPoints + chorePointsNum
+                let memberId = singleMember.id
+                let choreCompleteToast = `<span><h5>Good job, ${assignedMember}! You've earned ${chorePointsNum} points for completing this chore!</h5></span>`
+                Materialize.toast(choreCompleteToast, 2500)
+
+                ChoreFactory.updateSingleMember(memberId, singleMember)
+                .then( (result) =>{
+                  console.log('here is your updated member, check their pointsEarned, bitches', result)
+                 ChoreFactory.getAllChores(houseID)
                  .then( (choresObj) => {
+                  console.log('this is the chores obj, which means you can ignore the colors?', choresObj)
                   $scope.chores = choresObj;
                  })
-            });
+              });
+            }
+
+            else {
+              let cheatingToast = `<span><h5>No cheating, ${assignedMember}! You've completed this chore for the week!</h5></span>`
+              Materialize.toast(cheatingToast, 2500);
+            }
         });
     });
 });
 
 };
+
+$scope.showPoints = () => {
+  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+  let houseMem1Name = householdMembersNamesArr[0];
+  let houseMem2Name = householdMembersNamesArr[1];
+  let showPointsToast = `<span><h5>${houseMem1Name} has ${houseMem1PointstoDate} points. ${houseMem2Name} has ${houseMem2PointstoDate} points.</h5></span>`
+  Materialize.toast(showPointsToast, 2500)
+}
+
+$scope.choreTurn = () => {
+  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+  let houseMem1Name = householdMembersNamesArr[0];
+  let houseMem2Name = householdMembersNamesArr[1];
+  let pointsAhead;
+  let choreTurnToast;
+  if (houseMem1PointstoDate > houseMem2PointstoDate) {
+    console.log(houseMem1Name, 'wins!')
+    pointsAhead = houseMem1PointstoDate - houseMem2PointstoDate;
+    choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}</h5></span>`
+
+  }
+    else if (houseMem2PointstoDate > houseMem1PointstoDate) {
+      console.log(houseMem2Name, 'wins')
+      pointsAhead = houseMem2PointstoDate - houseMem2PointstoDate;
+      choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than $houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+
+    }
+    else{
+      console.log('your points are identical. Looks like you need a divorce lawyer')
+      choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
+    }
+    Materialize.toast(choreTurnToast, 4000)
+}
 });
-
-
