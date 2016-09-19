@@ -3,8 +3,8 @@ console.log("NewHouseholdCtrl connected")
 app.controller("NewHouseholdCtrl", function ($scope, ChoreFactory, $location) {
 
 
-$scope.title = "Register Your HouseHold";
-$scope.btnText = "Save";
+// $scope.title = "Register Your HouseHold";
+$scope.btnText = "Register Your Household";
 
 $scope.newHouse = {
     name: '',

@@ -1,45 +1,41 @@
 <h2>{{title}}</h2>
 <div class="row" ng-init="accesshousehold()">
-    <form class="col sm12">
-
-      <div class="row">
-        <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.name" id="newChoreName">
-          <label for="newChoreName">Chore Name</label>
-        </div>
-
-
-        <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.description" id="newChoreDescription">
-          <label for="newChoreDescription">Chore Description</label>
-        </div>
-        </div>
-        <div class="range-field col sm12">
-          <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
-          <label for="newChoreIrritationPoints">Irritation Points</label>
-        </div>
-        <div class="range-field col sm12">
-          <input type="range" max="10" min="1" id ="frequency" ng-model="newChore.frequency">
-          <label for="frequency">Frequency</label>
-        </div>
+  <form class="col sm12">
+    <div class="row">
+      <div class="input-field col sm12">
+        <label for="newChoreDueDate">Chores for the Week Of: </label>
+        <input type="text" ng-model="newChore.dueDate" id="newChoreDueDate">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col sm12">
+        <label for="newChoreDescription">Special Instructions</label>
+        <input type="text" ng-model="newChore.description" id="newChoreDescription">
+      </div>
+    </div>
+    <div class="row">
+      <div class="range-field col sm12">
+        <label for="newChoreIrritationPoints">On a Scale of 1 to 10, How Annoying is This Chore?</label>
+        <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
       </div>
       <div class="range-field col sm12">
-      <input type="date" ng-model="newChore.dueDate" id="datepicker">
-      <label for="datepicker">Due Date</label>
+        <label for="frequency">Once a Week <br>--> How Many Times a Week Does This Chore Need to be Completed?<br><--3x a Day</label>
+        <input type="range" max="21" min="1" id ="frequency" ng-model="newChore.frequency">
+      </div>
     </div>
-        <p>
+    <div class="row">
+      <div>Who Is Responsible for This Chore?</div>
+      <p>
       <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
       <label for="houseMem1">{{houseMem1}}</label>
-    </p>
-    <p>
-      <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
+      </p>
+      <p>
+      <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem1Selected()"/>
       <label for="houseMem2">{{houseMem2}}</label>
-    </p>
-      <div class="row">
-        <div class="input-field col s12">
-          <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
+      </p>
+    </div>
+    <div class="row">
+      <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
+    </div>
+  </form>
+</div>
