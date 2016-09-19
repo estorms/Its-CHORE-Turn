@@ -15,7 +15,9 @@ let houseMem1ID;
 let houseMem2ID;
 let selectedMember;
 let houseMemID;
-
+let alreadyPoints;
+let chorePointsNum;
+let frequencyLimit;
 
 $scope.accesshousehold = () =>{
     hId = $scope.$parent.getUser();
@@ -109,7 +111,7 @@ $scope.completeChore = (choreId) => {
         let chorePoints = result.irritationPoints;
         // move these up so that as you update chore, you're decrementing frequency
         let assignedMember = result.assignedMember;
-        let frequencyLimit = result.frequency;
+         frequencyLimit = result.frequency;
         console.log('these should be chorepoints', chorePoints, 'this should be an assigned member', assignedMember)
         // console.log(chorePoints)
         console.log(householdMembersArr)
@@ -129,10 +131,11 @@ $scope.completeChore = (choreId) => {
             singleMember = singleMember[key];
             }
             console.log('single member before changing points', singleMember)
-            let alreadyPoints = parseInt(singleMember.pointsEarned);
-              // if (frequencyLimit > 0) {
-              let chorePointsNum = parseInt(chorePoints);
-              // }
+             alreadyPoints = parseInt(singleMember.pointsEarned);
+              if (frequencyLimit > 0) {
+                console.log('this is the frequencyLimit', frequencyLimit)
+             chorePointsNum = parseInt(chorePoints);
+
             singleMember.pointsEarned = alreadyPoints + chorePointsNum;
             let memberId = singleMember.id;
             console.log(memberId)
@@ -145,7 +148,12 @@ $scope.completeChore = (choreId) => {
                  .then( (choresObj) => {
                   $scope.chores = choresObj;
                  })
+
             });
+            }
+            else {
+              let cheatingToast = `<span><h5>No cheating, ${assignedMember}! You've completed this chore for the week!</h5></span>`
+            }
         });
     });
 });
