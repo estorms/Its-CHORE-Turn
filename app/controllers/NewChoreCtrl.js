@@ -4,14 +4,27 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 
 let hId;
 let houseID;
-let householdMembersObj;
 let householdMembersNamesArr = [];
-$scope.houseMem1;
-$scope.houseMem2;
+let householdMembersArr=[];
+$scope.chores = [];
+let singleChore;
+let choreId;
+let singleMember;
+let houseMem1ID;
+let houseMem2ID;
+let selectedMember;
+let houseMemID;
+let alreadyPoints;
+let chorePointsNum;
+let frequencyLimit;
+let chorePoints;
 
-angular.element(document).ready(function () {
-    console.log('page loading completed');
-});
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    hId = user;
+    accesshousehold();
+  })
 
 
 $scope.title = "Add This Week's Chores";
@@ -30,8 +43,7 @@ $('.datepicker').pickadate({
     selectYears: 3 // Creates a dropdown of 3 years to control year
   });
 
-$scope.accesshousehold = () =>{
-    hId = $scope.$parent.getUser();
+let accesshousehold = () => {
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {

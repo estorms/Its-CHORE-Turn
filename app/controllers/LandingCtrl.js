@@ -1,5 +1,5 @@
 "use strict";
-console.log('NewChoreCtrl connected')
+// console.log('NewChoreCtrl connected')
 app.controller("LandingCtrl", function ($scope, ChoreFactory, $location, $window){
 
 let hId;
@@ -13,8 +13,15 @@ angular.element(document).ready(function () {
     console.log('page loading completed');
 });
 
-$scope.accesshousehold = () =>{
-    hId = $scope.$parent.getUser();
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    hId = user;
+    accesshousehold();
+  })
+
+
+let accesshousehold = () =>{
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {

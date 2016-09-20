@@ -2,6 +2,7 @@
 console.log("NewHouseholdCtrl connected")
 app.controller("NewHouseholdCtrl", function ($scope, ChoreFactory, $location) {
 
+let userId;
 
 // $scope.title = "Register Your HouseHold";
 $scope.btnText = "Register Your Household";
@@ -23,11 +24,18 @@ $scope.newMember2 = {
     pointsEarned: 0
 }
 
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    userId = user;
+
+  })
 
 $scope.addNewHouse = () => {
+    console.log('you clicked addNewHouse')
     let housekey;
 
-    $scope.newHouse.userId = $scope.$parent.getUser();
+    $scope.newHouse.userId = userId;
     console.log('you clicked addnewhouse', $scope.newHouse);
     ChoreFactory.addNewHouse($scope.newHouse)
         .then((result) => {

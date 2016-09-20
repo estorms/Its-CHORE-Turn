@@ -19,9 +19,19 @@ let chorePointsNum;
 let frequencyLimit;
 let chorePoints;
 
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    hId = user;
+    accesshousehold();
+})
 
-$scope.accesshousehold = () =>{
-    hId = $scope.$parent.getUser();
+
+
+
+
+let accesshousehold = () =>{
+    // hId = $scope.$parent.getUser();
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {

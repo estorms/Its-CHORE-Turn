@@ -1,6 +1,6 @@
-"use strict";
+ "use strict";
 
-app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
+app.controller("TopCtrl", function($scope, $q, $location, $window, AuthFactory) {
   $scope.isLoggedIn = false;
   let currentUser = null;
 
@@ -15,11 +15,18 @@ app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
       $window.location.href = "#/login";
     }
       $scope.apply();
+
   });
 
   $scope.getUser = function() {
-    // console.log(currentUser)
-    return currentUser;
+    return $q(function(resolve, reject){
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+        console.log("user in get user", user.uid);
+          resolve(user.uid);
+        }
+      });
+    });
   };
 
   $scope.logout = function () {
@@ -44,14 +51,15 @@ app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
       $window.location.href = "#/choreturn";
     };
 
-    $scope.goToTellMe = function () {
-    console.log('you clicked goToChoreTurn')
-      $window.location.href = "#/howdoesitwork";
-    };
+    // $scope.goToTellMe = function () {
+    // console.log('you clicked goToChoreTurn')
+    //   $window.location.href = "#/howdoesitwork";
+    // };
 
     $scope.signMeUp = function () {
       console.log('you clicked signMeUp')
       $window.location.href = "#/login"
-    }
+    };
 
 });
+

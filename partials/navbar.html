@@ -6,30 +6,23 @@
           <li ng-show="$parent.isLoggedIn"><a ng-click="goToAddNew()">Enter Next Week's Chores</a></li>
           <li ng-show="$parent.isLoggedIn"><a ng-click="goToAllChores()">View This Week's Chores</a></li>
           <li ng-show="$parent.isLoggedIn"><a ng-click="goToChoreTurn()">Is It CHORE Turn?</a></li>
+         <button ng-click="logout()" class="right" style="color: black" ng-show="$parent.isLoggedIn">LogOut</button>
 
 
 
 <!-- Modal Trigger -->
-<div class="col">
+<div class="col" ng-show="!$parent.isLoggedIn">
     <a class='btn' href='#demoModal' modal>How Does It Work?</a>
 </div>
 <!-- Modal Structure -->
 <div id="demoModal" class="modal">
-    <div class="modal-content" style="color: black">
-
-    Register Your Household </li>
-    <li>Step Two: As a Household, Input Your Weekly Chores, Including Their Frequency</li>
-    <li>Step Three: Assign Each Chore a Value of Mutually Determined Irritation Points</li>
-    <li>Step Four: Track Your Chores As You Complete Them and Watch Your Chore's Irritation Points Convert to Points In Your Favor</li>
-    <li>Step Five: Let <i>It's CHORE Turn!</i> Determine, Based on Points Accrued, Who's On the Hook for Completing an Unexpected Chore</li>
-    If All Else Fails, Use Our Free Service to Find a Marriage Counselor In Your Area
+    <div class="modal-content" style="color: black">@It's CHORE Turn makes staying married a lot easier! Blah blah blah here's how it works.
     <div class="modal-footer">
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Me Up!</a>
     </div>
 </div>
 
           <!-- <li ng-show="$parent.isLoggedIn"><a ng-href="#/">NavOpt3</a></li> -->
-         <button ng-click="logout()" class="right" style="color: black" ng-show="$parent.isLoggedIn">LogOut</button>
          <!-- <div></div> -->
       </ul>
     </div>
