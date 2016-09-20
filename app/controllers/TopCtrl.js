@@ -39,4 +39,19 @@ app.controller("TopCtrl", function($scope, $location, $window, AuthFactory) {
       $window.location.href = "#/allchores";
     };
 
+    $scope.goToChoreTurn = function () {
+    console.log('you clicked goToChoreTurn')
+      $window.location.href = "#/choreturn";
+    };
+
+    $scope.goToTellMe = function () {
+    console.log('you clicked goToChoreTurn')
+      $window.location.href = "#/howdoesitwork";
+    };
+
+    $scope.signMeUp = function () {
+      console.log('you clicked signMeUp')
+      $window.location.href = "#/login"
+    }
+
 });

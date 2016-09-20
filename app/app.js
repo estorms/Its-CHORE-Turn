@@ -42,8 +42,17 @@ app.config(function($routeProvider){
         }).
 
         when("/home", {
-            templateUrl: "partials/landing.html"
-            // controller: "LandingCtrl"
+            templateUrl: "partials/landing.html",
+            controller: "LandingCtrl"
+        }).
+
+        when("/howdoesitwork", {
+            templateUrl: "partials/showme.html"
+        }).
+
+        when("/choreturn", {
+            templateUrl: "partials/choreturn.html",
+            controller: "ChoreTurnCtrl"
         }).
 
         //apparently there needs to be consistency between quotation marks (single vs double) for this config to work!!!!
