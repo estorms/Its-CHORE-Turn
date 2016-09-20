@@ -1,6 +1,10 @@
 "use strict";
 console.log("NavCtrl connected")
 app.controller("NavCtrl", function($scope, $location, $window) {
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
     // $scope.searchText = SearchTermData;
     $scope.navItems = [    //create an array of objects
             {url: "#/logout", name: "Logout", showState: "$parent.isLoggedIn"},
@@ -13,6 +17,7 @@ app.controller("NavCtrl", function($scope, $location, $window) {
             {url: '#/choreturn', name: "ChoreTurn", showState: "$parent.isLoggedIn" }
 
     ];
+
 
 
     $scope.isActive = (viewLocation) => viewLocation === $location.path();
