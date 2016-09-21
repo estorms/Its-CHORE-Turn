@@ -9,12 +9,13 @@
       <button ng-click="choreTurn()">Is It CHORE Turn?</button> -->
         <div class="col s12 m4" ng-repeat="chore in chores">
           <div class="card  blue accent-2 darken-1">
-              <span class="card-title" style="font-weight: bold">{{chore.name}}</span>
+          <span class="card-title" style="font-weight: bold">{{chore.name}}</span>
             <div class="card-image">
                <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}">
                <img ng-if="chore.assignedMember === houseMem2" class="memb-pic .img-responsive" src="{{houseMem2img}}">
                <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">
                </div>
+
             <div class="card-content black-text" style="height: 35vh">
 
               <p style="font-weight: bold">Special Instructions: {{chore.description}}</p>
@@ -39,6 +40,7 @@
             </div>
           </div>
         </div>
+      </div>
       </div>
 
 
