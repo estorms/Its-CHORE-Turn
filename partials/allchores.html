@@ -12,8 +12,12 @@
               <span class="card-title">{{chore.name}}</span>
               <p>Special Instructions: {{chore.description}}</p>
               <p>Assigned To: {{chore.assignedMember}}</p>
-              <!-- <p ng-if="chore.frequency > 0"> No Points Left to Learn By Completing This Chore</p> -->
-              <p> Earn {{chore.irritationPoints}} Points by Completing this Chore</p>
+               <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}">
+               <img ng-if="chore.assignedMember === houseMem2" class="memb-pic" src="{{houseMem2img}}">
+             <p ng-if="chore.frequency <= 0"> No Points Left to Learn By Completing This Chore</p>
+             <!--  <p>This is houseMem1 {{houseMem1}}</p>
+              <p>This is chore.assignedMember {{chore.assignedMember}}</p>
+              <p> Earn {{chore.irritationPoints}} Points by Completing this Chore</p> -->
               <!-- <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p> -->
               <p ng-if="chore.completed === false">{{chore.assignedMember}} has not completed this chore</p>
               <p ng-if="chore.completed === true">Times Completed: {{chore.timesCompleted}}</p>
