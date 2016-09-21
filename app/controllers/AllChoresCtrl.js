@@ -113,6 +113,7 @@ $scope.completeChore = (choreId) => {
       }
       singleChore.completed = true;
       singleChore.frequency = singleChore.frequency - 1;
+      singleChore.timesCompleted = singleChore.timesCompleted + 1;
 
       ChoreFactory.updateChore(choreId, singleChore)
       .then((result) => {

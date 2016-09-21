@@ -35,6 +35,8 @@ $scope.newChore = {
     dueDate: '', //when pushing to FB, was registering a blank string until you put in ng-model to the partial, now it's not registering at all as a key on newChore
     assignedMember: '',
     // completed: false
+    completed: false,
+    timesCompleted: 0
 };
 
 $('select').material_select();
@@ -76,7 +78,7 @@ $scope.addNewChore =  () => {
     ChoreFactory.postNewChore($scope.newChore)
         .then((result) => {
             // console.log('wow! you posted a chore!', result);
-            $scope.newChore = { completed: false };
+            // $scope.newChore = { completed: false, timesCompleted: 1 };
                 let newChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
                 Materialize.toast(newChoreToast, 3000);
      });
