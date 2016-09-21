@@ -4,14 +4,14 @@
 
       <div class="row">
         <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.name" id="newChoreName">
-          <label for="newChoreName">Chore Name</label>
+          <input type="text" ng-model="newChore.name" id="newChoreName" placeholder="Name">
+          <!-- <label for="newChoreName">Chore Name</label> -->
         </div>
 
 
         <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.description" id="newChoreDescription">
-          <label for="newChoreDescription">Special Instructions</label>
+          <input type="text" ng-model="newChore.description" id="newChoreDescription" placeholder="Special Instructions">
+          <!-- <label for="newChoreDescription">Special Instructions</label> -->
         </div>
         </div>
 
@@ -21,15 +21,15 @@
           <label for="newChoreIrritationPoints">How Annoying Is This Chore?</label>
         </div>
         <div class="range-field col sm12">
-          <input type="range" max="10" min="1" id ="frequency" ng-model="newChore.frequency">
+          <input type="range" max="21" min="1" id ="frequency" ng-model="newChore.frequency">
           <label for="frequency">How Many Times a Week Does This Chore Need to be Completed?</label>
         </div>
       </div>
 
       <div class="row">
       <div class="input-field col sm12">
-      <input type="text" ng-model="newChore.dueDate" id="dueDate">
-      <label for="dueDate">Chores For the Week Of:</label>
+      <input type="text" ng-model="newChore.dueDate" id="dueDate" placeholder="Due By">
+      <!-- <label for="dueDate">Chores For the Week Of:</label> -->
       </div>
 
         <p>
