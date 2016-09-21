@@ -4,14 +4,27 @@ app.controller("NewChoreCtrl", function ($scope, ChoreFactory, $location, $windo
 
 let hId;
 let houseID;
-let householdMembersObj;
 let householdMembersNamesArr = [];
-$scope.houseMem1;
-$scope.houseMem2;
+let householdMembersArr=[];
+$scope.chores = [];
+let singleChore;
+let choreId;
+let singleMember;
+let houseMem1ID;
+let houseMem2ID;
+let selectedMember;
+let houseMemID;
+let alreadyPoints;
+let chorePointsNum;
+let frequencyLimit;
+let chorePoints;
 
-angular.element(document).ready(function () {
-    console.log('page loading completed');
-});
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    hId = user;
+    accesshousehold();
+  })
 
 
 $scope.title = "Add This Week's Chores";
@@ -22,6 +35,8 @@ $scope.newChore = {
     dueDate: '', //when pushing to FB, was registering a blank string until you put in ng-model to the partial, now it's not registering at all as a key on newChore
     assignedMember: '',
     // completed: false
+    completed: false,
+    timesCompleted: 0
 };
 
 $('select').material_select();
@@ -30,8 +45,7 @@ $('.datepicker').pickadate({
     selectYears: 3 // Creates a dropdown of 3 years to control year
   });
 
-$scope.accesshousehold = () =>{
-    hId = $scope.$parent.getUser();
+let accesshousehold = () => {
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {
@@ -63,8 +77,8 @@ $scope.addNewChore =  () => {
     let frequencyToast = $scope.newChore.frequency;
     ChoreFactory.postNewChore($scope.newChore)
         .then((result) => {
-            // console.log('wow! you posted a chore!', result);
-            $scope.newChore = { completed: false };
+            console.log('wow! you posted a chore!', result);
+            $scope.newChore = { completed: false, timesCompleted: 1 };
                 let newChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
                 Materialize.toast(newChoreToast, 3000);
      });

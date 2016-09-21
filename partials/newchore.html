@@ -1,40 +1,49 @@
-<h2>{{title}}</h2>
 <div class="row" ng-init="accesshousehold()">
     <form class="col sm12">
+<h2>{{title}}</h2>
 
       <div class="row">
         <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.name" id="newChoreName">
-          <label for="newChoreName">Chore Name</label>
+          <input type="text" ng-model="newChore.name" id="newChoreName" placeholder="Name">
+          <!-- <label for="newChoreName">Chore Name</label> -->
         </div>
 
 
         <div class="input-field col sm12">
-          <input type="text" ng-model="newChore.description" id="newChoreDescription">
-          <label for="newChoreDescription">Chore Description</label>
+          <input type="text" ng-model="newChore.description" id="newChoreDescription" placeholder="Special Instructions">
+          <!-- <label for="newChoreDescription">Special Instructions</label> -->
         </div>
         </div>
+
+        <div class="row">
         <div class="range-field col sm12">
           <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
-          <label for="newChoreIrritationPoints">Irritation Points</label>
+          <label for="newChoreIrritationPoints">How Annoying Is This Chore?</label>
         </div>
         <div class="range-field col sm12">
-          <input type="range" max="10" min="1" id ="frequency" ng-model="newChore.frequency">
-          <label for="frequency">Frequency</label>
+          <input type="range" max="21" min="1" id ="frequency" ng-model="newChore.frequency">
+          <label for="frequency">How Many Times a Week Does This Chore Need to be Completed?</label>
         </div>
       </div>
-      <div class="range-field col sm12">
-      <input type="date" ng-model="newChore.dueDate" id="datepicker">
-      <label for="datepicker">Due Date</label>
-    </div>
+
+      <div class="row">
+      <div class="input-field col sm12">
+      <input type="text" ng-model="newChore.dueDate" id="dueDate" placeholder="Due By">
+      <!-- <label for="dueDate">Chores For the Week Of:</label> -->
+      </div>
+
         <p>
       <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
       <label for="houseMem1">{{houseMem1}}</label>
     </p>
+
     <p>
       <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
       <label for="houseMem2">{{houseMem2}}</label>
     </p>
+  </div>
+
+
       <div class="row">
         <div class="input-field col s12">
           <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
@@ -42,4 +51,3 @@
       </div>
     </form>
   </div>
-

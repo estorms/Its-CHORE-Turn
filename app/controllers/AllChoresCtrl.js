@@ -18,10 +18,18 @@ let alreadyPoints;
 let chorePointsNum;
 let frequencyLimit;
 let chorePoints;
+let mem1pointsEarnedToDate;
+let mem2pointsEarnedToDate;
 
+$scope.$parent.getUser()
+  .then ( (user) => {
+    console.log('this is user returned by promise', user)
+    hId = user;
+    accesshousehold();
+})
 
-$scope.accesshousehold = () =>{
-    hId = $scope.$parent.getUser();
+let accesshousehold = () =>{
+    // hId = $scope.$parent.getUser();
     console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {
@@ -34,6 +42,7 @@ $scope.accesshousehold = () =>{
                 for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
                 // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                console.log('these should be image URLs, match them with members', householdMembers[prop].url)
                 householdMembersArr.push(householdMembers[prop])
                 householdMembersNamesArr.push(householdMembers[prop].name)
                 console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
@@ -42,6 +51,8 @@ $scope.accesshousehold = () =>{
                 console.log(householdMembersArr);
                 console.log(householdMembersNamesArr);
                 }
+                $scope.houseMem1img = householdMembersArr[0].url;
+                $scope.houseMem2img = householdMembersArr[1].url;
                 householdMembersArr.forEach(function (member) {
                 console.log(member, member.id);
                 ChoreFactory.updateMembers(member.id, member)
@@ -79,7 +90,7 @@ let chorePop = () => {
 
 $scope.deleteChore = (choreId) => {
   console.log('you are inside delete chore; this is the choreId', choreId, 'you are inside delete chore; this is the $scope.chore.choreId')
-    let choreDeleteToast = `<span><h6>Warning! You are deleting this chore without completing it! No one will earning points!</h6></span>`;
+    let choreDeleteToast = `<span><h6>This Chore Is Off the List</h6></span>`;
     Materialize.toast(choreDeleteToast, 2500)
   //I think the last choreID created in getchores above is what's preserved here and therefore the last chore is the one being completed, no matter what
     ChoreFactory.deleteAChore(choreId)
@@ -105,6 +116,7 @@ $scope.completeChore = (choreId) => {
       }
       singleChore.completed = true;
       singleChore.frequency = singleChore.frequency - 1;
+      singleChore.timesCompleted = singleChore.timesCompleted + 1;
 
       ChoreFactory.updateChore(choreId, singleChore)
       .then((result) => {
@@ -128,10 +140,12 @@ $scope.completeChore = (choreId) => {
         ChoreFactory.getSingleMember(houseMemID)
         .then((result) => {
           singleMember = result;
+          console.log('this is the return from get singleMember', singleMember)
             for (var key in singleMember) {
             singleMember = singleMember[key];
             }
-              console.log('frequencyLimit', frequencyLimit)
+            // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
+              // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
               if (frequencyLimit >= 0) {
                 console.log('this is the frequencyLimit above zero', frequencyLimit)
@@ -173,24 +187,29 @@ $scope.showPoints = () => {
 
 $scope.choreTurn = () => {
   let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  console.log(houseMem1PointstoDate)
   let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
   let houseMem1Name = householdMembersNamesArr[0];
+  console.log(houseMem2PointstoDate)
   let houseMem2Name = householdMembersNamesArr[1];
   let pointsAhead;
   let choreTurnToast;
+
   if (houseMem1PointstoDate > houseMem2PointstoDate) {
     console.log(houseMem1Name, 'wins!')
     pointsAhead = houseMem1PointstoDate - houseMem2PointstoDate;
+    console.log('ponitsahed', pointsAhead)
     choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}</h5></span>`
 
   }
     else if (houseMem2PointstoDate > houseMem1PointstoDate) {
       console.log(houseMem2Name, 'wins')
-      pointsAhead = houseMem2PointstoDate - houseMem2PointstoDate;
-      choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than $houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+      pointsAhead = houseMem2PointstoDate - houseMem1PointstoDate;
+      console.log('pointsahead', pointsAhead)
+      choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than ${houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
 
     }
-    else{
+    else {
       console.log('your points are identical. Looks like you need a divorce lawyer')
       choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
     }
