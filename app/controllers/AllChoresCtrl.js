@@ -1,7 +1,7 @@
 "use strict";
 
-app.controller("AllChoresCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
-
+app.controller("AllChoresCtrl", function ($scope, ChoreFactory, FilterFactory, $routeParams, $window, $location) {
+  $scope.searchText = FilterFactory;
 let hId;
 let houseID;
 let householdMembersNamesArr = [];
