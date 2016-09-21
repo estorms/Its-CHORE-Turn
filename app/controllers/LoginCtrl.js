@@ -6,6 +6,8 @@ app.controller("LoginCtrl", function($scope, $window, AuthFactory ) {
     password: ""
   };
 
+  let pleaseSignUpToast = null;
+
   $scope.register = () => {
     console.log("you want to register?");
     AuthFactory.createUser({
@@ -26,9 +28,9 @@ let loginNewUser = () => {
       .then( (data) => {
         console.log("a user has logged in ", data.uid);
         if (data) {
-          $window.location.href = "#/newhousehold";
+          $window.location.href = "#/newhousehold"
         } else {
-          $window.location.href = "#/login";
+          $window.location.href = "#/login"
         }
         console.log("data from login ", data);
       }, (error) => {
