@@ -18,6 +18,8 @@ let alreadyPoints;
 let chorePointsNum;
 let frequencyLimit;
 let chorePoints;
+let mem1pointsEarnedToDate;
+let mem2pointsEarnedToDate;
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -134,10 +136,12 @@ $scope.completeChore = (choreId) => {
         ChoreFactory.getSingleMember(houseMemID)
         .then((result) => {
           singleMember = result;
+          console.log('this is the return from get singleMember', singleMember)
             for (var key in singleMember) {
             singleMember = singleMember[key];
             }
-              console.log('frequencyLimit', frequencyLimit)
+            // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
+              // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
               if (frequencyLimit >= 0) {
                 console.log('this is the frequencyLimit above zero', frequencyLimit)
