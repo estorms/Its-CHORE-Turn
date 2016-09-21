@@ -7,7 +7,7 @@ let hId;
 let houseID;
 let householdMembersNamesArr = [];
 let householdMembersArr=[];
-$scope.chores = [];
+$scope.choresArr = [];
 let singleChore;
 let choreId;
 let singleMember;
@@ -19,6 +19,10 @@ let alreadyPoints;
 let chorePointsNum;
 let frequencyLimit;
 let chorePoints;
+let mem1Chores = [];
+let mem2Chores= [];
+let mem1totalPoints = 0;
+let mem2totalPoints = 0;
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -49,7 +53,37 @@ let accesshousehold = () =>{
                 $scope.houseMem2=householdMembersNamesArr[1];
             console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
             console.log('woot!')
+            console.log('hId', hId, 'houseID', houseID)
+            ChoreFactory.getAllChores(houseID)
+            .then((choresObj) => {
+                choresObj.forEach(function(chore){
+                    if (chore.assignedMember === $scope.houseMem1){
+                        console.log('we have a housemem1')
+                        mem1Chores.push(chore)
+                    }
+                    else {
+                       mem2Chores.push(chore)
+                    }
+                    console.log('these are mem1Chores', mem1Chores, 'these are mem2Chores', mem2Chores)
+                })
+                // console.log('you have hte chores from second call, with the misspelling', choresObj)
+                for(var i = 0; i < mem1Chores.length; i++){
+                    // let totalPoints;
+                    mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
+                }
 
+                for(var i = 0; i < mem2Chores.length; i++){
+                    // let totalPoints;
+                    mem2totalPoints = mem2totalPoints + parseInt(mem2Chores[i].irritationPoints)
+                }
+
+                console.log('mem1totalPoints', mem1totalPoints, 'mem2totalPoints', mem2totalPoints)
+
+                $scope.choresArr= choresObj;
+
+                // console.log("this is the chores array", $scope.choresArr)
+
+            })
         })
     })
 }
@@ -93,14 +127,14 @@ $scope.choreTurn = () => {
 }
 
 $scope.isThisFair = () => {
+    if (mem2totalPoints > mem1totalPoints){
+        console.log('mem2 is ahead')
+    }
 
-  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
-  console.log(houseMem1PointstoDate)
-  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
-  let houseMem1Name = householdMembersNamesArr[0];
-  console.log(houseMem2PointstoDate)
-  let houseMem2Name = householdMembersNamesArr[1];
+    else {
+        console.log('totally unfair!')
+    }
 
-}
+    }
 
 })
