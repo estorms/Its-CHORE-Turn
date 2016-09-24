@@ -44,7 +44,7 @@ let loginNewUser = () => {
       .then( (data) => {
         console.log("a user has logged in ", data.uid);
         if (data) {
-          $window.location.href = "#/allchores";
+          $window.location.href = "#/choreturn";
         } else {
           $window.location.href = "#/login";
         }

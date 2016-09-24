@@ -1,7 +1,7 @@
 "use strict";
 
 app.controller("ChoreTurnCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
-    $scope.bgimg = "http://img.wikinut.com/img/19hgv38l3mly4kn3/jpeg/0/Happy-Couple.jpeg";
+    // $scope.bgimg = "http://img.wikinut.com/img/19hgv38l3mly4kn3/jpeg/0/Happy-Couple.jpeg";
 
 let hId;
 let houseID;
