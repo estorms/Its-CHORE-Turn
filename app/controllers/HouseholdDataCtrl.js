@@ -1,7 +1,7 @@
 app.controller("HouseholdDataCtrl", function ($scope, ChoreFactory, $routeParams, $window, $location) {
     // $scope.bgimg = "http://img.wikinut.com/img/19hgv38l3mly4kn3/jpeg/0/Happy-Couple.jpeg";
- $scope.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  $scope.series = ['Series A', 'Series B'];
+ $scope.labels = [$scope.houseMem1, '2007', '2008', '2009', '2010', '2011', '2012'];
+  $scope.series = [$scope.houseMem1, $scope.houseMem2];
 
   $scope.data = [
     [65, 59, 80, 81, 56, 55, 40],
@@ -10,7 +10,7 @@ app.controller("HouseholdDataCtrl", function ($scope, ChoreFactory, $routeParams
 
 let hId;
 let houseID;
-let householdMembersNamesArr = [];
+$scope.householdMembersNamesArr = [];
 let householdMembersArr=[];
 $scope.choresArr = [];
 let singleChore;
@@ -52,11 +52,11 @@ let accesshousehold = () =>{
                 // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
                 householdMembersArr.push(householdMembers[prop])
-                householdMembersNamesArr.push(householdMembers[prop].name)
-                console.log('this is the householdMembersNamesArr', householdMembersNamesArr)
+                $scope.householdMembersNamesArr.push(householdMembers[prop].name)
+                console.log('this is the householdMembersNamesArr', $scope.householdMembersNamesArr)
             }
-                $scope.houseMem1=householdMembersNamesArr[0];
-                $scope.houseMem2=householdMembersNamesArr[1];
+                $scope.houseMem1=$scope.householdMembersNamesArr[0];
+                $scope.houseMem2=$scope.householdMembersNamesArr[1];
             console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
             console.log('woot!')
             console.log('hId', hId, 'houseID', houseID)
