@@ -41,9 +41,14 @@ app.config(function($routeProvider){
             controller: "AllChoresCtrl"
         }).
 
-        when("/choreturn", {
+        when("/home", {
             templateUrl: "partials/choreturn.html",
             controller: "ChoreTurnCtrl"
+        }).
+
+        when("/householddata", {
+            templateUrl: "partials/householddata.html",
+            controller: "HouseholdDataCtrl"
         }).
 
         otherwise("/");
