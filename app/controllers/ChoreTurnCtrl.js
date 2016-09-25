@@ -23,6 +23,7 @@ let mem1Chores = [];
 let mem2Chores= [];
 let mem1totalPoints = 0;
 let mem2totalPoints = 0;
+$scope.houseMem1 = null;
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -58,7 +59,7 @@ let accesshousehold = () =>{
             .then((choresObj) => {
                 choresObj.forEach(function(chore){
                     if (chore.assignedMember === $scope.houseMem1){
-                        console.log('we have a housemem1')
+                        console.log('we have a housemem1', $scope.houseMem1)
                         mem1Chores.push(chore)
                     }
                     else {
