@@ -1,91 +1,72 @@
 <div class="row" ng-init="accesshousehold()">
-    <h5>Enter A New Chore!</h5>
-<form class="col s12">
-      <div class="row">
-        <table>
-          <tbody><tr>
-            <td class="input-field">
-              <input id="newChoreName" type="text" class="validate" required ng-model="newChore.name">
-              <label for="newChoreName" class="teal-text lighten-1">Chore Name</label>
-            </td>
-            <td class="input-field">
-              <input id="newChoreDescription" type="text" class="validate" required ng-model="newChore.description">
-              <label for="newChoreDescription" class="teal-text lighten-1">Special Instructions</label>
-            </td>
-          </tr></tbody>
-        </table>
-      </div>
-
-
-        <!-- <div class="row"> -->
-
+  <h5>Enter A New Chore!</h5>
+  <form class="col s12">
     <div class="row">
-        <table>
-          <tbody><tr>
-            <td class="input-field">
-              <input id="newChoreFrequency" type="text" class="validate" required ng-model="newChore.frequency">
-              <label for="newChoreFrequency" class="teal-text lighten-1">Weekly Frequency</label>
-            </td>
-            <!-- <td class="input-field">
-              <input id="newChoreDueDate" type="text" class="validate" required ng-model="newChore.dueDate">
-              <label for="newChoreDueDate" class="teal-text lighten-1">Chores for the Week of Sunday: </label>
-            </td> -->
-          </tr></tbody>
-        </table>
-      </div>
-      <div class="row">
-   <div class="range-field col sm4">
-      <span>Assigned To:</span>
-      <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
-      <label for="houseMem1">{{houseMem1}}</label>
-      <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
-      <label for="houseMem2">{{houseMem2}}</label>
-
+      <table>
+        <tbody><tr>
+          <td class="input-field">
+            <input id="newChoreName" type="text" class="validate" ng-model="newChore.name">
+            <label for="newChoreName" class="teal-text lighten-1">Chore Name</label>
+          </td>
+          <td class="input-field">
+            <input id="newChoreDescription" type="text" class="validate" ng-model="newChore.description">
+            <label for="newChoreDescription" class="teal-text lighten-1">Special Instructions</label>
+          </td>
+        </tr></tbody>
+      </table>
     </div>
-        <div class="range-field col sm4">
-          <label for="newChoreIrritationPoints" class="teal-text lighten-1">How Annoying Is This Chore?</label>
-          <input type="range" max="10" min="1" id ="IP" required ng-model="newChore.irritationPoints">
-
-  </div>
-<!--   <div class="range-field col sm4">
-          <label for="newChoreDueDate" class="teal-text lighten-1">Chores For the Week of:</label>
-          <input type="date" class="datepicker" required ng-model="newChore.dueDate">
-
-  </div> -->
-
-  <label for="inputCreated">Input date</label>
-<input input-date
-    type="text"
-    name="created"
-    id="inputCreated"
-    ng-model="newChore.dueDate"
-    container=""
-    format="mm/dd/yyyy"
-    months-full="{{ month }}"
-    months-short="{{ monthShort }}"
-    weekdays-full="{{ weekdaysFull }}"
-    weekdays-short="{{ weekdaysShort }}"
-    weekdays-letter="{{ weekdaysLetter }}"
-    disable="disable"
-    min="{{ minDate }}"
-    max="{{ maxDate }}"
-    today="today"
-    first-day="1"
-    clear="clear"
-    close="close"
-    select-years="15"
-    on-start="onStart()"
-    on-render="onRender()"
-    on-open="onOpen()"
-    on-close="onClose()"
-    on-set="onSet()"
-    on-stop="onStop()"
-    />
-
-  </div>
-  </form>
-   <div class="input-field col s12">
-          <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
+    <div class="row">
+      <div class="number-field col sm6" style="width: 50%">
+        <input type="number" min="0" max="20" id="newChoreFrequency" ng-model="newChore.frequency">
+        <label for="newChoreFrequency" class="teal-text lighten-1">Weekly Frequency</label>
+      </div>
+      <div class="input-field col sm6" style="width: 50%">
+        <label for="inputCreated">Due By</label>
+        <input input-date
+        type="text"
+        name="created"
+        id="inputCreated"
+        ng-model="newChore.dueDate"
+        container=""
+        format="mm/dd/yyyy"
+        months-full="{{ month }}"
+        months-short="{{ monthShort }}"
+        weekdays-full="{{ weekdaysFull }}"
+        weekdays-short="{{ weekdaysShort }}"
+        weekdays-letter="{{ weekdaysLetter }}"
+        disable="disable"
+        min="{{ minDate }}"
+        max="{{ maxDate }}"
+        today="today"
+        first-day="1"
+        clear="clear"
+        close="close"
+        select-years="15"
+        on-start="onStart()"
+        on-render="onRender()"
+        on-open="onOpen()"
+        on-close="onClose()"
+        on-set="onSet()"
+        on-stop="onStop()"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col sm6" style="width: 50%">
+        <div>Assigned To:
+        <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
+        <label for="houseMem1">{{houseMem1}}</label>
+        <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
+        <label for="houseMem2">{{houseMem2}}</label>
         </div>
+      </div>
+      <div class="range-field col sm6">
+        <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
+        <label for="newChoreIrritationPoints" class="teal-text lighten-1">Irritation Points</label>
+      </div>
+    </div>
+  </form>
+  <div class="input-field col s12">
+    <button class="btn btn-default" ng-click="addNewChore()">{{btnText}}</button>
   </div>
-
+</div>
