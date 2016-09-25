@@ -32,6 +32,9 @@ let mem2totalPoints = 0;
 let memPointsEarnedToDateArr = [];
 let test = [];
 $scope.pointsToChart =[];  //must be formatted as an array of arrays: internal arrays are NOT scoped
+let leftToEarnMem1;
+let leftToEarnMem2;
+let leftToEarnArr = [];
 
 //call the promise that returns userId, then pass that in to access household to burrow through data
 
@@ -75,9 +78,9 @@ let accesshousehold = () =>{
                 $scope.householdMembersNamesArr.push(householdMembers[prop].name)
                 memPointsEarnedToDateArr.push(householdMembers[prop].pointsEarned)
 
-                $scope.pointsToChart.push(memPointsEarnedToDateArr)
 
             }
+                $scope.pointsToChart.push(memPointsEarnedToDateArr)
                 $scope.houseMem1=$scope.householdMembersNamesArr[0];
                 $scope.houseMem2=$scope.householdMembersNamesArr[1];
             console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
@@ -99,24 +102,34 @@ let accesshousehold = () =>{
                 })
                     console.log('these are mem1Chores', mem1Chores, 'these are mem2Chores', mem2Chores)
                     //now that we have chores, identify which are and are not complete
-                    for (var i = 0; i < mem1Chores.length; i++) {
-                        console.log('mem1Chores[i]', mem1Chores[i])
-                        if(mem1Chores[i].completed === false) {
-                        mem1inCompleteChores.push(mem1Chores[i])
+                        for (var i = 0; i < mem1Chores.length; i++) {
+                            console.log('mem1Chores[i]', mem1Chores[i])
+                            if(mem1Chores[i].completed === false) {
+                            mem1inCompleteChores.push(mem1Chores[i])
 
+                            }
                         }
-                    }
 
-                        console.log('please let these be some incomplete chores assigned to mem1', mem1inCompleteChores)
-                    // console.log(mem1CompleteChores)
+                         for(var i = 0; i < mem2Chores.length; i++) {
+                            if ( mem2Chores[i].completed === false){
+                                mem2inCompleteChores.push(mem2Chores[i])
+                            }
+                        }
 
-                     for(var i = 0; i < mem2Chores.length; i++) {
-                        if ( mem2Chores[i].completed === false){
-                            mem2inCompleteChores.push(mem2Chores[i])
+                        //calculate points left to earn based on incomplete Chores
+
+                        for(var i = 0; i < mem1inCompleteChores.length; i++) {
+                            leftToEarnMem1 = mem1inCompleteChores[i].frequency * mem1inCompleteChores[i].irritationPoints;
                         }
-                        // console.log('mem2inCompleteChores', mem2inCompleteChores)
+                        console.log('left to earnMem1', leftToEarnMem1)
+
+                        for(var i = 0; i < mem2inCompleteChores.length; i++) {
+                            leftToEarnMem2 = mem2inCompleteChores[i].frequency * mem2inCompleteChores[i].irritationPoints;
                         }
-                        console.log(mem2inCompleteChores)
+                        console.log('left to earnMem2', leftToEarnMem2)
+
+                        leftToEarnArr.push(leftToEarnMem1, leftToEarnMem2)
+                        $scope.pointsToChart.push(leftToEarnArr)
 
                 // for (var i = 0; i < mem1Chores.length; i++){
                 //     mem1totalPoints = mem1totalPoints + parseInt(mem1Chores[i].irritationPoints)
