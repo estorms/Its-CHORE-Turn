@@ -47,11 +47,40 @@
           <input type="range" max="10" min="1" id ="IP" required ng-model="newChore.irritationPoints">
 
   </div>
-  <div class="range-field col sm4">
+<!--   <div class="range-field col sm4">
           <label for="newChoreDueDate" class="teal-text lighten-1">Chores For the Week of:</label>
           <input type="date" class="datepicker" required ng-model="newChore.dueDate">
 
-  </div>
+  </div> -->
+
+  <label for="inputCreated">Input date</label>
+<input input-date
+    type="text"
+    name="created"
+    id="inputCreated"
+    ng-model="newChore.dueDate"
+    container=""
+    format="mm/dd/yyyy"
+    months-full="{{ month }}"
+    months-short="{{ monthShort }}"
+    weekdays-full="{{ weekdaysFull }}"
+    weekdays-short="{{ weekdaysShort }}"
+    weekdays-letter="{{ weekdaysLetter }}"
+    disable="disable"
+    min="{{ minDate }}"
+    max="{{ maxDate }}"
+    today="today"
+    first-day="1"
+    clear="clear"
+    close="close"
+    select-years="15"
+    on-start="onStart()"
+    on-render="onRender()"
+    on-open="onOpen()"
+    on-close="onClose()"
+    on-set="onSet()"
+    on-stop="onStop()"
+    />
 
   </div>
   </form>
