@@ -83,10 +83,16 @@ let getAllChores = (householdId) => {
 let getHouseholdId = (householdId) =>{
     // let houseId = [];
     let houseId;
+    // let householdName;
     return $q ( (resolve, reject) => {
     $http.get(`${FirebaseURL}/households.json?orderBy="userId"&equalTo="${householdId}"`)
     .success( (household) => {
         console.log('in getHouseholdId', household)
+       // for (var prop in household) {
+       //  console.log('prop in household', household[prop])
+       //   householdName = household[prop].name
+       //  console.log('this is the name you want to try to resolve', householdName)
+       // }
         Object.keys(household).forEach((key) => {
              household[key].id = key;
              // houseId.push(household[key])
@@ -101,6 +107,15 @@ let getHouseholdId = (householdId) =>{
   })
 }
 
+let getHouseholdName = (householdId) =>{
+  let householdName;
+  return $q( (resolve, reject) => {
+    $http.get(`${FirebaseURL}/households.json?orderBy="userId"&equalTo="${householdId}"`)
+    .success((household) =>{
+    resolve(household)
+    })
+  })
+}
 
 let updateChore = (choreId, editedChore) => {
   return $q ( (resolve, reject) => {
@@ -183,6 +198,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember, updateSingleMember}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember, updateSingleMember, getHouseholdName}
 
 });
