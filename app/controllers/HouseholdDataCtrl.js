@@ -2,7 +2,7 @@ app.controller("HouseholdDataCtrl", function ($scope, ChoreFactory, $routeParams
     // $scope.bgimg = "http://img.wikinut.com/img/19hgv38l3mly4kn3/jpeg/0/Happy-Couple.jpeg";
 
 
-$scope.series = ['Points Earned To Date', 'points left to Earn']
+$scope.series = ['Points Earned To Date', 'Points Left to Earn']
 
 let hId;
 let houseID;
