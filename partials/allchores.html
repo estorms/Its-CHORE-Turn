@@ -1,13 +1,15 @@
 
      <h3>This Week's Chores</h3>
      <div ng-init="accesshousehold()">
+      <div id="chore-track">
+      <div class="col s12 m4"><button ng-click="showPoints()">Show Points to Date</button>
+      <button ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Have an Untracked Chore? See who's on the hook!</button></div>
+      </div>
       <div class="input-field">
           <input id="search" ng-model="searchText.search" placeholder="Search This Week's Chores" type="search">
           <label for="search"><i class="material-icons">search</i></label>
       </div>
         <!-- </div> -->
-      <div class="col s12 m4"><button ng-click="showPoints()">Show Points to Date</button>
-      <button ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Have an Untracked Chore? See who's on the hook!</button></div>
       <div class="row">
         <div class="col s12 m4" ng-repeat="chore in chores | filter: {assignedMember: searchText.search}">
         <div class = "chore-card">
@@ -19,7 +21,7 @@
                <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">
                </div>
 
-            <div class="card-content black-text" style="height: 50vh">
+            <div class="card-content black-text" style="height: 35vh">
 
               <p style="font-weight: bold">Special Instructions: {{chore.description}}</p>
               <p>Assigned To: {{chore.assignedMember}}</p>
