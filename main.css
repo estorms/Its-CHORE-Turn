@@ -3,3 +3,9 @@ img {
  /*max-height: 100%;*/
 width: 100%;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    text-shadow: 2px 2px 2px grey;
+    color: darkgrey;
+}
