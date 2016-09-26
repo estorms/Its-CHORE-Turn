@@ -1,6 +1,6 @@
 "use strict";
 console.log('app js connected')
-var app = angular.module("ChoreApp", ["ngRoute", "ui.materialize"])
+var app = angular.module("ChoreApp", ["ngRoute", "chart.js", "ui.materialize"])
 .constant('FirebaseURL','https://its-chore-turn.firebaseio.com');
 
 
