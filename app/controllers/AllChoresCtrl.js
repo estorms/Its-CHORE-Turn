@@ -80,6 +80,9 @@ let chorePop = () => {
         ChoreFactory.updateChore(choreId, chore)
         .then((result) =>{
           console.log('this is the result of updateChore', result)
+          $scope.selectedChore = $scope.chores.filter(function(chore) {
+            return chore.id === $routeParams.choreId
+          })[0];
         })
       });
     });
