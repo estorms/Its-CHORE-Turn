@@ -34,7 +34,7 @@
               <p ng-if="chore.completed === false">{{chore.assignedMember}} has not completed this chore</p>
               <p ng-if="chore.completed === true">Times Completed: {{chore.timesCompleted}}</p>
               <p ng-if="chore.frequency > 0">Weekly Frequency: {{chore.frequency}}</p>
-              <p ng-if="chore.frequency <= 0" style="color: orange; font-weight: bold">This Chore Has Been Completed for the Week! You're a God in a Land of Lemons, {{chore.assignedMember}}</p>
+              <p ng-if="chore.frequency <= 0" style="color: cornsilk; font-weight: bolder">This Chore Has Been Completed for the Week! Great job, {{chore.assignedMember}}!</p>
               <p>Due By: {{chore.dueDate}}</p>
             </div>
 
