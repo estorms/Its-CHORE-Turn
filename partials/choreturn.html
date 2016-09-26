@@ -1,14 +1,15 @@
 <div ng-init="accesshousehold()">
-<h1>Welcome {{houseMem1}} and {{houseMem2}}</h1>
-<h2>How Can We Salvage Your Relationship?</h2>
+<h1>Welcome, {{houseMem1}} and {{houseMem2}}!</h1>
+<h2>How Can We Sustain Your Relationship?</h2>
 <div class="parallax-container" style="width: 100%">
-    <!-- <div parallax><img src="http://img.wikinut.com/img/19hgv38l3mly4kn3/jpeg/0/Happy-Couple.jpeg"></div> -->
+    <div parallax><img src="/7034829-beautiful-black-white-photography.jpg"></div>
+</div>
+<div id="home-options">
     <a class='btn' href='#/newchore'>Enter A New Chore Chore?</a>
     <a class='btn' href='#/allchores' modal>See All This Week's Chores?</a>
     <a class='btn' href='#/householddata'>Show Me The Data?</a>
     <a class='btn' href='#demoModal' modal>Get A Divorce?</a>
 </div>
-
 <!-- </div> -->
 </div>
 
@@ -26,11 +27,11 @@
           <tbody><tr>
             <td class="input-field">
               <input id="newChoreName" type="text" class="validate" required ng-model="newChore.name">
-              <label for="newCHoreName" class="teal-text lighten-1">Chore Name</label>
+              <label for="newCHoreName" class="grey-text darken-4">Chore Name</label>
             </td>
             <td class="input-field">
               <input id="newChoreDescription" type="text" class="validate" required ng-model="newChore.description">
-              <label for="newChoreDescription" class="teal-text lighten-1">Special Instructions</label>
+              <label for="newChoreDescription" class="grey-text darken-4">Special Instructions</label>
             </td>
           </tr></tbody>
         </table>
@@ -42,7 +43,7 @@
 
        <!--  <div class="row">
         <div class="range-field col sm12">
-          <label for="newChoreIrritationPoints" class="teal-text lighten-1">How Annoying Is This Chore?</label>
+          <label for="newChoreIrritationPoints" class="grey-text darken-4">How Annoying Is This Chore?</label>
           <input type="range" max="10" min="1" id ="IP" required ng-model="newChore.irritationPoints"> -->
         <!-- </div> -->
 <!--

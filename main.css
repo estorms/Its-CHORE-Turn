@@ -1,5 +1,42 @@
+body {
+    background-color: whitesmoke;
+    font-family: "Raleway";
+}
+
 
 img {
  /*max-height: 100%;*/
 width: 100%;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    text-shadow: 2px 2px 2px grey;
+    color: darkgrey;
+    margin-top: 50px;
+    margin-bottom: 35px;
+}
+
+h3 {
+    margin-top: 45px;
+}
+.brand-logo {
+    font-family: "Monoton";
+    font-size: 55px;
+}
+
+#chore-track {
+    margin-bottom: 35px;
+}
+
+.btn {
+    background-color: darkgrey;
+}
+
+.btn:hover {
+    background-color: #212121;
+}
+
+#home-options{
+    margin-left: 20%;
 }
