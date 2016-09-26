@@ -215,4 +215,11 @@ $scope.choreTurn = () => {
     }
     Materialize.toast(choreTurnToast, 4000)
 }
+
+$scope.editChore = () => {
+
+$window.location.href = "#/editchore";
+
+}
+
 });
