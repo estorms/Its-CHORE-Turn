@@ -50,6 +50,10 @@ app.config(function($routeProvider){
             templateUrl: "partials/householddata.html",
             controller: "HouseholdDataCtrl"
         }).
+        when("/editchore", {
+            templateUrl: "partials/editchore.html",
+            controller: "EditChoreCtrl"
+        }).
 
         otherwise("/");
 });
