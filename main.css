@@ -9,10 +9,12 @@ img {
 width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
     text-align: center;
     text-shadow: 2px 2px 2px grey;
     color: darkgrey;
+    margin-top: 50px;
+    margin-bottom: 35px;
 }
 
 h3 {
@@ -27,3 +29,14 @@ h3 {
     margin-bottom: 35px;
 }
 
+.btn {
+    background-color: darkgrey;
+}
+
+.btn:hover {
+    background-color: #212121;
+}
+
+#home-options{
+    margin-left: 20%;
+}
