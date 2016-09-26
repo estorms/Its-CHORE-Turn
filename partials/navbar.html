@@ -1,11 +1,11 @@
   <nav>
-    <div class="nav-wrapper" style="background-color: #eeeeee; height: 85px">
-      <a href="#" class="brand-logo" style="color: black; font-size: 60px; margin-top: 10px; margin-bottom: 10px">@It's CHORE Turn: The Divorce Alternative</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <div class="nav-wrapper" style="background-color: #eeeeee">
+      <a href="#" class="brand-logo" style="color: black; font-size: 3em; margin-top: 10px; margin-bottom: 25px; height: 5%">@It's CHORE Turn: The Divorce Alternative</a>
+    <!--   <ul id="nav-mobile" class="right hide-on-med-and-down"> -->
           <!-- <li ng-show="!$parent.isLoggedIn"><a ng-href="#/">Login</a></li> -->
-          <li ng-show="$parent.isLoggedIn"><a ng-click="goToAddNew()" style="color: black">Enter New Chores</a></li>
+       <!--    <li ng-show="$parent.isLoggedIn"><a ng-click="goToAddNew()" style="color: black">Enter New Chores</a></li> -->
           <!-- <li ng-show="$parent.isLoggedIn">Add Next Week's Chores</a></li> -->
-          <li ng-show="$parent.isLoggedIn"><a ng-click="goToAllChores()" style="color: black">View This Week's Chores</a></li>
+      <!--     <li ng-show="$parent.isLoggedIn"><a ng-click="goToAllChores()" style="color: black">View This Week's Chores</a></li> -->
           <!-- <li ng-show="$parent.isLoggedIn"><a ng-click="goToChoreTurn()">Is It CHORE Turn?</a></li> -->
          <button ng-click="logout()" class="right" style="color: black" ng-show="$parent.isLoggedIn">LogOut</button>
 
@@ -23,7 +23,7 @@
 
 <!-- Modal Trigger -->
 <div class="col" ng-show="!$parent.isLoggedIn">
-    <a class='btn' href='#demoModal' modal>How Does It Work?</a>
+    <a class='btn' href='#demoModal' style="float: right; margin-top: 1%" modal>How Does It Work?</a>
 </div>
 <!-- Modal Structure -->
 <div id="demoModal" class="modal">
