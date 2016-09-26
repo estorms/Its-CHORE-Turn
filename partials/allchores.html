@@ -10,7 +10,8 @@
       <button ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Have an Untracked Chore? See who's on the hook!</button></div>
       <div class="row">
         <div class="col s12 m4" ng-repeat="chore in chores | filter: {assignedMember: searchText.search}">
-          <div class="card  blue accent-2 darken-1">
+        <div class = "chore-card">
+          <div class="card blue-grey lighten-3">
           <span class="card-title" style="font-weight: bold">{{chore.name}}</span>
             <div class="card-image">
                <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}">
@@ -55,6 +56,7 @@
     </div>
  -->
               </div>
+            </div>
             </div>
           </div>
         </div>
