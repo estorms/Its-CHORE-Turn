@@ -20,7 +20,9 @@ app.controller("NavCtrl", function($scope, $location, $window) {
 
 
 
-    $scope.isActive = (viewLocation) => viewLocation === $location.path();
+    $scope.isActive = (viewLocation) => {
+        viewLocation === $location.path()
+    };
 
     // $scope.goToAddNew = function () {
     // console.log('you clicked goToAddNew')
