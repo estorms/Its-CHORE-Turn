@@ -50,7 +50,7 @@ app.config(function($routeProvider){
             templateUrl: "partials/householddata.html",
             controller: "HouseholdDataCtrl"
         }).
-        when("/editchore", {
+        when("/editchore/:choreId", {
             templateUrl: "partials/editchore.html",
             controller: "EditChoreCtrl"
         }).

@@ -1,79 +1,14 @@
 <div ng-init="accesshousehold()">
 <h1>Welcome, {{houseMem1}} and {{houseMem2}}!</h1>
 <h2>How Can We Sustain Your Relationship?</h2>
-<div class="parallax-container" style="width: 100%">
-    <div parallax><img src="/7034829-beautiful-black-white-photography.jpg"></div>
-</div>
+<!-- <div class="parallax-container"> -->
+    <div><img src={{bgimg}}></div>
+<!-- </div> -->
 <div id="home-options">
-    <a class='btn' href='#/newchore'>Enter A New Chore Chore?</a>
-    <a class='btn' href='#/allchores' modal>See All This Week's Chores?</a>
-    <a class='btn' href='#/householddata'>Show Me The Data?</a>
-    <a class='btn' href='#demoModal' modal>Get A Divorce?</a>
+    <a class='btn' href='#/newchore'>Enter A New  Chore</a>
+    <a class='btn' href='#/allchores'>See All This Week's Chores</a>
+    <a class='btn' href='#/householddata'>Show Us The Data</a>
+    <a class='btn' href='#demoModal'>Get A Divorce</a>
 </div>
 <!-- </div> -->
 </div>
-
-<!--  <button ng-click="showPoints()">Show Points to Date</button>
-<button ng-click="choreTurn()" style="float: right">Have an Untracked Chore? See who's on the hook!</button>
-<button ng-click="isThisFair()">Are You Guys Being Fair</button> -->
-
-<!-- <div class="modal" id="newChoreModal">
-  <div class="row modal-content">
-    <h5>Enter A New Chore!</h5>
-
-    <form class="col s12">
-      <div class="row">
-        <table>
-          <tbody><tr>
-            <td class="input-field">
-              <input id="newChoreName" type="text" class="validate" required ng-model="newChore.name">
-              <label for="newCHoreName" class="grey-text darken-4">Chore Name</label>
-            </td>
-            <td class="input-field">
-              <input id="newChoreDescription" type="text" class="validate" required ng-model="newChore.description">
-              <label for="newChoreDescription" class="grey-text darken-4">Special Instructions</label>
-            </td>
-          </tr></tbody>
-        </table>
-      </div> -->
-      <!-- <div class="row"> -->
-       <!--  <table>
-          <tbody> -->
-          <!-- <tr> -->
-
-       <!--  <div class="row">
-        <div class="range-field col sm12">
-          <label for="newChoreIrritationPoints" class="grey-text darken-4">How Annoying Is This Chore?</label>
-          <input type="range" max="10" min="1" id ="IP" required ng-model="newChore.irritationPoints"> -->
-        <!-- </div> -->
-<!--
-        <div class="input=field">
-        <select class="" id="houseMemSelected" material-select>
-          <option class="" material-option>{{houseMem1}}</option>
-          <label for="houseMemSelected">Assigned House Member</label>
-        </select>
-        </div> -->
-   <!--      <p> -->
-  <!--  </div>
-   <div class="row">
-   <div class="range-field col sm12">
-      <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
-      <label for="houseMem1">{{houseMem1}}</label> -->
-  <!--   </p>
-
-    <p> -->
-   <!--    <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
-      <label for="houseMem2">{{houseMem2}}</label> -->
-<!--     </p> -->
- <!--    </div>
-      </div>
-      </div> -->
-      <!-- </div> -->
-      <!-- </div> -->
-  <!--   </form>
-    <div class="modal-footer">
-      <a href="#/choreturn" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-    </div>
-  </div>
-</div>
- -->

@@ -1,9 +1,14 @@
 <div class="row" ng-init="accesshousehold()">
-    <a class='btn' href='#/home'>Take Me Back Home</a>
-
-  <h5 style="text-align: center; margin-top: 1%">Enter A New Chore!</h5>
+   <!--  <a class='btn' href='#/home'>Take Me Back Home</a> -->
+<div id="home-options">
+    <a class='btn' href='#/newchore'>Enter A New  Chore</a>
+    <a class='btn' href='#/allchores'>See All This Week's Chores</a>
+    <a class='btn' href='#/householddata'>Show Us The Data</a>
+    <a class='btn' href='#demoModal'>Get A Divorce</a>
+</div>
+  <h5 style="text-align: center">Enter A New Chore!</h5>
   <form class="col s12">
-    <div class="row" style="margin-top: 5%">
+    <div class="row">
       <table>
         <tbody><tr>
           <td class="input-field">
@@ -69,6 +74,6 @@
     </div>
   </form>
   <div class="input-field col s12">
-    <button class="btn" ng-click="addNewChore()">{{btnText}}</button>
+    <button class="btn" style="display: block; margin: 25px auto" ng-click="addNewChore()">{{btnText}}</button>
   </div>
 </div>

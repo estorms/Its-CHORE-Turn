@@ -39,22 +39,22 @@ app.controller("TopCtrl", function($scope, $q, $location, $window, AuthFactory) 
   $scope.goToAddNew = function () {
     console.log('you clicked goToAddNew')
       $window.location.href = "#/newchore";
+    }
+
+    $scope.goHome = function () {
+      console.log('you clicked goHome')
+      $window.location.href = "#/home"
+    }
+
+    $scope.showMeData = function () {
+    console.log('you clicked showMeData')
+      $window.location.href = "#/householddata";
     };
 
-    $scope.goToAllChores = function () {
-    console.log('you clicked goToAllChores')
+    $scope.allChores = function () {
+    console.log('you clicked allChores')
       $window.location.href = "#/allchores";
     };
-
-    $scope.goToChoreTurn = function () {
-    console.log('you clicked goToChoreTurn')
-      $window.location.href = "#/choreturn";
-    };
-
-    // $scope.goToTellMe = function () {
-    // console.log('you clicked goToChoreTurn')
-    //   $window.location.href = "#/howdoesitwork";
-    // };
 
     $scope.signMeUp = function () {
       console.log('you clicked signMeUp')

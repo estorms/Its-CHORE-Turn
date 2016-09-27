@@ -128,6 +128,8 @@ let accesshousehold = () =>{
                         }
                         console.log('left to earnMem2', leftToEarnMem2)
 
+                        //BEFORE PUSHING TO LEFT TO EARN, NEED TO FIGURE OUT HOW MUCH IS LEFT ON CHORES MARKED COMPLETE BUT NOT FINISHED
+
                         leftToEarnArr.push(leftToEarnMem1, leftToEarnMem2)
                         $scope.pointsToChart.push(leftToEarnArr)
 
