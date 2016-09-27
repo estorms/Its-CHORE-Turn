@@ -39,7 +39,7 @@ app.controller("TopCtrl", function($scope, $q, $location, $window, AuthFactory) 
   $scope.goToAddNew = function () {
     console.log('you clicked goToAddNew')
       $window.location.href = "#/newchore";
-    };
+    }
 
     $scope.goHome = function () {
       console.log('you clicked goHome')

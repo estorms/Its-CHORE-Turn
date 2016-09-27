@@ -1,6 +1,6 @@
 
      <div ng-init="accesshousehold()">
-    <a class='btn' href='#/home'>Take Me Back Home</a>
+  <!--   <a class='btn' href='#/home'>Take Me Back Home</a> -->
      <h3>This Week's Chores</h3>
       <div id="chore-track">
       <div class="col s12 m4"><button ng-click="showPoints()">Show Points to Date</button>
@@ -22,7 +22,7 @@
                <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">
                </div>
 
-            <div class="card-content black-text" style="height: 35vh">
+            <div class="card-content black-text" style="height: 45vh">
 
               <p style="font-weight: bold">Special Instructions: {{chore.description}}</p>
               <p>Assigned To: {{chore.assignedMember}}</p>
