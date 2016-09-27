@@ -11,8 +11,8 @@ width: 100%;
 
 h1, h2, h3, h4 {
     text-align: center;
-    text-shadow: 3px 3px 5px;
-    color: darkgrey;
+    text-shadow: 2px 2px 1px;
+    color: black;
     margin-top: 50px;
     margin-bottom: 35px;
 }
@@ -29,8 +29,14 @@ h3 {
     margin-bottom: 35px;
 }
 
-.btn {
+.btn, button {
     background-color: darkgrey;
+    box-shadow: 5px 5px 10px darkgrey;
+    font-weight: 900;
+}
+
+button {
+    box-shadow: 2px 2px 2px;
 }
 
 .btn:hover {
@@ -49,4 +55,8 @@ h3 {
 
 a {
     color: black;
+}
+
+#search {
+    box-shadow: 5px 5px 5px darkgrey;
 }
