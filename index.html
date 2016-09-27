@@ -9,7 +9,7 @@
     </head>
     <body ng-app="ChoreApp">
         <div ng-controller="TopCtrl">
-            <div ng-include=" 'partials/navbar.html' ">
+            <div ng-controller="NavCtrl" ng-include=" 'partials/navbar.html' ">
             </div>
             <div ng-view></div>
             </div>

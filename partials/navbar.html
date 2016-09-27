@@ -3,28 +3,17 @@
       <span class="brand-logo" style="color: black; margin-top: 10px; margin-bottom: 25px; height: 5%; font-size: 2em">@It's CHORE Turn: The Divorce Alternative</span>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-          <li ng-show="$parent.isLoggedIn"><a ng-click="goToAddNew()" style="color: black" >Enter New Chores</a></li>
-          <!-- <li ng-show="!$parent.isLoggedIn"><a ng-href="#/">Login</a></li> -->
-          <!-- WHY ISN'T THIS WORKING??
-          <li ng-show="isActive('/home')" style="color: black"><a ng-click="goToAddNew()">Enter New Chores</a></li> -->
-          <li ng-show="$parent.isLoggedIn"><a ng-click="showMeData()" style="color: black" >Data, Please</a></li>
-          <li ng-show="$parent.isLoggedIn"><a ng-click="allChores()" style="color: black" >All Chores</a></li>
+       <!--    <li ng-show="$parent.isLoggedIn"><a ng-click="goToAddNew()" style="color: black" >Enter New Chores</a></li> -->
+<!--
+          WHY ISN'T THIS WORKING?? -->
+    <!--       <li ng-hide="isActive('/home')" ><a ng-click="goToAddNew()" style="color: black" ng-hide="isActive('/home')">Enter New Chores</a></li>
 
-          <li ng-show="$parent.isLoggedIn"><a ng-click="goHome()" style="color: black">Home</a></li>
-        <!--   <li ng-show="$parent.isLoggedIn"><a ng-click="goToChoreTurn()">Is It CHORE Turn?</a></li> -->
+          <li ng-hide="isActive('/home')" > <a ng-click="showMeData()" style="color: black" >Data, Please</a></li>
+          <li ng-hide="isActive('/home')" ><a ng-click="allChores()" style="color: black" >All Chores</a></li>
+
+          <li ng-hide="isActive('/home')" ><a ng-click="goHome()" style="color: black">Home</a></li> -->
+
          <button ng-click="logout()" class="right" style="color: black" ng-show="$parent.isLoggedIn">LogOut</button>
-
-
-  <!-- Modal Structure -->
-<!--   <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
-  </div> -->
 
 <!-- Modal Trigger -->
 <div class="col" ng-show="!$parent.isLoggedIn">
