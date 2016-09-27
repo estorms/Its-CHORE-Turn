@@ -1,16 +1,30 @@
 <section>
+
   <h2 style="text-align:center">Register Your Household or Login</h2>
-  <div>
     Email: <input type="text" autofocus="true" ng-model="account.email" placeholder="joe@joe.com">
-  </div>
-  <div>
-  </div>
+  <!-- <div> -->
+  <!-- </div> -->
+  <!-- <div> -->
+  <!-- </div> -->
     Password: <input type="password" ng-model="account.password" placeholder="Cats4eva!">
   <div>
 <a class="waves-effect waves-light btn" ng-click="login()">Login</a>
 <a class="waves-effect waves-light btn" ng-click="loginWithGoogle()">Login With Google</a>
 <a class="waves-effect waves-light btn" ng-click="register()">Register</a>
+<!-- <div class="col" ng-show="!$parent.isLoggedIn"> -->
+    <a class='btn' href='#demoModal' modal>How Does It Work?</a>
+</div>
+<!-- </div> -->
+<div id="demoModal" class="modal">
+       <div class="modal-content" style="color: black">
+    <h5>@It's CHORE Turn!: The Divorce Alternative makes staying together easier-ish!</h5><h6> To use, register your household, create your partner profiles, and enter your household's weekly chores, including their frequency.</h6> <h6>Assign each chore a <b>mutually agreeable</b> number of "Irritation Points" on a scale of 1 to 10, with 1 being mildly annoying and 10 being about as much fun as a poke in the eye. </h6> <h6>As you and your somewhat-loved one complete your chores throughout the week, track them here. Every time you complete a chore, its Irritation Points will convert to your Points Earned. </h6> <h6>Then, when an unexpected chore comes up, we'll delegate it for you using the hard data you've given us, rather than your usual admixture of flawed logic, latent hostility, and bias.</h6>
 
+
+    </div>
+    <div>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Me Up!</a>
+    </div>
+    </div>
 </section>
 
 
