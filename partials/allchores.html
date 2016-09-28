@@ -14,10 +14,6 @@
           <label for="search"><i class="material-icons">search</i></label>
       </div>
         <!-- </div> -->
-      <div id="chore-track">
-      <div class="col s12 m4"><a class = "btn" ng-click="showPoints()">Show Points to Date</a>
-      <a class="btn" ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Unplanned Chore? See who's on the hook!</a></div>
-      </div>
       <div class="row">
         <div class="col s12 m4" ng-repeat="chore in chores | filter: {assignedMember: searchText.search}">
         <div class = "chore-card">
@@ -47,12 +43,16 @@
               <a class="btn" ng-href="#/editchore/{{chore.id}}" style="padding-left: 18px; padding-right: 18px"><span>Edit</span></a>
               <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
               <a class="btn" ng-click="deleteChore(chore.id)"> Delete</a>
-
-              </div>
             </div>
             </div>
           </div>
         </div>
+
+              </div>
+      <div id="chore-track">
+      <div class="col s12 m4"><a class = "btn" ng-click="showPoints()">Points to Date</a>
+      <a class="btn" ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Unplanned Chore?</a></div>
+      </div>
       </div>
       <!-- </div> -->
 

@@ -39,13 +39,13 @@ $scope.$parent.getUser()
 $scope.title = "Add This Week's Chores";
 $scope.btnText = "Edit This Chore";
 $scope.selectedChore = {
-    name: '',
-    description: '',
+    // name: '',
+    // description: '',
     //when pushing to FB, was registering a blank string until you put in ng-model to the partial, now it's not registering at all as a key on selectedChore
-    assignedMember: '',
+    // assignedMember: '',
     // completed: false
-    completed: false,
-    timesCompleted: 0
+    // completed: false,
+    // timesCompleted: 0
 };
 
 $('select').material_select();
