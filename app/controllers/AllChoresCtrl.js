@@ -81,6 +81,7 @@ let chorePop = () => {
         .then((result) =>{
           console.log('this is the result of updateChore', result)
           $scope.selectedChore = $scope.chores.filter(function(chore) {
+            console.log('chore.id', chore.id)
             return chore.id === $routeParams.choreId
           })[0];
         })
@@ -219,10 +220,10 @@ $scope.choreTurn = () => {
     Materialize.toast(choreTurnToast, 4000)
 }
 
-$scope.editChore = () => {
+// $scope.editChore = () => {
 
-$window.location.href = "#/editchore";
+// $window.location.href = "#/editchore";
 
-}
+// }
 
 });
