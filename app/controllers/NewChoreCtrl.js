@@ -58,7 +58,7 @@ $scope.today = 'Today';
 $scope.clear = 'Clear';
 $scope.close = 'Close';
 var days = 30;
-$scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24 * days ))).toISOString();
+$scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24))).toISOString();
 $scope.maxDate = (new Date($scope.currentTime.getTime() + ( 1000 * 60 * 60 *24 * days ))).toISOString();
 $scope.onStart = function () {
     console.log('onStart');
