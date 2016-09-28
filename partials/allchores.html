@@ -9,10 +9,7 @@
     <a class='btn' href='#demoModal'>Get A Divorce</a>
 </div>
      <h3>This Week's Chores</h3>
-      <div id="chore-track">
-      <div class="col s12 m4"><button ng-click="showPoints()">Show Points to Date</button>
-      <button ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Have an Untracked Chore? See who's on the hook!</button></div>
-      </div>
+
       <div class="input-field">
           <input id="search" ng-model="searchText.search" placeholder="Filter This Week's Chores By Member" type="search">
           <label for="search"><i class="material-icons">search</i></label>
@@ -47,13 +44,13 @@
             </div>
 
             <div class="card-action">
-              <button ng-click="completeChore(chore.id)">Mark This Chore Complete!</button>
-              <a ng-href="#/editchore/{{chore.id}}">Edit</a>
+              <a class = "btn" ng-click="completeChore(chore.id)">Mark This Chore Complete!</a>
+              <a class = "btn" ng-href="#/editchore/{{chore.id}}">Edit</a>
               <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
-<<<<<<< HEAD
+
               <a class="btn" ng-click="deleteChore(chore.id)"> Delete</a>
-=======
-              <button ng-click="deleteChore(chore.id)"> Delete This Chore From Your List</button>
+
+              <!-- <button ng-click="deleteChore(chore.id)"> Delete This Chore From Your List</button> -->
                   <!-- <a href="#" ng-click="deleteChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE-->
 
                   <!-- <div class="col" ng-show="!$parent.isLoggedIn"> -->
@@ -69,8 +66,7 @@
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Me Up!</a>
     </div>
  -->
-              </div>
->>>>>>> parent of 7052973... more styling tweaks
+
             </div>
             </div>
           </div>
