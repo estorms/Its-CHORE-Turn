@@ -140,7 +140,7 @@ $scope.updateselectedChore =  () => {
         .then((result) => {
             console.log('wow! you posted a chore!', result);
             $scope.selectedChore = { completed: false };
-                let selectedChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
+                let selectedChoreToast = `<span>This chore has been updated!</span>`;
                 Materialize.toast(selectedChoreToast, 3000);
         // })
      })
