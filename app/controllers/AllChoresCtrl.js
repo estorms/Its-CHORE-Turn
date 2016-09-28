@@ -55,9 +55,9 @@ let accesshousehold = () =>{
                 $scope.houseMem2img = householdMembersArr[1].url;
                 householdMembersArr.forEach(function (member) {
                 console.log(member, member.id);
-                ChoreFactory.updateMembers(member.id, member)
+                ChoreFactory.updateMember(member.id, member)
                  .then((results) =>{
-                   console.log('These are the results of updateMembers', results)
+                   console.log('These are the results of updateMember', results)
                  });
              });
           });

@@ -18,6 +18,9 @@ let alreadyPoints;
 let chorePointsNum;
 let frequencyLimit;
 let chorePoints;
+let householdMembersObj;
+let householdMembersIdsArr = [];
+
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -87,18 +90,24 @@ let accesshousehold = () => {
         console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
         ChoreFactory.getHouseholdMembers(houseID)
         .then((householdMembers) => {
+            // householdMembersObj = householdMembers
 
             console.log('you are inside accesshousehold', householdMembers)
             for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
                 // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
                 householdMembersNamesArr.push(householdMembers[prop].name)
+                householdMembersIdsArr.push(householdMembers[prop].id)
+                householdMembersArr.push(householdMembers[prop])
                 console.log('this is the householdMembersNamesArr', householdMembersNamesArr)
             }
                 $scope.houseMem1=householdMembersNamesArr[0];
                 $scope.houseMem2=householdMembersNamesArr[1];
-            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
-            console.log('woot!')
+                houseMem1ID = householdMembersIdsArr[0];
+                houseMem2ID = householdMembersIdsArr[1];
+
+            console.log('this is houseMem1ID', houseMem1ID, 'this is houseMem2ID', houseMem2ID)
+            // console.log('woot!')
         })
     })
 }
@@ -133,6 +142,21 @@ $scope.houseMem2Selected = () => {
     $scope.newChore.assignedMember != $scope.houseMem1;
     // console.log($scope.newChore)
 
+}
+
+$scope.reset = () => {
+    console.log('householdMembersArr', householdMembersArr)
+    householdMembersArr.forEach((member) =>{
+        member.pointsEarned = 0
+        // ChoreFactory.upddateMember
+    })
+    ChoreFactory.updateMember(houseMem1ID, householdMembersArr[0])
+    .then((result) => {console.log(result)
+         ChoreFactory.updateMember(houseMem2ID, householdMembersArr[1])
+        .then((result) => {console.log(result)
+        })
+    // console.log(householdMembersArr, 'householdMembersArr after points shifted')
+    })
 }
 
 

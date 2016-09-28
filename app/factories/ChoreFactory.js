@@ -59,6 +59,21 @@ let getHouseholdMembers = (housekey) => {
   });
 };
 
+let updateHouseholdMembers = (housekey, editedMembers) => {
+  let members = [];
+  return $q ( (resolve, reject) => {
+    $http.patch(`${FirebaseURL}/members.json?orderBy="houseId"&equalTo="${housekey}"`,  JSON.stringify(editedMembers))
+    .success( (membersObj) => {
+      // console.log(membersObj)
+      console.log('these are members from inside getHouseholdMembers', members)
+      resolve(members);
+    })
+    .error( (error) => {
+      reject(error);
+    });
+  });
+};
+
 
 
 let getAllChores = (householdId) => {
@@ -129,11 +144,11 @@ let updateChore = (choreId, editedChore) => {
   });
 };
 
-let updateMembers = (memberId, editedMember) => {
+let updateMember = (memberId, editedMember) => {
   return $q ( (resolve, reject) => {
     $http.patch(`${FirebaseURL}/members/${memberId}.json`, JSON.stringify(editedMember))
     .success( (result) => {
-      // console.log('result of updateMembers', result)
+      // console.log('result of updateMember', result)
       resolve(result);
     })
     .error( (error) => {
@@ -177,7 +192,7 @@ let updateSingleMember = (memberId, editedMember) => {
   return $q ( (resolve, reject) => {
     $http.patch(`${FirebaseURL}/members/${memberId}.json`, JSON.stringify(editedMember))
     .success( (memberObj) => {
-      console.log('this is the result of updateSingleMember', memberObj)
+      // console.log('this is the result of updateSingleMember', memberObj)
       resolve(memberObj);
     })
     .error( (error) => {
@@ -198,6 +213,6 @@ let deleteAChore = (choreId) => {
     });
   });
 };
-return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMembers, getSingleMember, updateSingleMember, getHouseholdName}
+return {postNewChore, addNewHouse, addMember, getHouseholdMembers, getHouseholdId, getAllChores, deleteAChore, updateChore, getSingleChore, updateMember, getSingleMember, updateSingleMember, getHouseholdName, updateHouseholdMembers}
 
 });
