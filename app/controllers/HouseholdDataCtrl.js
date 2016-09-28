@@ -77,14 +77,15 @@ let accesshousehold = () =>{
 
                 $scope.householdMembersNamesArr.push(householdMembers[prop].name)
                 memPointsEarnedToDateArr.push(householdMembers[prop].pointsEarned)
+                console.log(memPointsEarnedToDateArr, 'memPointsEarnedToDateArr')
 
 
             }
                 $scope.pointsToChart.push(memPointsEarnedToDateArr)
                 $scope.houseMem1=$scope.householdMembersNamesArr[0];
                 $scope.houseMem2=$scope.householdMembersNamesArr[1];
-            console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
-            console.log('hId', hId, 'houseID', houseID)
+            // console.log('this is houseMem1', $scope.houseMem1, 'this is houseMem2', $scope.houseMem2)
+            // console.log('hId', hId, 'houseID', houseID)
 
             //now call all get chores and filter by top-level/internal key on household to get chores
             ChoreFactory.getAllChores(houseID)
@@ -104,14 +105,13 @@ let accesshousehold = () =>{
                     //now that we have chores, identify which are and are not complete
                         for (var i = 0; i < mem1Chores.length; i++) {
                             console.log('mem1Chores[i]', mem1Chores[i])
-                            if(mem1Chores[i].completed === false) {
+                            if(mem1Chores[i].completed === false || mem1Chores[i].frequency > 0) {
                             mem1inCompleteChores.push(mem1Chores[i])
-
                             }
                         }
 
                          for(var i = 0; i < mem2Chores.length; i++) {
-                            if ( mem2Chores[i].completed === false){
+                            if ( mem2Chores[i].completed === false || mem2Chores[i].frequency > 0) {
                                 mem2inCompleteChores.push(mem2Chores[i])
                             }
                         }

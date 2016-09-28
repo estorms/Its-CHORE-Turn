@@ -39,13 +39,13 @@ $scope.$parent.getUser()
 $scope.title = "Add This Week's Chores";
 $scope.btnText = "Save That Nasty Chore!";
 $scope.selectedChore = {
-    name: '',
-    description: '',
+    // name: '',
+    // description: '',
     //when pushing to FB, was registering a blank string until you put in ng-model to the partial, now it's not registering at all as a key on selectedChore
-    assignedMember: '',
+    // assignedMember: '',
     // completed: false
-    completed: false,
-    timesCompleted: 0
+    // completed: false,
+    // timesCompleted: 0
 };
 
 $('select').material_select();
@@ -62,11 +62,11 @@ $scope.month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 $scope.monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 $scope.weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 $scope.weekdaysLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-$scope.disable = [false, 1, 7];
+$scope.disable = [false];
 $scope.today = 'Today';
 $scope.clear = 'Clear';
 $scope.close = 'Close';
-var days = 15;
+var days = 30;
 $scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24 * days ))).toISOString();
 $scope.maxDate = (new Date($scope.currentTime.getTime() + ( 1000 * 60 * 60 *24 * days ))).toISOString();
 $scope.onStart = function () {
@@ -140,7 +140,7 @@ $scope.updateselectedChore =  () => {
         .then((result) => {
             console.log('wow! you posted a chore!', result);
             $scope.selectedChore = { completed: false };
-                let selectedChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
+                let selectedChoreToast = `<span>This chore has been updated!</span>`;
                 Materialize.toast(selectedChoreToast, 3000);
         // })
      })

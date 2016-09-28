@@ -53,11 +53,11 @@ $scope.month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 $scope.monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 $scope.weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 $scope.weekdaysLetter = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-$scope.disable = [false, 1, 7];
+$scope.disable = [false];
 $scope.today = 'Today';
 $scope.clear = 'Clear';
 $scope.close = 'Close';
-var days = 15;
+var days = 30;
 $scope.minDate = (new Date($scope.currentTime.getTime() - ( 1000 * 60 * 60 *24 * days ))).toISOString();
 $scope.maxDate = (new Date($scope.currentTime.getTime() + ( 1000 * 60 * 60 *24 * days ))).toISOString();
 $scope.onStart = function () {
@@ -112,7 +112,7 @@ $scope.addNewChore =  () => {
     ChoreFactory.postNewChore($scope.newChore)
         .then((result) => {
             console.log('wow! you posted a chore!', result);
-            $scope.newChore = { completed: false };
+            $scope.newChore = { completed: false, timesCompleted: 0 };
                 let newChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
                 Materialize.toast(newChoreToast, 3000);
      });
