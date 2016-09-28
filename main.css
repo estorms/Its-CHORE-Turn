@@ -9,12 +9,17 @@ img {
 width: 100%;
 }
 
+.bgimg {
+    height: 100vh;
+}
+
 h1, h2, h3, h4 {
     text-align: center;
-    text-shadow: 2px 2px 1px;
+    text-shadow: 1px 1px;
     color: black;
     margin-top: 50px;
     margin-bottom: 35px;
+    font-weight: bolder;
 }
 
 h3 {
@@ -31,7 +36,7 @@ h3 {
 
 .btn, button {
     background-color: darkgrey;
-    box-shadow: 5px 5px 10px darkgrey;
+    box-shadow: 1px 1px 5px black;
     font-weight: 900;
 }
 

@@ -1,5 +1,5 @@
 <div class="row" ng-init="accesshousehold()">
-<h1>Edit The Damn Chore</h1>
+<h1>Edit This Chore!</h1>
    <!--  <a class='btn' href='#/home'>Take Me Back Home</a> -->
 
 <div id="home-options">
@@ -61,12 +61,14 @@
     </div>
     <div class="row">
       <div class="input-field col sm6" style="width: 50%">
-        <div>Currently Assigned To: {{thisChore.assignedMember}}
+        <span>Currently Assigned To: {{thisChore.assignedMember}}</span>
+        <div>
         <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
         <label for="houseMem1">{{houseMem1}}</label>
         <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
         <label for="houseMem2">{{houseMem2}}</label>
-        </div>
+        <!-- </span> -->
+      </div>
       </div>
       <div class="range-field col sm6">
         <input type="range" max="10" min="1" id ="IP" ng-model="selectedChore.irritationPoints">

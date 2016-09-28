@@ -9,15 +9,15 @@
     <a class='btn' href='#demoModal'>Get A Divorce</a>
 </div>
      <h3>This Week's Chores</h3>
-      <div id="chore-track">
-      <div class="col s12 m4"><button ng-click="showPoints()">Show Points to Date</button>
-      <button ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Have an Untracked Chore? See who's on the hook!</button></div>
-      </div>
       <div class="input-field">
           <input id="search" ng-model="searchText.search" placeholder="Filter This Week's Chores By Member" type="search">
           <label for="search"><i class="material-icons">search</i></label>
       </div>
         <!-- </div> -->
+      <div id="chore-track">
+      <div class="col s12 m4"><a class = "btn" ng-click="showPoints()">Show Points to Date</a>
+      <a class="btn" ng-click="choreTurn()" style="float: right; max-height: 30%; min-height: 30%">Unplanned Chore? See who's on the hook!</a></div>
+      </div>
       <div class="row">
         <div class="col s12 m4" ng-repeat="chore in chores | filter: {assignedMember: searchText.search}">
         <div class = "chore-card">
@@ -35,10 +35,6 @@
               <p>Assigned To: {{chore.assignedMember}}</p>
               <p>Irritation Points: {{chore.irritationPoints}}</p>
              <p ng-if="chore.frequency <= 0"> No Points Left to Learn By Completing This Chore</p>
-             <!--  <p>This is houseMem1 {{houseMem1}}</p>
-              <p>This is chore.assignedMember {{chore.assignedMember}}</p>
-              <p> Earn {{chore.irritationPoints}} Points by Completing this Chore</p> -->
-              <!-- <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p> -->
               <p ng-if="chore.completed === false">{{chore.assignedMember}} has not completed this chore</p>
               <p ng-if="chore.completed === true">Times Completed: {{chore.timesCompleted}}</p>
               <p ng-if="chore.frequency > 0">Weekly Frequency: {{chore.frequency}}</p>
@@ -47,25 +43,11 @@
             </div>
 
             <div class="card-action">
-              <button ng-click="completeChore(chore.id)">Mark This Chore Complete!</button>
-              <a ng-href="#/editchore/{{chore.id}}">Edit</a>
+              <a class="btn sm" ng-click="completeChore(chore.id)">Complete</a>
+              <a class="btn" ng-href="#/editchore/{{chore.id}}" style="padding-left: 18px; padding-right: 18px"><span>Edit</span></a>
               <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
-              <button ng-click="deleteChore(chore.id)"> Delete This Chore From Your List</button>
-                  <!-- <a href="#" ng-click="deleteChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE-->
+              <a class="btn" ng-click="deleteChore(chore.id)"> Delete</a>
 
-                  <!-- <div class="col" ng-show="!$parent.isLoggedIn"> -->
-   <!--  <a class='btn' href='#del' modal>How Does It Work?</a>
-</div> -->
-<!-- Modal Structure -->
-<!-- <div id="deleteModal" class="modal">
-       <div class="modal-content" style="color: black"> -->
-     <!-- <h3> How It Works</h3> -->
-    <!-- <h5>Are You Sure? If You Delete This Chore, You Won't Be Able to Get It Back Next Week!</h5>
-
-  </div>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Me Up!</a>
-    </div>
- -->
               </div>
             </div>
             </div>

@@ -37,7 +37,7 @@ $scope.$parent.getUser()
 
 
 $scope.title = "Add This Week's Chores";
-$scope.btnText = "Save That Nasty Chore!";
+$scope.btnText = "Edit This Chore";
 $scope.selectedChore = {
     name: '',
     description: '',

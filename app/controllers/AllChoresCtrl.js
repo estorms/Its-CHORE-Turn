@@ -203,7 +203,7 @@ $scope.choreTurn = () => {
     console.log(houseMem1Name, 'wins!')
     pointsAhead = houseMem1PointstoDate - houseMem2PointstoDate;
     console.log('ponitsahed', pointsAhead)
-    choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}</h5></span>`
+    choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}.</h5></span>`
 
   }
     else if (houseMem2PointstoDate > houseMem1PointstoDate) {

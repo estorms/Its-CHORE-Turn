@@ -61,11 +61,18 @@
     <div class="row">
       <div class="input-field col sm6" style="width: 50%">
         <div>Assigned To:
+       <!--  <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
+        <label for="houseMem1">{{houseMem1}}</label>
+        <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
+        <label for="houseMem2">{{houseMem2}}</label> -->
+        </div>
+         <div>
         <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
         <label for="houseMem1">{{houseMem1}}</label>
         <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
         <label for="houseMem2">{{houseMem2}}</label>
-        </div>
+        <!-- </span> -->
+      </div>
       </div>
       <div class="range-field col sm6">
         <input type="range" max="10" min="1" id ="IP" ng-model="newChore.irritationPoints">
