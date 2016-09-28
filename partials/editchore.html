@@ -1,1 +1,80 @@
+<div class="row" ng-init="accesshousehold()">
 <h1>Edit The Damn Chore</h1>
+   <!--  <a class='btn' href='#/home'>Take Me Back Home</a> -->
+
+<div id="home-options">
+    <a class='btn' href='#/selectedChore'>Enter A New  Chore</a>
+    <a class='btn' href='#/allchores'>See All This Week's Chores</a>
+    <a class='btn' href='#/householddata'>Show Us The Data</a>
+    <a class='btn' href='#demoModal'>Get A Divorce</a>
+</div>
+  <form class="col s12">
+    <div class="row">
+      <table>
+        <tbody><tr>
+          <td class="input-field">
+            <input id="selectedChoreName" type="text" class="validate" ng-model="selectedChore.name">
+            <label for="selectedChoreName" class="grey-text darken-4">Current Name: {{thisChore.name}}</label>
+          </td>
+          <td class="input-field">
+            <input id="selectedChoreDescription" type="text" class="validate" ng-model="selectedChore.description">
+            <label for="selectedChoreDescription" class="grey-text darken-4">Current Special Instructions: {{thisChore.description}}</label>
+          </td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="number-field col sm6" style="width: 50%">
+        <input type="number" min="0" max="20" id="selectedChoreFrequency" ng-model="selectedChore.frequency">
+        <label for="selectedChoreFrequency" class="grey-text darken-4">Current Weekly Frequency: {{thisChore.frequency}}</label>
+      </div>
+      <div class="input-field col sm6" style="width: 50%">
+        <label for="inputCreated">Currently Due By: {{thisChore.dueDate}}</label>
+        <input input-date
+        type="text"
+        name="created"
+        id="inputCreated"
+        ng-model="selectedChore.dueDate"
+        container=""
+        format="mm/dd/yyyy"
+        months-full="{{ month }}"
+        months-short="{{ monthShort }}"
+        weekdays-full="{{ weekdaysFull }}"
+        weekdays-short="{{ weekdaysShort }}"
+        weekdays-letter="{{ weekdaysLetter }}"
+        disable="disable"
+        min="{{ minDate }}"
+        max="{{ maxDate }}"
+        today="today"
+        first-day="1"
+        clear="clear"
+        close="close"
+        select-years="15"
+        on-start="onStart()"
+        on-render="onRender()"
+        on-open="onOpen()"
+        on-close="onClose()"
+        on-set="onSet()"
+        on-stop="onStop()"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col sm6" style="width: 50%">
+        <div>Currently Assigned To: {{thisChore.assignedMember}}
+        <input type="radio" name="housemems" id="houseMem1" ng-click="houseMem1Selected()"/>
+        <label for="houseMem1">{{houseMem1}}</label>
+        <input type="radio" name="housemems" id="houseMem2" ng-click="houseMem2Selected()"/>
+        <label for="houseMem2">{{houseMem2}}</label>
+        </div>
+      </div>
+      <div class="range-field col sm6">
+        <input type="range" max="10" min="1" id ="IP" ng-model="selectedChore.irritationPoints">
+        <label for="selectedChoreIrritationPoints" class="grey-text darken-4">Current Irritation Points: {{thisChore.irritationPoints}}</label>
+      </div>
+    </div>
+  </form>
+  <div class="input-field col s12">
+    <button class="btn" style="display: block; margin: 25px auto" ng-click="updateselectedChore()">{{btnText}}</button>
+  </div>
+</div>

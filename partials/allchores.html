@@ -48,7 +48,7 @@
 
             <div class="card-action">
               <button ng-click="completeChore(chore.id)">Mark This Chore Complete!</button>
-              <button ng-click="editChore()">Edit This Chore</button>
+              <a ng-href="#/editchore/{{chore.id}}">Edit</a>
               <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
               <button ng-click="deleteChore(chore.id)"> Delete This Chore From Your List</button>
                   <!-- <a href="#" ng-click="deleteChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE-->
