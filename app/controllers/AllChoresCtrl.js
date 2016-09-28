@@ -111,19 +111,21 @@ $scope.deleteChore = (choreId) => {
 $scope.completeChore = (choreId) => {
 
   ChoreFactory.getSingleChore(choreId)
-  .then( (result) =>{
+  .then( (result) => {
     console.log('this is the result of getSingleChore outside the loop', result)
-    singleChore = result;
+      singleChore = result;
       for (var key in singleChore) {
       singleChore = singleChore[key];
-      // console.log('singleChore now that it has been through for-in', singleChore)
+      console.log('singleChore now that it has been through for-in', singleChore)
       }
+      console.log("WTF?????")
       singleChore.completed = true;
       singleChore.frequency = singleChore.frequency - 1;
       singleChore.timesCompleted = singleChore.timesCompleted + 1;
-
+      // console.log('singleChore.timesCompleted', singleChore.timesCompleted)
+  console.log("Truly weird", singleChore.timesCompleted)
       ChoreFactory.updateChore(choreId, singleChore)
-      .then((result) => {
+      .then( (result) => {
         // console.log('this is the result of updateChore', result)
          chorePoints = result.irritationPoints;
         // move these up so that as you update chore, you're decrementing frequency
@@ -151,8 +153,8 @@ $scope.completeChore = (choreId) => {
             // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
               // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
-              if (frequencyLimit >= 0) {
-                console.log('this is the frequencyLimit above zero', frequencyLimit)
+                 if (frequencyLimit >= 0) {
+                // console.log('this is the frequencyLimit above zero', frequencyLimit)
                 chorePointsNum = parseInt(chorePoints);
                 singleMember.pointsEarned = alreadyPoints + chorePointsNum
                 let memberId = singleMember.id
@@ -160,25 +162,30 @@ $scope.completeChore = (choreId) => {
                 Materialize.toast(choreCompleteToast, 2500)
 
                 ChoreFactory.updateSingleMember(memberId, singleMember)
-                .then( (result) =>{
-                  console.log('here is your updated member, check their pointsEarned, bitches', result)
-                 ChoreFactory.getAllChores(houseID)
+                .then( (result) => {
+                  // console.log('here is your updated member, check their pointsEarned, bitches', result)
+                  ChoreFactory.getAllChores(houseID)
+
                  .then( (choresObj) => {
                   console.log('this is the chores obj, which means you can ignore the colors?', choresObj)
                   $scope.chores = choresObj;
                  })
-              });
-            }
+               })
+              }
+
 
             else {
               let cheatingToast = `<span><h5>No cheating, ${assignedMember}! You've completed this chore for the week!</h5></span>`
               Materialize.toast(cheatingToast, 2500);
             }
-        });
-    });
-});
+        })
+    })
+    })
+}
 
-};
+
+
+
 
 $scope.showPoints = () => {
   let houseMem1PointstoDate = householdMembersArr[0].pointsEarned

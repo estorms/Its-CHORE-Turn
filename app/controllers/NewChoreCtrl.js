@@ -112,7 +112,7 @@ $scope.addNewChore =  () => {
     ChoreFactory.postNewChore($scope.newChore)
         .then((result) => {
             console.log('wow! you posted a chore!', result);
-            $scope.newChore = { completed: false };
+            $scope.newChore = { completed: false, timesCompleted: 0 };
                 let newChoreToast = `<span>${memToToast} has been assigned ${choreToToast}, worth ${iPtoToast} points, ${frequencyToast} times this week! Wow!</span>`;
                 Materialize.toast(newChoreToast, 3000);
      });
