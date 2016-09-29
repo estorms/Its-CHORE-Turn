@@ -32,18 +32,16 @@ $scope.$parent.getUser()
 })
 
 let accesshousehold = () =>{
-    // hId = $scope.$parent.getUser();
-    console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
+    // console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {
         houseID = results;
-        console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
+        // console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
         ChoreFactory.getHouseholdMembers(houseID)
         .then((householdMembers) => {
 
               console.log('you are inside accesshousehold, these are your household members', householdMembers)
                 for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
-                // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
                 console.log('these should be image URLs, match them with members', householdMembers[prop].url)
                 householdMembersArr.push(householdMembers[prop])
@@ -123,13 +121,21 @@ $scope.completeChore = (choreId) => {
       }
       console.log("WTF?????")
       singleChore.completed = true;
+
+      if (singleChore.frequency > 0) {
       singleChore.frequency = singleChore.frequency - 1;
       singleChore.timesCompleted = singleChore.timesCompleted + 1;
-      // console.log('singleChore.timesCompleted', singleChore.timesCompleted)
-  // console.log("Truly weird", singleChore.timesCompleted)
+      }
+
+    else {
+      singleChore.frequency = 0;
+      singleChore.timesCompleted = singleChore.timesCompleted;
+      console.log('singleChore.timesCompleted', singleChore.timesCompleted)
+      }
+      console.log("Truly weird", singleChore.timesCompleted)
       ChoreFactory.updateChore(choreId, singleChore)
       .then( (result) => {
-        // console.log('this is the result of updateChore', result)
+        console.log('this is the result of updateChore', result)
          chorePoints = result.irritationPoints;
         // move these up so that as you update chore, you're decrementing frequency
         let assignedMember = result.assignedMember;
@@ -156,7 +162,7 @@ $scope.completeChore = (choreId) => {
             // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
               // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
-                 if (frequencyLimit >= 0) {
+                 if (frequencyLimit > 0) {
                 // console.log('this is the frequencyLimit above zero', frequencyLimit)
                 chorePointsNum = parseInt(chorePoints);
                 singleMember.pointsEarned = alreadyPoints + chorePointsNum
