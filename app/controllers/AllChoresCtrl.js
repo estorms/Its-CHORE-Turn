@@ -20,6 +20,7 @@ let frequencyLimit;
 let chorePoints;
 let mem1pointsEarnedToDate;
 let mem2pointsEarnedToDate;
+let householdMembersPointsArr = [];
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -123,7 +124,7 @@ $scope.completeChore = (choreId) => {
       singleChore.frequency = singleChore.frequency - 1;
       singleChore.timesCompleted = singleChore.timesCompleted + 1;
       // console.log('singleChore.timesCompleted', singleChore.timesCompleted)
-  console.log("Truly weird", singleChore.timesCompleted)
+  // console.log("Truly weird", singleChore.timesCompleted)
       ChoreFactory.updateChore(choreId, singleChore)
       .then( (result) => {
         // console.log('this is the result of updateChore', result)
@@ -188,12 +189,36 @@ $scope.completeChore = (choreId) => {
 
 
 $scope.showPoints = () => {
-  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
-  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+
+  ChoreFactory.getHouseholdMembers(houseID)
+        .then((householdMembers) => {
+
+              console.log('you are inside show, these are your householdmembers inside showpoints', householdMembers)
+              for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
+                // console.log('hello');
+                // console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                // console.log('these should be image URLs, match them with members', householdMembers[prop].url)
+                // householdMembersArr.push(householdMembers[prop])
+                // householdMembersNamesArr.push(householdMembers[prop].name)
+                householdMembersPointsArr.push(householdMembers[prop].pointsEarned)
+                // console.log('householdMembersPointsArr', householdMembersPointsArr)
+                // console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
+                mem1pointsEarnedToDate = householdMembersPointsArr[0]
+                mem2pointsEarnedToDate = householdMembersPointsArr[1]
+
+                // $scope.houseMem2=householdMembersNamesArr[1];
+                // console.log(householdMembersArr);
+                // console.log(householdMembersNamesArr);
+                }
+
+
+  // let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  // let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
   let houseMem1Name = householdMembersNamesArr[0];
   let houseMem2Name = householdMembersNamesArr[1];
-  let showPointsToast = `<span><h5>${houseMem1Name} has ${houseMem1PointstoDate} points. ${houseMem2Name} has ${houseMem2PointstoDate} points.</h5></span>`
+  let showPointsToast = `<span><h5>${houseMem1Name} has ${mem1pointsEarnedToDate} points. ${houseMem2Name} has ${mem2pointsEarnedToDate} points.</h5></span>`
   Materialize.toast(showPointsToast, 2500)
+            })
 }
 
 $scope.choreTurn = () => {
