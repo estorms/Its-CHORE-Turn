@@ -20,6 +20,9 @@ let frequencyLimit;
 let chorePoints;
 let mem1pointsEarnedToDate;
 let mem2pointsEarnedToDate;
+let householdMembersPointsArr = [];
+let houseMem1Name;
+let houseMem2Name;
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -29,18 +32,16 @@ $scope.$parent.getUser()
 })
 
 let accesshousehold = () =>{
-    // hId = $scope.$parent.getUser();
-    console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
+    // console.log('you are inside accesshousehold, this is the first result, a user ID:', hId);
     ChoreFactory.getHouseholdId(hId)
     .then((results) => {
         houseID = results;
-        console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
+        // console.log('you are inside accesshousehold, this should be the info you want to pass in to get members: ', houseID)
         ChoreFactory.getHouseholdMembers(houseID)
         .then((householdMembers) => {
 
               console.log('you are inside accesshousehold, these are your household members', householdMembers)
                 for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
-                // console.log('hello');
                 console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
                 console.log('these should be image URLs, match them with members', householdMembers[prop].url)
                 householdMembersArr.push(householdMembers[prop])
@@ -55,9 +56,9 @@ let accesshousehold = () =>{
                 $scope.houseMem2img = householdMembersArr[1].url;
                 householdMembersArr.forEach(function (member) {
                 console.log(member, member.id);
-                ChoreFactory.updateMembers(member.id, member)
+                ChoreFactory.updateMember(member.id, member)
                  .then((results) =>{
-                   console.log('These are the results of updateMembers', results)
+                   console.log('These are the results of updateMember', results)
                  });
              });
           });
@@ -120,13 +121,21 @@ $scope.completeChore = (choreId) => {
       }
       console.log("WTF?????")
       singleChore.completed = true;
+
+      if (singleChore.frequency > 0) {
       singleChore.frequency = singleChore.frequency - 1;
       singleChore.timesCompleted = singleChore.timesCompleted + 1;
-      // console.log('singleChore.timesCompleted', singleChore.timesCompleted)
-  console.log("Truly weird", singleChore.timesCompleted)
+      }
+
+    else {
+      singleChore.frequency = 0;
+      singleChore.timesCompleted = singleChore.timesCompleted;
+      console.log('singleChore.timesCompleted', singleChore.timesCompleted)
+      }
+      console.log("Truly weird", singleChore.timesCompleted)
       ChoreFactory.updateChore(choreId, singleChore)
       .then( (result) => {
-        // console.log('this is the result of updateChore', result)
+        console.log('this is the result of updateChore', result)
          chorePoints = result.irritationPoints;
         // move these up so that as you update chore, you're decrementing frequency
         let assignedMember = result.assignedMember;
@@ -153,7 +162,7 @@ $scope.completeChore = (choreId) => {
             // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
               // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
-                 if (frequencyLimit >= 0) {
+                 if (frequencyLimit > 0) {
                 // console.log('this is the frequencyLimit above zero', frequencyLimit)
                 chorePointsNum = parseInt(chorePoints);
                 singleMember.pointsEarned = alreadyPoints + chorePointsNum
@@ -188,44 +197,103 @@ $scope.completeChore = (choreId) => {
 
 
 $scope.showPoints = () => {
-  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
-  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
-  let houseMem1Name = householdMembersNamesArr[0];
-  let houseMem2Name = householdMembersNamesArr[1];
-  let showPointsToast = `<span><h5>${houseMem1Name} has ${houseMem1PointstoDate} points. ${houseMem2Name} has ${houseMem2PointstoDate} points.</h5></span>`
+
+  ChoreFactory.getHouseholdMembers(houseID)
+        .then((householdMembers) => {
+
+              console.log('you are inside show, these are your householdmembers inside showpoints', householdMembers)
+                householdMembersPointsArr = [];
+              for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
+                // console.log('hello');
+                // console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                // console.log('these should be image URLs, match them with members', householdMembers[prop].url)
+                // householdMembersArr.push(householdMembers[prop])
+                // householdMembersNamesArr.push(householdMembers[prop].name)
+                householdMembersPointsArr.push(householdMembers[prop].pointsEarned)
+                console.log('householdMembersPointsArr', householdMembersPointsArr)
+                // console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
+                mem1pointsEarnedToDate = householdMembersPointsArr[0]
+                console.log(mem1pointsEarnedToDate, 'mem1pointsEarnedToDate')
+                mem2pointsEarnedToDate = householdMembersPointsArr[1]
+                console.log(mem2pointsEarnedToDate, 'mem2pointsEarnedToDate')
+                // $scope.houseMem2=householdMembersNamesArr[1];
+                // console.log(householdMembersArr);
+                // console.log(householdMembersNamesArr);
+                }
+
+
+  // let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  // let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+   houseMem1Name = householdMembersNamesArr[0];
+                console.log(mem2pointsEarnedToDate, 'mem2pointsEarnedToDate outside promise')
+                console.log(mem1pointsEarnedToDate, 'mem1pointsEarnedToDate outside promise')
+   houseMem2Name = householdMembersNamesArr[1];
+  let showPointsToast = `<span><h5>${houseMem1Name} has ${mem1pointsEarnedToDate} points. ${houseMem2Name} has ${mem2pointsEarnedToDate} points.</h5></span>`
   Materialize.toast(showPointsToast, 2500)
+            })
 }
 
 $scope.choreTurn = () => {
-  let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
-  console.log(houseMem1PointstoDate)
-  let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
-  let houseMem1Name = householdMembersNamesArr[0];
-  console.log(houseMem2PointstoDate)
-  let houseMem2Name = householdMembersNamesArr[1];
+  // let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  // console.log(houseMem1PointstoDate)
+  // let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+  houseMem1Name = householdMembersNamesArr[0];
+  // console.log(houseMem2PointstoDate)
+  houseMem2Name = householdMembersNamesArr[1];
   let pointsAhead;
   let choreTurnToast;
 
-  if (houseMem1PointstoDate > houseMem2PointstoDate) {
-    console.log(houseMem1Name, 'wins!')
-    pointsAhead = houseMem1PointstoDate - houseMem2PointstoDate;
-    console.log('ponitsahed', pointsAhead)
-    choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}.</h5></span>`
+  ChoreFactory.getHouseholdMembers(houseID)
+        .then((householdMembers) => {
 
-  }
-    else if (houseMem2PointstoDate > houseMem1PointstoDate) {
-      console.log(houseMem2Name, 'wins')
-      pointsAhead = houseMem2PointstoDate - houseMem1PointstoDate;
-      console.log('pointsahead', pointsAhead)
-      choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than ${houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+              console.log('you are inside show, these are your householdmembers inside showpoints', householdMembers)
+                householdMembersPointsArr = [];
+              for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
+                // console.log('hello');
+                // console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                // console.log('these should be image URLs, match them with members', householdMembers[prop].url)
+                // householdMembersArr.push(householdMembers[prop])
+                // householdMembersNamesArr.push(householdMembers[prop].name)
+                householdMembersPointsArr.push(householdMembers[prop].pointsEarned)
+                console.log('householdMembersPointsArr', householdMembersPointsArr)
+                // console.log('names array', householdMembersNamesArr, 'members array', householdMembersArr)
+                mem1pointsEarnedToDate = householdMembersPointsArr[0]
+                console.log(mem1pointsEarnedToDate, 'mem1pointsEarnedToDate')
+                mem2pointsEarnedToDate = householdMembersPointsArr[1]
+                console.log(mem2pointsEarnedToDate, 'mem2pointsEarnedToDate')
+                // $scope.houseMem2=householdMembersNamesArr[1];
+                // console.log(householdMembersArr);
+                // console.log(householdMembersNamesArr);
+                }
 
-    }
-    else {
-      console.log('your points are identical. Looks like you need a divorce lawyer')
-      choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
-    }
-    Materialize.toast(choreTurnToast, 4000)
-}
+
+  // let houseMem1PointstoDate = householdMembersArr[0].pointsEarned
+  // let houseMem2PointstoDate = householdMembersArr[1].pointsEarned
+  // let showPointsToast = `<span><h5>${houseMem1Name} has ${mem1pointsEarnedToDate} points. ${houseMem2Name} has ${mem2pointsEarnedToDate} points.</h5></span>`
+  // Materialize.toast(showPointsToast, 2500)
+  //           })
+
+              if (mem1pointsEarnedToDate > mem2pointsEarnedToDate) {
+                console.log(houseMem1Name, 'wins!')
+                pointsAhead = mem1pointsEarnedToDate - mem2pointsEarnedToDate;
+                console.log('ponitsahed', pointsAhead)
+                choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}.</h5></span>`
+
+              }
+                else if (mem2pointsEarnedToDate >  mem1pointsEarnedToDate) {
+                  console.log(houseMem2Name, 'wins')
+                  pointsAhead = mem2pointsEarnedToDate - mem1pointsEarnedToDate;
+                  console.log('pointsahead', pointsAhead)
+                  choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than ${houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+
+                }
+                else {
+                  console.log('your points are identical. Looks like you need a divorce lawyer')
+                  choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
+                }
+                Materialize.toast(choreTurnToast, 4000)
+            })
+      }
 
 // $scope.editChore = () => {
 
