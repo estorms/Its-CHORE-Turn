@@ -176,7 +176,7 @@ $scope.completeChore = (choreId) => {
                   ChoreFactory.getAllChores(houseID)
 
                  .then( (choresObj) => {
-                  console.log('this is the chores obj, which means you can ignore the colors?', choresObj)
+                  console.log('this is the chores obj inside the if', choresObj)
                   $scope.chores = choresObj;
                  })
                })
@@ -186,6 +186,12 @@ $scope.completeChore = (choreId) => {
             else {
               let cheatingToast = `<span><h5>No cheating, ${assignedMember}! You've completed this chore for the week!</h5></span>`
               Materialize.toast(cheatingToast, 2500);
+            ChoreFactory.getAllChores(houseID)
+
+                 .then( (choresObj) => {
+                  console.log('this is the chores inside the else', choresObj)
+                  $scope.chores = choresObj;
+                 })
             }
         })
     })
