@@ -2,17 +2,17 @@
 
 app.controller("AllChoresCtrl", function ($scope, ChoreFactory, FilterFactory, $routeParams, $window, $location) {
   $scope.searchText = FilterFactory;
-let hId;
-let houseID;
+let hId; //userID, used to access household
+let houseID; //household upper-level FB key/internal id
 let householdMembersNamesArr = [];
 let householdMembersArr=[];
 $scope.chores = [];
 let singleChore;
-let choreId;
-let singleMember;
-let houseMem1ID;
-let houseMem2ID;
-let selectedMember;
+let choreId; //internal chore ID
+let singleMember; //member assigned to chore & earning completion points
+let houseMem1ID; //mem1 upper-level FB key/internal id
+let houseMem2ID; //mem2 ""
+let selectedMember; //member
 let houseMemID;
 let alreadyPoints;
 let chorePointsNum;
@@ -42,7 +42,7 @@ let accesshousehold = () =>{
 
               console.log('you are inside accesshousehold, these are your household members', householdMembers)
                 for (var prop in householdMembers) { //householdMembers is an object full of other objects. Prop is the name of each internal object (in this case, the 'name' = FB returned numeric value)
-                console.log(householdMembers[prop].name) //here, we are inside *each* object, regardless of its name (aka top-levelprop) and as identified by houseMembers[prop], and accessing a property specific to that object with dot notation. We have to use brackets on "prop" b/c we are access more than one object.
+                console.log(householdMembers[prop].name)
                 console.log('these should be image URLs, match them with members', householdMembers[prop].url)
                 householdMembersArr.push(householdMembers[prop])
                 householdMembersNamesArr.push(householdMembers[prop].name)
