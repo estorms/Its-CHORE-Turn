@@ -136,7 +136,7 @@ $scope.updateselectedChore =  () => {
          ChoreFactory.updateChore($routeParams.choreId, $scope.selectedChore)
         .then((result) => {
             console.log('wow! you posted a chore!', result);
-                let selectedChoreToast = `<span> ${choreToToast} has been updated!</span>`;
+                let selectedChoreToast = `<span> This chore has been updated!</span>`;
                 Materialize.toast(selectedChoreToast, 3000);
         // })
      })
