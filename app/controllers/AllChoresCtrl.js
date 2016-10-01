@@ -23,6 +23,7 @@ let mem2pointsEarnedToDate;
 let householdMembersPointsArr = [];
 let houseMem1Name;
 let houseMem2Name;
+let toastNum;
 
 $scope.$parent.getUser()
   .then ( (user) => {
@@ -115,23 +116,24 @@ $scope.completeChore = (choreId) => {
   .then( (result) => {
     console.log('this is the result of getSingleChore outside the loop', result)
       singleChore = result;
-      for (var key in singleChore) {
-      singleChore = singleChore[key];
-      console.log('singleChore now that it has been through for-in', singleChore)
-      }
-      console.log("WTF?????")
-      singleChore.completed = true;
+        for (var key in singleChore) {
+        singleChore = singleChore[key];
+        console.log('singleChore now that it has been through for-in', singleChore)
+        }
+        singleChore.completed = true;
 
-      if (singleChore.frequency > 0) {
-      singleChore.frequency = singleChore.frequency - 1;
-      singleChore.timesCompleted = singleChore.timesCompleted + 1;
-      }
+        if (singleChore.frequency > 0) {
+          toastNum = true;
+        singleChore.frequency = singleChore.frequency - 1;
+        singleChore.timesCompleted = singleChore.timesCompleted + 1;
+        }
 
-    else {
-      singleChore.frequency = 0;
-      singleChore.timesCompleted = singleChore.timesCompleted;
-      console.log('singleChore.timesCompleted', singleChore.timesCompleted)
-      }
+        else {
+        singleChore.frequency = 0;
+        toastNum = false;
+        singleChore.timesCompleted = singleChore.timesCompleted;
+        console.log('singleChore.timesCompleted', singleChore.timesCompleted)
+        }
       console.log("Truly weird", singleChore.timesCompleted)
       ChoreFactory.updateChore(choreId, singleChore)
       .then( (result) => {
@@ -162,7 +164,7 @@ $scope.completeChore = (choreId) => {
             // console.log('singleMemberpointsEarned', singleMember.pointsEarned)
               // console.log('frequencyLimit', frequencyLimit)
              alreadyPoints = parseInt(singleMember.pointsEarned);
-                 if (frequencyLimit > 0) {
+                 if (toastNum === true) {
                 // console.log('this is the frequencyLimit above zero', frequencyLimit)
                 chorePointsNum = parseInt(chorePoints);
                 singleMember.pointsEarned = alreadyPoints + chorePointsNum
