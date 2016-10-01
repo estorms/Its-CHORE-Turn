@@ -155,7 +155,7 @@ $scope.reset = () => {
          ChoreFactory.updateMember(houseMem2ID, householdMembersArr[1])
         .then((result) => {console.log(result)
         })
-        let resetToast= `<span>Both members' points have been reset to zero! Welcome to your new {{time period}}!</span>`
+        let resetToast= `<span>Both members' points have been reset to zero! Welcome to the next round!</span>`
         Materialize.toast(resetToast, 3000)
     // console.log(householdMembersArr, 'householdMembersArr after points shifted')
     })

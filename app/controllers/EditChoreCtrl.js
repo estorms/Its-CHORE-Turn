@@ -144,7 +144,7 @@ $scope.updateselectedChore =  () => {
                 Materialize.toast(selectedChoreToast, 3000);
         // })
      })
-
+        $location.url('/allchores')
 }
 
 $scope.houseMem1Selected = () => {

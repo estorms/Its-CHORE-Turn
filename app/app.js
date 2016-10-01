@@ -55,6 +55,11 @@ app.config(function($routeProvider){
             controller: "EditChoreCtrl"
         }).
 
+        when("/divorce", {
+            templateUrl: "partials/divorce.html",
+            controller: "DivorceCtrl"
+        }).
+
         otherwise("/");
 });
 

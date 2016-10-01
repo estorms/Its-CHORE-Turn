@@ -110,11 +110,12 @@ let accesshousehold = () =>{
                             }
                         }
 
-                         for(var i = 0; i < mem2Chores.length; i++) {
+                         for (var i = 0; i < mem2Chores.length; i++) {
                             if ( mem2Chores[i].completed === false || mem2Chores[i].frequency > 0) {
                                 mem2inCompleteChores.push(mem2Chores[i])
                             }
                         }
+                                console.log('mem2inCompleteChores', mem2inCompleteChores)
 
                         //calculate points left to earn based on incomplete Chores
 
@@ -124,6 +125,7 @@ let accesshousehold = () =>{
                         console.log('left to earnMem1', leftToEarnMem1)
 
                         for(var i = 0; i < mem2inCompleteChores.length; i++) {
+                            console.log('mem2inCompleteChores.frequency[i]', mem2inCompleteChores[i].frequency)
                             leftToEarnMem2 = mem2inCompleteChores[i].frequency * mem2inCompleteChores[i].irritationPoints;
                         }
                         console.log('left to earnMem2', leftToEarnMem2)
