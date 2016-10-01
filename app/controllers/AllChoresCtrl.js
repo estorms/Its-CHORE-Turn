@@ -282,4 +282,10 @@ $scope.choreTurn = () => {
             })
       }
 
+// $scope.editChore = () => {
+
+// $window.location.href = "#/editchore";
+
+// }
+
 });
