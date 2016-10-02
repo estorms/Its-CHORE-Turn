@@ -227,7 +227,7 @@ $scope.showPoints = () => {
                 console.log(mem2pointsEarnedToDate, 'mem2pointsEarnedToDate outside promise')
                 console.log(mem1pointsEarnedToDate, 'mem1pointsEarnedToDate outside promise')
    houseMem2Name = householdMembersNamesArr[1];
-  let showPointsToast = `<span><h5>${houseMem1Name} has ${mem1pointsEarnedToDate} points. ${houseMem2Name} has ${mem2pointsEarnedToDate} points.</h5></span>`
+  let showPointsToast = `<span>${houseMem1Name} has ${mem1pointsEarnedToDate} points. ${houseMem2Name} has ${mem2pointsEarnedToDate} points.</span>`
   Materialize.toast(showPointsToast, 2500)
             })
 }
@@ -264,19 +264,19 @@ $scope.choreTurn = () => {
                 // console.log(houseMem1Name, 'wins!')
                 pointsAhead = mem1pointsEarnedToDate - mem2pointsEarnedToDate;
                 // console.log('pointsAhead', pointsAhead)
-                choreTurnToast = `<span><h5>${houseMem1Name} has ${pointsAhead} more points to date than ${houseMem2Name}. You're on the hook, ${houseMem2Name}.</h5></span>`
+                choreTurnToast = `<span>${houseMem1Name} has ${pointsAhead} more points than ${houseMem2Name}. You're on the hook, ${houseMem2Name}.</span>`
 
               }
                 else if (mem2pointsEarnedToDate >  mem1pointsEarnedToDate) {
                   // console.log(houseMem2Name, 'wins')
                   pointsAhead = mem2pointsEarnedToDate - mem1pointsEarnedToDate;
                   // console.log('pointsahead', pointsAhead)
-                  choreTurnToast = `<span><h5>${houseMem2Name} has ${pointsAhead} more points to date than ${houseMem1Name}. You're on the hook, ${houseMem1Name}</h5></span>`
+                  choreTurnToast = `<span>${houseMem2Name} has ${pointsAhead} more points than ${houseMem1Name}. You're on the hook, ${houseMem1Name}.</span>`
 
                 }
                 else {
                   console.log('your points are identical. Looks like you need a divorce lawyer')
-                  choreTurnToast = `<span><h5>Your points are identical. Looks like you need a divorce lawyer</h5></span>`
+                  choreTurnToast = `<span>Your points are identical. Looks like you need a divorce lawyer.</span>`
                 }
                 Materialize.toast(choreTurnToast, 4000)
             })
