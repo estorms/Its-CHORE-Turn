@@ -51,6 +51,12 @@ h3 {
     margin: 2% auto;
 }
 
+.home-opt{
+    display: block;
+    width: 75%;
+    margin: 2% auto;
+}
+
 a {
     color: black;
 }
