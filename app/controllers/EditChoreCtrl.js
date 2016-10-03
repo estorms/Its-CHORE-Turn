@@ -132,18 +132,15 @@ $scope.updateselectedChore =  () => {
     let choreToToast = $scope.selectedChore.name;
     let iPtoToast = $scope.selectedChore.irritationPoints;
     let frequencyToast = $scope.selectedChore.frequency;
-    // ChoreFactory.getSingleChore($routeParams.choreId)
-    //     .then( (result) => {
-    //         console.log('the result of getSingleChore', result)
-    //         $scope.thisChore = result;
+
          ChoreFactory.updateChore($routeParams.choreId, $scope.selectedChore)
         .then((result) => {
             console.log('wow! you posted a chore!', result);
-            $scope.selectedChore = { completed: false };
-                let selectedChoreToast = `<span>This chore has been updated!</span>`;
+                let selectedChoreToast = `<span> This chore has been updated!</span>`;
                 Materialize.toast(selectedChoreToast, 3000);
         // })
      })
+            // $scope.selectedChore = { completed: false } Don't think you need this, as you're not editing the same chore twice!
         $location.url('/allchores')
 }
 

@@ -2,7 +2,8 @@
      <div ng-init="accesshousehold()">
   <!--   <a class='btn' href='#/home'>Take Me Back Home</a> -->
 
-  <div id="home-options">
+  <div class="home-opt">
+  <!-- <a class='btn' href='#demoModal' modal>How Does It Work?</a> -->
     <a class='btn' href='#/newchore'>Enter A New  Chore</a>
     <a class='btn' href='#/allchores'>See All This Week's Chores</a>
     <a class='btn' href='#/householddata'>Show Us The Data</a>
@@ -21,12 +22,12 @@
           <div class="card blue-grey lighten-3">
           <span class="card-title" style="font-weight: bold">{{chore.name}}</span>
             <div class="card-image">
-               <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}">
-               <img ng-if="chore.assignedMember === houseMem2" class="memb-pic .img-responsive" src="{{houseMem2img}}">
-               <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg">
+               <img ng-if="chore.assignedMember === houseMem1" class="memb-pic .img-responsive" src= "{{houseMem1img}}" style="height: 32vh">
+               <img ng-if="chore.assignedMember === houseMem2" class="memb-pic .img-responsive" src="{{houseMem2img}}" style="height: 32vh">
+              <!--  <img ng-if="!houseMem1img || !houseMem2img" class="memb-pic .img-responsive" src="https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg"> -->
                </div>
 
-            <div class="card-content black-text" style="height: 50vh">
+            <div class="card-content black-text" style="height: 30vh">
 
               <p style="font-weight: bold">Special Instructions: {{chore.description}}</p>
               <p>Assigned To: {{chore.assignedMember}}</p>
@@ -46,27 +47,7 @@
             <div class="card-action">
               <a class = "btn" ng-click="completeChore(chore.id)">Complete</a>
               <a class = "btn" ng-href="#/editchore/{{chore.id}}"  style="padding-left: 18px; padding-right: 18px">Edit</a>
-              <!-- <a href="#" ng-click="completeChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE: PATCH-->
-
               <a class="btn" ng-click="deleteChore(chore.id)"> Delete</a>
-
-              <!-- <button ng-click="deleteChore(chore.id)"> Delete This Chore From Your List</button> -->
-                  <!-- <a href="#" ng-click="deleteChore()">Complete This Chore!</a> ON THIS CLICK, CHORE STATUS WILL CHANGE TO FALSE-->
-
-                  <!-- <div class="col" ng-show="!$parent.isLoggedIn"> -->
-   <!--  <a class='btn' href='#del' modal>How Does It Work?</a>
-</div> -->
-<!-- Modal Structure -->
-<!-- <div id="deleteModal" class="modal">
-       <div class="modal-content" style="color: black"> -->
-     <!-- <h3> How It Works</h3> -->
-    <!-- <h5>Are You Sure? If You Delete This Chore, You Won't Be Able to Get It Back Next Week!</h5>
-
-  </div>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Sign Me Up!</a>
-    </div>
- -->
-
             </div>
             </div>
           </div>

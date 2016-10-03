@@ -47,6 +47,12 @@ h3 {
 
 #home-options{
     display: block;
+    width: 86%;
+    margin: 2% auto;
+}
+
+.home-opt{
+    display: block;
     width: 75%;
     margin: 2% auto;
 }
