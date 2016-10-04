@@ -29,19 +29,19 @@
 
             <div class="card-content black-text" style="height: 30vh">
 
-              <p style="font-weight: bold">Special Instructions: {{chore.description}}</p>
-              <p>Assigned To: {{chore.assignedMember}}</p>
-              <p>Irritation Points: {{chore.irritationPoints}}</p>
+              <p>Assigned To: <span style="color: white">{{chore.assignedMember}}</span></p>
+              <p>Irritation Points: <span style="font-weight: bolder; color: firebrick">{{chore.irritationPoints}}</span></p>
              <p ng-if="chore.frequency <= 0"> No Points Left to Learn By Completing This Chore</p>
              <!--  <p>This is houseMem1 {{houseMem1}}</p>
               <p>This is chore.assignedMember {{chore.assignedMember}}</p>
               <p> Earn {{chore.irritationPoints}} Points by Completing this Chore</p> -->
               <!-- <p ng-if="chore.completed === true">{{chore.assignedMember}} has completed this chore</p> -->
-              <p ng-if="chore.completed === false">{{chore.assignedMember}} has not completed this chore</p>
-              <p ng-if="chore.completed === true">Times Completed: {{chore.timesCompleted}}</p>
-              <p ng-if="chore.frequency > 0">Weekly Frequency: {{chore.frequency}}</p>
+              <p ng-if="chore.completed === false">{{chore.assignedMember}} has <span style="color: red; font-weight: bolder">not</span> completed this chore</p>
+              <p ng-if="chore.frequency > 0">Needs to be completed <span style="color: yellow">{{chore.frequency}}</span> more time(s) this week.</p>
+              <p ng-if="chore.completed === true">Times Completed: <span style="color: purple; font-weight: bolder">{{chore.timesCompleted}}</span></p>
               <p ng-if="chore.frequency <= 0" style="color: cornsilk; font-weight: bolder">This Chore Has Been Completed for the Week! Great job, {{chore.assignedMember}}!</p>
               <p>Due By: {{chore.dueDate}}</p>
+              <p style="font-weight: bold">Special Instructions: <span style="font-style: italic"> {{chore.description}}</span></p>
             </div>
 
             <div class="card-action">
