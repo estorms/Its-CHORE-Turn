@@ -1,0 +1,25 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "households": {
+      ".indexOn": [
+        "userId",
+        "name"
+      ]
+    },
+    "members": {
+      ".indexOn": [
+        "houseId",
+        "name",
+        "id"
+      ]
+    },
+    "chores": {
+      ".indexOn": [
+        "id",
+        "householdId"
+      ]
+    }
+  }
+}
